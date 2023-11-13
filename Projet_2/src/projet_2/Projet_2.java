@@ -10,6 +10,7 @@ package projet_2;
  */
 public class Projet_2 {
     int test = 1;
+    int test2 = 2;
     
     /**
      * @param args the command line arguments
