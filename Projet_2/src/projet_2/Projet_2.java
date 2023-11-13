@@ -9,7 +9,8 @@ package projet_2;
  * @author MAUMEJEAN DENIS
  */
 public class Projet_2 {
-
+    int test = 1;
+    
     /**
      * @param args the command line arguments
      */
