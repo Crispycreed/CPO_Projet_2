@@ -1,19 +1,103 @@
+
+import java.awt.Color;
+import static java.awt.Color.BLACK;
+import static java.awt.Color.black;
+import static java.awt.Color.white;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.JButton;
+import javax.swing.border.Border;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author ordim
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
 
+    GrilleDeJeu grille;
+    int nbCoups;
+    int i;
+    private int nbColonnes = 4;
+    private int nbLignes = 4;
+
     /**
      * Creates new form FenetrePrincipale
      */
     public FenetrePrincipale() {
+        this.nbColonnes = nbColonnes;
+        this.nbLignes = nbLignes;
         initComponents();
+
+        PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
+        this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
+        getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, nbColonnes * 40, nbLignes * 40));
+        grille.initialiserCellulesAleatoires();
+
+        for (int i = 0; i < nbLignes; i++) {
+            for (int j = 0; j < nbColonnes; j++) {
+                CelluleGraphique bouton_cellule = new CelluleGraphique(grille.matriceCellules[i][j], 36, 36);
+
+                PanneauGrille.add(bouton_cellule); // ajout au Jpanel PanneauGrille
+            }
+
+        }
+
+        ControlPanel.setLayout(null);
+        getContentPane().add(ControlPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0,0,0));
+        this.pack();
+        this.revalidate();
+
+        // création des boutons directionnels
+        JButton bouton_droite = new JButton("→");
+        JButton bouton_gauche = new JButton("←");
+        JButton bouton_haut = new JButton("↑");
+        JButton bouton_bas = new JButton("↓");
+
+        // positionnement des boutons
+        bouton_gauche.setBounds(10, 4 * 20 - 20, 40, 40);
+        bouton_haut.setBounds(4 * 20 - 20, 10, 40, 40);
+        bouton_bas.setBounds(4 * 20 - 20, 4 * 20 - 20, 40, 40);
+        bouton_droite.setBounds(4 * 20 * 2 - 50, 4 * 20 - 20, 40, 40);
+
+        ControlPanel.add(bouton_gauche);
+        ControlPanel.add(bouton_haut);
+        ControlPanel.add(bouton_bas);
+        ControlPanel.add(bouton_droite);
+
+
+        
+        
+        
+        
+        
+        
+        
+
+        ActionListener ecouteurClick = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == bouton_droite) {
+                    grille.deplacerToutesCellulesDroite();
+                    System.out.print("test déplacement a droite");
+                }
+                repaint();
+            }
+        };
+        bouton_droite.addActionListener(ecouteurClick);
+        
+        
+        
+        
+        
+        
+        
     }
 
     /**
@@ -25,17 +109,56 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PanneauGrille = new javax.swing.JPanel();
+        ControlPanel = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(500, 600));
+
+        PanneauGrille.setBackground(new java.awt.Color(204, 255, 204));
+
+        javax.swing.GroupLayout PanneauGrilleLayout = new javax.swing.GroupLayout(PanneauGrille);
+        PanneauGrille.setLayout(PanneauGrilleLayout);
+        PanneauGrilleLayout.setHorizontalGroup(
+            PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 310, Short.MAX_VALUE)
+        );
+        PanneauGrilleLayout.setVerticalGroup(
+            PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        ControlPanel.setBackground(new java.awt.Color(255, 255, 255));
+        ControlPanel.setPreferredSize(new java.awt.Dimension(160, 120));
+
+        javax.swing.GroupLayout ControlPanelLayout = new javax.swing.GroupLayout(ControlPanel);
+        ControlPanel.setLayout(ControlPanelLayout);
+        ControlPanelLayout.setHorizontalGroup(
+            ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 160, Short.MAX_VALUE)
+        );
+        ControlPanelLayout.setVerticalGroup(
+            ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 120, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ControlPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(84, 84, 84))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(ControlPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(372, Short.MAX_VALUE))
         );
 
         pack();
@@ -77,5 +200,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ControlPanel;
+    private javax.swing.JPanel PanneauGrille;
     // End of variables declaration//GEN-END:variables
 }
