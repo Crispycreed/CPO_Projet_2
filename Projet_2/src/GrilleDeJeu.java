@@ -45,7 +45,7 @@ class GrilleDeJeu {
     }
 
     public void additionnerCellulesAdjacentesVersLaDroite() {
-        for (int ligne = nbLignes -1 ; ligne >= 0; ligne-- ) {
+        for (int ligne = nbLignes - 1; ligne >= 0; ligne--) {
             for (int colonne = nbColonnes - 2; colonne >= 0; colonne--) {
                 Cellule celluleCourante = matriceCellules[ligne][colonne];
 
@@ -55,10 +55,31 @@ class GrilleDeJeu {
 
                     if (colonneDroite < nbColonnes) {
                         Cellule celluleDroite = matriceCellules[ligne][colonneDroite];
-
+                        int valeurDroite = celluleDroite.getValeur();
+                        int valeurCourante = celluleCourante.getValeur();
+                        
                         // Additionner les cellules adjacentes
-                        celluleDroite.modifierValeur(celluleDroite.getValeur() + celluleCourante.getValeur());
-                        celluleCourante.modifierValeur(0);
+                        if (valeurDroite == valeurCourante) {
+                            if ( valeurDroite == 3) {
+                                celluleDroite.modifierValeur(valeurDroite);
+                            }  
+                            celluleDroite.modifierValeur(valeurDroite + valeurCourante);
+                            celluleCourante.modifierValeur(0);
+                        } else if  (valeurDroite == 0) {
+                            celluleDroite.modifierValeur(valeurDroite + valeurCourante);
+                            celluleCourante.modifierValeur(0);
+                        } else if (valeurDroite == 1 && valeurCourante == 2) {
+                            celluleDroite.modifierValeur(valeurDroite + valeurCourante);
+                            celluleCourante.modifierValeur(0);
+                        } else if (valeurDroite == 2 && valeurCourante == 1) {
+                            celluleDroite.modifierValeur(valeurDroite + valeurCourante);
+                            celluleCourante.modifierValeur(0);
+                        } else if (valeurDroite == 1 && valeurCourante == 1) {
+                            celluleDroite.modifierValeur(valeurDroite + valeurCourante);
+                            celluleCourante.modifierValeur(0);
+                        }
+                        
+                      
                     }
                 }
             }
