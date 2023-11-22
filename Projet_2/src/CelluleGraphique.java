@@ -46,17 +46,20 @@ public class CelluleGraphique extends JButton {
         int w = this.getWidth();
         int h = this.getHeight();
 
-        // Définir la couleur de fond
+// Définir la couleur de fond
         if (celluleLumineuseAssociee.estVide()) {
             g.setColor(Color.white);
         } else if (valeur2 == 0) {
             g.setColor(Color.WHITE);
         } else if (valeur2 == 1) {
-            g.setColor(Color.yellow);
+            g.setColor(new Color(173, 216, 230));  // Bleu clair
         } else if (valeur2 == 2) {
-            g.setColor(Color.orange);
+            g.setColor(new Color(128, 128, 128));  // Gris
         } else if (valeur2 == 3) {
-            g.setColor(Color.red);
+            g.setColor(new Color(255, 0, 0));  // Rouge
+        } else {
+            // Ajoutez ici des couleurs spécifiques pour d'autres valeurs si nécessaire
+            g.setColor(Color.RED);  // Couleur par défaut
         }
 
         // Remplir le rectangle avec la couleur de fond

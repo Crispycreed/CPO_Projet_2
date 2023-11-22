@@ -128,11 +128,13 @@ class GrilleDeJeu {
 
                         // Additionner les cellules adjacentes
                         if (valeurDroite == valeurCourante) {
-                            if (valeurDroite == 3) {
+                            if (valeurDroite == 2 && valeurCourante == 2) {
                                 celluleDroite.modifierValeur(valeurDroite);
                             }
-                            celluleDroite.modifierValeur(valeurDroite + valeurCourante);
-                            celluleCourante.modifierValeur(0);
+                            else {
+                                celluleDroite.modifierValeur(valeurDroite + valeurCourante);
+                                celluleCourante.modifierValeur(0);
+                            }   
                         } else if (valeurDroite == 0) {
                             celluleDroite.modifierValeur(valeurDroite + valeurCourante);
                             celluleCourante.modifierValeur(0);
@@ -170,11 +172,13 @@ class GrilleDeJeu {
 
                         // Additionner les cellules adjacentes
                         if (valeurGauche == valeurCourante) {
-                            if (valeurGauche == 3) {
+                            if (valeurGauche == 2 && valeurCourante == 2) {
                                 celluleGauche.modifierValeur(valeurGauche);
                             }
-                            celluleGauche.modifierValeur(valeurGauche + valeurCourante);
-                            celluleCourante.modifierValeur(0);
+                            else {
+                                celluleGauche.modifierValeur(valeurGauche + valeurCourante);
+                                celluleCourante.modifierValeur(0);
+                            }   
                         } else if (valeurGauche == 0) {
                             celluleGauche.modifierValeur(valeurGauche + valeurCourante);
                             celluleCourante.modifierValeur(0);
@@ -211,11 +215,13 @@ class GrilleDeJeu {
 
                         // Additionner les cellules adjacentes
                         if (valeurHaut == valeurCourante) {
-                            if (valeurHaut == 3) {
+                            if (valeurHaut == 2 && valeurCourante == 2) {
                                 celluleHaut.modifierValeur(valeurHaut);
                             }
-                            celluleHaut.modifierValeur(valeurHaut + valeurCourante);
-                            celluleCourante.modifierValeur(0);
+                            else {
+                                celluleHaut.modifierValeur(valeurHaut + valeurCourante);
+                                celluleCourante.modifierValeur(0);
+                            }   
                         } else if (valeurHaut == 0) {
                             celluleHaut.modifierValeur(valeurHaut + valeurCourante);
                             celluleCourante.modifierValeur(0);
@@ -252,11 +258,13 @@ class GrilleDeJeu {
 
                         // Additionner les cellules adjacentes
                         if (valeurBas == valeurCourante) {
-                            if (valeurBas == 3) {
+                            if (valeurBas == 2 && valeurCourante == 2) {
                                 celluleBas.modifierValeur(valeurBas);
                             }
-                            celluleBas.modifierValeur(valeurBas + valeurCourante);
-                            celluleCourante.modifierValeur(0);
+                            else {
+                                celluleBas.modifierValeur(valeurBas + valeurCourante);
+                                celluleCourante.modifierValeur(0);
+                            }   
                         } else if (valeurBas == 0) {
                             celluleBas.modifierValeur(valeurBas + valeurCourante);
                             celluleCourante.modifierValeur(0);
