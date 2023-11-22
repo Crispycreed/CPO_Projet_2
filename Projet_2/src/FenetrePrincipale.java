@@ -81,7 +81,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         };
         bouton_droite.addActionListener(ecouteurClick);
-        
+
         ActionListener ecouteurClick2 = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -92,6 +92,28 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         };
         bouton_gauche.addActionListener(ecouteurClick2);
+
+        ActionListener ecouteurClick3 = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == bouton_haut) {
+                    grille.additionnerCellulesAdjacentesVersLeHaut();
+                }
+                repaint();
+            }
+        };
+        bouton_haut.addActionListener(ecouteurClick3);
+
+        ActionListener ecouteurClick4 = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == bouton_bas) {
+                    grille.additionnerCellulesAdjacentesVersLeBas();
+                }
+                repaint();
+            }
+        };
+        bouton_bas.addActionListener(ecouteurClick4);
 
     }
 
