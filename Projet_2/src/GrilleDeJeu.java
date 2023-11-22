@@ -113,7 +113,7 @@ class GrilleDeJeu {
                 stop = 1;
             } else if (cellulesVides == 0) {
                 stop = 1;
-                
+
             }
         }
     }
@@ -313,6 +313,26 @@ class GrilleDeJeu {
         }
         System.out.println("TEST 10");
         ajouterAleatoirementEnHaut();
+    }
+
+    public int[][] sauvegarderGrille() {
+        int[][] copieGrille = new int[nbLignes][nbColonnes];
+
+        for (int i = 0; i < nbLignes; i++) {
+            for (int j = 0; j < nbColonnes; j++) {
+                copieGrille[i][j] = matriceCellules[i][j].getValeur();
+            }
+        }
+
+        return copieGrille;
+    }
+
+    public void chargerGrille(int[][] sauvegarde) {
+        for (int i = 0; i < nbLignes; i++) {
+            for (int j = 0; j < nbColonnes; j++) {
+                matriceCellules[i][j].modifierValeur(sauvegarde[i][j]);
+            }
+        }
     }
 
 }

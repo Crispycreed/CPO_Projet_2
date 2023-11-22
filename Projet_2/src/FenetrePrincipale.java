@@ -78,6 +78,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     grille.additionnerCellulesAdjacentesVersLaDroite();
                 }
                 repaint();
+
+                int cellulesVides = grille.nombreCellulesVides();
+                if (cellulesVides == 0) {
+                    int[][] sauvegarde = grille.sauvegarderGrille();
+                    dispose();
+                    FinPartie f = new FinPartie(sauvegarde);
+                    f.setVisible(true);
+                }
             }
         };
         bouton_droite.addActionListener(ecouteurClick);
@@ -89,6 +97,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     grille.additionnerCellulesAdjacentesVersLaGauche();
                 }
                 repaint();
+
+                int cellulesVides = grille.nombreCellulesVides();
+                if (cellulesVides == 0) {
+                    int[][] sauvegarde = grille.sauvegarderGrille();
+                    dispose();
+                    FinPartie f = new FinPartie(sauvegarde);
+                    f.setVisible(true);
+                }
             }
         };
         bouton_gauche.addActionListener(ecouteurClick2);
@@ -100,6 +116,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     grille.additionnerCellulesAdjacentesVersLeHaut();
                 }
                 repaint();
+
+                int cellulesVides = grille.nombreCellulesVides();
+                if (cellulesVides == 0) {
+                    int[][] sauvegarde = grille.sauvegarderGrille();
+                    dispose();
+                    FinPartie f = new FinPartie(sauvegarde);
+                    f.setVisible(true);
+                }
             }
         };
         bouton_haut.addActionListener(ecouteurClick3);
@@ -111,10 +135,18 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     grille.additionnerCellulesAdjacentesVersLeBas();
                 }
                 repaint();
+
+                int cellulesVides = grille.nombreCellulesVides();
+                if (cellulesVides == 0) {
+                    int[][] sauvegarde = grille.sauvegarderGrille();
+                    dispose();
+                    FinPartie f = new FinPartie(sauvegarde);
+                    f.setVisible(true);
+                }
             }
         };
         bouton_bas.addActionListener(ecouteurClick4);
-
+        setLocationRelativeTo(null);
     }
 
     /**

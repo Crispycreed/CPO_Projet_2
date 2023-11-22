@@ -96,7 +96,7 @@ public class CelluleGraphique extends JButton {
         }
 
         // Définir la taille de la police (1.5x en hauteur)
-        int fontSize = (int) (h / 2);
+        int fontSize = (int) (h / 5);
         g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, fontSize));
 
         // Afficher la valeur au centre de la cellule
