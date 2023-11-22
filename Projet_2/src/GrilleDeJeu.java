@@ -52,9 +52,6 @@ public void additionnerCellulesAdjacentesVersLaDroite(int ligne) {
             // Trouver la première cellule non vide à droite
             int colonneDroite = colonne + 1;
 
-            while (colonneDroite < nbColonnes && matriceCellules[ligne][colonneDroite].getValeur() == 0) {
-                colonneDroite++;
-            }
 
             if (colonneDroite < nbColonnes) {
                 Cellule celluleDroite = matriceCellules[ligne][colonneDroite];
