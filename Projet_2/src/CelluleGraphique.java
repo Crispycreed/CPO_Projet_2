@@ -56,10 +56,29 @@ public class CelluleGraphique extends JButton {
         } else if (valeur2 == 2) {
             g.setColor(new Color(128, 128, 128));  // Gris
         } else if (valeur2 == 3) {
-            g.setColor(new Color(255, 0, 0));  // Rouge
+            g.setColor(new Color(255, 255, 0));  // Jaune
         } else {
-            // Ajoutez ici des couleurs spécifiques pour d'autres valeurs si nécessaire
-            g.setColor(Color.RED);  // Couleur par défaut
+            // Générer une couleur de dégradé du jaune à l'orange jusqu'au rouge en fonction de la puissance de 2
+            int puissanceDe2 = 3;
+            while (Math.pow(2, puissanceDe2) <= valeur2) {
+                puissanceDe2++;
+            }
+
+            int maxExponent = 12;  // La valeur maximale pour une couleur différente (2^12 = 4096)
+            int exponent = Math.min(puissanceDe2, maxExponent);
+
+            // Calculez la quantité de jaune à mélanger (entre 255 et 0) en fonction de la puissance de 2
+            int yellowAmount = (int) ((valeur2 - Math.pow(2, exponent - 1)) / Math.pow(2, exponent - 1) * 255);
+
+            // Calculez la quantité d'orange (entre 0 et 255) en fonction de la puissance de 2
+            int orangeAmount = 255 - yellowAmount;
+
+            // Si la valeur est supérieure à 6144, définissez la couleur en rouge
+            if (valeur2 > 6144) {
+                g.setColor(new Color(255, 0, 0));
+            } else {
+                g.setColor(new Color(255, orangeAmount, 0));  // Jaune à orange à rouge
+            }
         }
 
         // Remplir le rectangle avec la couleur de fond

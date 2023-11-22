@@ -44,18 +44,35 @@ class GrilleDeJeu {
         }
     }
 
+    public int nombreCellulesVides() {
+        int count = 0;
+
+        for (int i = 0; i < nbLignes; i++) {
+            for (int j = 0; j < nbColonnes; j++) {
+                if (matriceCellules[i][j].getValeur() == 0) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+
     public void ajouterAleatoirementAGauche() {
         Random random = new Random();
-        int randomLigne = random.nextInt(nbLignes);
         int stop = 2;
+
         while (stop == 2) {
 
             // Choisir aléatoirement une valeur parmi 1, 2 ou 3
             int valeur = random.nextInt(3) + 1;
+            int randomLigne = random.nextInt(nbLignes);
             int valeurExistante = matriceCellules[randomLigne][0].getValeur();
-
+            int cellulesVides = nombreCellulesVides();
             if (valeurExistante == 0) {
                 matriceCellules[randomLigne][0].modifierValeur(valeur);
+                stop = 1;
+            } else if (cellulesVides == 0) {
                 stop = 1;
             }
         }
@@ -63,16 +80,19 @@ class GrilleDeJeu {
 
     public void ajouterAleatoirementADroite() {
         Random random = new Random();
-        int randomLigne = random.nextInt(nbLignes);
+
         int stop = 2;
 
         while (stop == 2) {
             // Choisir aléatoirement une valeur parmi 1, 2 ou 3
             int valeur = random.nextInt(3) + 1;
+            int randomLigne = random.nextInt(nbLignes);
             int valeurExistante = matriceCellules[randomLigne][nbColonnes - 1].getValeur();
-
+            int cellulesVides = nombreCellulesVides();
             if (valeurExistante == 0) {
                 matriceCellules[randomLigne][nbColonnes - 1].modifierValeur(valeur);
+                stop = 1;
+            } else if (cellulesVides == 0) {
                 stop = 1;
             }
         }
@@ -80,33 +100,40 @@ class GrilleDeJeu {
 
     public void ajouterAleatoirementEnHaut() {
         Random random = new Random();
-        int randomColonne = random.nextInt(nbColonnes);
         int stop = 2;
 
         while (stop == 2) {
             // Choisir aléatoirement une valeur parmi 1, 2 ou 3
+            int randomColonne = random.nextInt(nbColonnes);
             int valeur = random.nextInt(3) + 1;
             int valeurExistante = matriceCellules[0][randomColonne].getValeur();
-
+            int cellulesVides = nombreCellulesVides();
             if (valeurExistante == 0) {
                 matriceCellules[0][randomColonne].modifierValeur(valeur);
                 stop = 1;
+            } else if (cellulesVides == 0) {
+                stop = 1;
+                
             }
         }
     }
 
     public void ajouterAleatoirementEnBas() {
         Random random = new Random();
-        int randomColonne = random.nextInt(nbColonnes);
+
         int stop = 2;
 
         while (stop == 2) {
             // Choisir aléatoirement une valeur parmi 1, 2 ou 3
             int valeur = random.nextInt(3) + 1;
+            int randomColonne = random.nextInt(nbColonnes);
             int valeurExistante = matriceCellules[nbLignes - 1][randomColonne].getValeur();
-
+            int cellulesVides = nombreCellulesVides();
             if (valeurExistante == 0) {
                 matriceCellules[nbLignes - 1][randomColonne].modifierValeur(valeur);
+                stop = 1;
+
+            } else if (cellulesVides == 0) {
                 stop = 1;
             }
         }
@@ -130,11 +157,10 @@ class GrilleDeJeu {
                         if (valeurDroite == valeurCourante) {
                             if (valeurDroite == 2 && valeurCourante == 2) {
                                 celluleDroite.modifierValeur(valeurDroite);
-                            }
-                            else {
+                            } else {
                                 celluleDroite.modifierValeur(valeurDroite + valeurCourante);
                                 celluleCourante.modifierValeur(0);
-                            }   
+                            }
                         } else if (valeurDroite == 0) {
                             celluleDroite.modifierValeur(valeurDroite + valeurCourante);
                             celluleCourante.modifierValeur(0);
@@ -174,11 +200,10 @@ class GrilleDeJeu {
                         if (valeurGauche == valeurCourante) {
                             if (valeurGauche == 2 && valeurCourante == 2) {
                                 celluleGauche.modifierValeur(valeurGauche);
-                            }
-                            else {
+                            } else {
                                 celluleGauche.modifierValeur(valeurGauche + valeurCourante);
                                 celluleCourante.modifierValeur(0);
-                            }   
+                            }
                         } else if (valeurGauche == 0) {
                             celluleGauche.modifierValeur(valeurGauche + valeurCourante);
                             celluleCourante.modifierValeur(0);
@@ -217,11 +242,10 @@ class GrilleDeJeu {
                         if (valeurHaut == valeurCourante) {
                             if (valeurHaut == 2 && valeurCourante == 2) {
                                 celluleHaut.modifierValeur(valeurHaut);
-                            }
-                            else {
+                            } else {
                                 celluleHaut.modifierValeur(valeurHaut + valeurCourante);
                                 celluleCourante.modifierValeur(0);
-                            }   
+                            }
                         } else if (valeurHaut == 0) {
                             celluleHaut.modifierValeur(valeurHaut + valeurCourante);
                             celluleCourante.modifierValeur(0);
@@ -244,44 +268,50 @@ class GrilleDeJeu {
 
     public void additionnerCellulesAdjacentesVersLeBas() {
         for (int colonne = 0; colonne < nbColonnes; colonne++) {
+            System.out.println("TEST 1");
             for (int ligne = nbLignes - 2; ligne >= 0; ligne--) {
                 Cellule celluleCourante = matriceCellules[ligne][colonne];
-
+                System.out.println("TEST 2");
                 if (celluleCourante.getValeur() != 0) {
                     // Trouver la première cellule non vide en dessous
                     int ligneBas = ligne + 1;
-
+                    System.out.println("TEST 3");
                     if (ligneBas < nbLignes) {
                         Cellule celluleBas = matriceCellules[ligneBas][colonne];
                         int valeurBas = celluleBas.getValeur();
                         int valeurCourante = celluleCourante.getValeur();
-
+                        System.out.println("TEST 4");
                         // Additionner les cellules adjacentes
                         if (valeurBas == valeurCourante) {
                             if (valeurBas == 2 && valeurCourante == 2) {
                                 celluleBas.modifierValeur(valeurBas);
-                            }
-                            else {
+                            } else {
                                 celluleBas.modifierValeur(valeurBas + valeurCourante);
                                 celluleCourante.modifierValeur(0);
-                            }   
+                                System.out.println("TEST 5");
+                            }
                         } else if (valeurBas == 0) {
                             celluleBas.modifierValeur(valeurBas + valeurCourante);
                             celluleCourante.modifierValeur(0);
+                            System.out.println("TEST 6");
                         } else if (valeurBas == 1 && valeurCourante == 2) {
                             celluleBas.modifierValeur(valeurBas + valeurCourante);
                             celluleCourante.modifierValeur(0);
+                            System.out.println("TEST 7");
                         } else if (valeurBas == 2 && valeurCourante == 1) {
                             celluleBas.modifierValeur(valeurBas + valeurCourante);
                             celluleCourante.modifierValeur(0);
+                            System.out.println("TEST 8");
                         } else if (valeurBas == 1 && valeurCourante == 1) {
                             celluleBas.modifierValeur(valeurBas + valeurCourante);
                             celluleCourante.modifierValeur(0);
+                            System.out.println("TEST 9");
                         }
                     }
                 }
             }
         }
+        System.out.println("TEST 10");
         ajouterAleatoirementEnHaut();
     }
 
