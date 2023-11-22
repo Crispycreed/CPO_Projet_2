@@ -335,4 +335,14 @@ class GrilleDeJeu {
         }
     }
 
+    public int getScore() {
+        int score = 0;
+        for (int i = 0; i < nbLignes; i++) {
+            for (int j = 0; j < nbColonnes; j++) {
+                score += matriceCellules[i][j].getValeur();
+            }
+        }
+        return score;
+    }
+
 }

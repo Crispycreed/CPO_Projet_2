@@ -33,6 +33,31 @@ public class CelluleGraphique extends JButton {
         this.celluleLumineuseAssociee = celluleLumineuseAssociee;
     }
 
+    private Color obtenirCouleur(int valeur) {
+        if (valeur == 0) {
+            return Color.WHITE;
+        } else if (valeur == 1) {
+            return new Color(173, 216, 230);  // Bleu clair
+        } else if (valeur == 2) {
+            return new Color(128, 128, 128);  // Gris
+        } else if (valeur == 3) {
+            return new Color(255, 255, 0);  // Jaune
+        } else {
+            int maxRed = 255;
+            int maxGreen = 255;
+
+            // Calculer les composantes RGB en fonction de la valeur
+            int red = maxRed;
+            int green = maxGreen - ((valeur - 3) / 3) * 10;
+            int blue = 0;
+
+            // Assurer que green reste dans les limites de 0 à 255
+            green = Math.max(0, Math.min(maxGreen, green));
+
+            return new Color(red, green, blue);
+        }
+    }
+
     // Methode gérant le dessin de la cellule
     /**
      * sert a mettre de la couleur dans les cases du jeu
@@ -46,39 +71,10 @@ public class CelluleGraphique extends JButton {
         int w = this.getWidth();
         int h = this.getHeight();
 
-// Définir la couleur de fond
         if (celluleLumineuseAssociee.estVide()) {
             g.setColor(Color.white);
-        } else if (valeur2 == 0) {
-            g.setColor(Color.WHITE);
-        } else if (valeur2 == 1) {
-            g.setColor(new Color(173, 216, 230));  // Bleu clair
-        } else if (valeur2 == 2) {
-            g.setColor(new Color(128, 128, 128));  // Gris
-        } else if (valeur2 == 3) {
-            g.setColor(new Color(255, 255, 0));  // Jaune
         } else {
-            // Générer une couleur de dégradé du jaune à l'orange jusqu'au rouge en fonction de la puissance de 2
-            int puissanceDe2 = 3;
-            while (Math.pow(2, puissanceDe2) <= valeur2) {
-                puissanceDe2++;
-            }
-
-            int maxExponent = 12;  // La valeur maximale pour une couleur différente (2^12 = 4096)
-            int exponent = Math.min(puissanceDe2, maxExponent);
-
-            // Calculez la quantité de jaune à mélanger (entre 255 et 0) en fonction de la puissance de 2
-            int yellowAmount = (int) ((valeur2 - Math.pow(2, exponent - 1)) / Math.pow(2, exponent - 1) * 255);
-
-            // Calculez la quantité d'orange (entre 0 et 255) en fonction de la puissance de 2
-            int orangeAmount = 255 - yellowAmount;
-
-            // Si la valeur est supérieure à 6144, définissez la couleur en rouge
-            if (valeur2 > 6144) {
-                g.setColor(new Color(255, 0, 0));
-            } else {
-                g.setColor(new Color(255, orangeAmount, 0));  // Jaune à orange à rouge
-            }
+            g.setColor(obtenirCouleur(valeur2));
         }
 
         // Remplir le rectangle avec la couleur de fond
