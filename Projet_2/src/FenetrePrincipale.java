@@ -26,8 +26,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     GrilleDeJeu grille;
     int nbCoups;
     int i;
-    private int nbColonnes = 8;
-    private int nbLignes = 8;
+    private int nbColonnes = 4;
+    private int nbLignes = 4;
 
     /**
      * Creates new form FenetrePrincipale

@@ -59,6 +59,46 @@ class GrilleDeJeu {
     }
 
     /**
+     * Initialise deux cellules aléatoires avec les valeurs 12 et 24.
+     */
+    public void initialiserCellulesAleatoires2() {
+        Random random = new Random();
+        int count = 0;
+
+        while (count < 2) {
+            int randomLigne = random.nextInt(nbLignes);
+            int randomColonne = random.nextInt(nbColonnes);
+
+            if (matriceCellules[randomLigne][randomColonne].estVide()) {
+                // Si la cellule est vide, lui attribuer la valeur 1 ou 2
+                int valeur = (count == 0) ? 12 : 24;
+                matriceCellules[randomLigne][randomColonne].modifierValeur(valeur);
+                count++;
+            }
+        }
+    }
+
+    /**
+     * Initialise deux cellules aléatoires avec les valeurs 48 et 96.
+     */
+    public void initialiserCellulesAleatoires3() {
+        Random random = new Random();
+        int count = 0;
+
+        while (count < 2) {
+            int randomLigne = random.nextInt(nbLignes);
+            int randomColonne = random.nextInt(nbColonnes);
+
+            if (matriceCellules[randomLigne][randomColonne].estVide()) {
+                // Si la cellule est vide, lui attribuer la valeur 1 ou 2
+                int valeur = (count == 0) ? 96 : 48;
+                matriceCellules[randomLigne][randomColonne].modifierValeur(valeur);
+                count++;
+            }
+        }
+    }
+
+    /**
      * Calcule le nombre de cellules vides dans la grille.
      *
      * @return Le nombre de cellules vides.
@@ -190,6 +230,8 @@ class GrilleDeJeu {
                         // Additionner les cellules adjacentes
                         if (valeurDroite == valeurCourante) {
                             if (valeurDroite == 2 && valeurCourante == 2) {
+                                celluleDroite.modifierValeur(valeurDroite);
+                            } else if (valeurDroite == 1 && valeurCourante == 1) {
                                 celluleDroite.modifierValeur(valeurDroite);
                             } else {
                                 celluleDroite.modifierValeur(valeurDroite + valeurCourante);
@@ -409,5 +451,13 @@ class GrilleDeJeu {
             }
         }
         return score;
+    }
+
+    public void viderGrille() {
+        for (int i = 0; i < nbLignes; i++) {
+            for (int j = 0; j < nbColonnes; j++) {
+                matriceCellules[i][j].modifierValeur(0);
+            }
+        }
     }
 }
