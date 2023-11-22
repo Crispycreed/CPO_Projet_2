@@ -24,8 +24,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     GrilleDeJeu grille;
     int nbCoups;
     int i;
-    private int nbColonnes = 4;
-    private int nbLignes = 4;
+    private int nbColonnes = 8;
+    private int nbLignes = 8;
 
     /**
      * Creates new form FenetrePrincipale
@@ -50,7 +50,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         }
 
         ControlPanel.setLayout(null);
-        getContentPane().add(ControlPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0,0,0));
+        getContentPane().add(ControlPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
         this.pack();
         this.revalidate();
 
@@ -71,15 +71,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         ControlPanel.add(bouton_bas);
         ControlPanel.add(bouton_droite);
 
-
-        
-        
-        
-        
-        
-        
-        
-
         ActionListener ecouteurClick = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -91,13 +82,19 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         };
         bouton_droite.addActionListener(ecouteurClick);
-        
-        
-        
-        
-        
-        
-        
+
+        ActionListener ecouteurClick2 = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == bouton_haut) {
+                    grille.deplacerToutesCellulesHaut();
+                    System.out.print("test déplacement a Haut");
+                }
+                repaint();
+            }
+        };
+        bouton_haut.addActionListener(ecouteurClick2);
+
     }
 
     /**

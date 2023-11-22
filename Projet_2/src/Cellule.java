@@ -27,7 +27,7 @@ public class Cellule {
      * @param nouvelleValeur La nouvelle valeur à assigner à la cellule
      */
     public void modifierValeur(int nouvelleValeur) {
-        if (nouvelleValeur <= 0) {
+        if (nouvelleValeur < 0) {
             throw new IllegalArgumentException("La nouvelle valeur doit être un chiffre positif différent de 0.");
         }
         this.valeur = nouvelleValeur;
