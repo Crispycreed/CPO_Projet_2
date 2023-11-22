@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import javax.swing.border.Border;
 
 /**
- * Cette classe représente la fenêtre de fin de partie pour le jeu 2048.
+ * Cette classe représente la fenêtre de fin de partie.
  */
 public class FinPartie extends javax.swing.JFrame {
 
