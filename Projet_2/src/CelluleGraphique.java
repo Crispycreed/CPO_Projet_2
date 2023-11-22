@@ -5,11 +5,13 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import javax.swing.JButton;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 /**
+ * Représente une cellule graphique associée à une cellule lumineuse. Cette
+ * classe étend JButton pour fournir une représentation visuelle d'une cellule
+ * lumineuse dans le jeu. La couleur de la cellule est déterminée par la valeur
+ * de la cellule lumineuse associée. Les cellules vides sont affichées en blanc,
+ * tandis que les cellules avec des valeurs ont une couleur spécifique. La
+ * valeur est affichée au centre de la cellule.
  *
  * @author ordim
  */
@@ -20,7 +22,7 @@ public class CelluleGraphique extends JButton {
     Cellule celluleLumineuseAssociee;
 
     /**
-     * Représente une cellule graphique associée à une cellule lumineuse.
+     * Constructeur de la classe CelluleGraphique.
      *
      * @param celluleLumineuseAssociee La cellule lumineuse associée à cette
      * cellule graphique.
@@ -33,6 +35,14 @@ public class CelluleGraphique extends JButton {
         this.celluleLumineuseAssociee = celluleLumineuseAssociee;
     }
 
+    /**
+     * Obtient la couleur associée à une valeur donnée. Les cellules vides sont
+     * blanches. Les valeurs de 1 à 3 ont des couleurs spécifiques. À partir de
+     * 3, chaque multiple de 3 réduit le composant vert de 10 unités.
+     *
+     * @param valeur La valeur de la cellule lumineuse.
+     * @return La couleur associée à la valeur.
+     */
     private Color obtenirCouleur(int valeur) {
         if (valeur == 0) {
             return Color.WHITE;
@@ -58,11 +68,14 @@ public class CelluleGraphique extends JButton {
         }
     }
 
-    // Methode gérant le dessin de la cellule
     /**
-     * sert a mettre de la couleur dans les cases du jeu
+     * Méthode gérant le dessin de la cellule. Cette méthode est appelée
+     * automatiquement lorsque la cellule doit être dessinée. Elle remplit le
+     * rectangle avec la couleur de fond, ajoute une bordure noire, définit la
+     * couleur du texte en fonction de la valeur de la cellule, puis affiche la
+     * valeur au centre de la cellule.
      *
-     * @param g
+     * @param g L'objet Graphics utilisé pour dessiner la cellule.
      */
     @Override
     protected void paintComponent(Graphics g) {
@@ -71,6 +84,7 @@ public class CelluleGraphique extends JButton {
         int w = this.getWidth();
         int h = this.getHeight();
 
+        // Définir la couleur de fond
         if (celluleLumineuseAssociee.estVide()) {
             g.setColor(Color.white);
         } else {
@@ -104,5 +118,4 @@ public class CelluleGraphique extends JButton {
         int y = (h - textHeight) / 2 + fontMetrics.getAscent();
         g.drawString(valeur, x, y);
     }
-
 }

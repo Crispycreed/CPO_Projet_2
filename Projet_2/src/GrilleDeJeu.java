@@ -1,20 +1,32 @@
 
 import java.util.Random;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 /**
- *
- * @author ordim
+ * La classe GrilleDeJeu
  */
 class GrilleDeJeu {
 
+    /**
+     * La matrice de cellules représentant la grille du jeu.
+     */
     Cellule[][] matriceCellules;
+
+    /**
+     * Le nombre de lignes dans la grille.
+     */
     int nbLignes;
+
+    /**
+     * Le nombre de colonnes dans la grille.
+     */
     int nbColonnes;
 
+    /**
+     * Constructeur de la classe GrilleDeJeu.
+     *
+     * @param p_nbLignes Le nombre de lignes de la grille.
+     * @param p_nbColonnes Le nombre de colonnes de la grille.
+     */
     public GrilleDeJeu(int p_nbLignes, int p_nbColonnes) {
         nbLignes = p_nbLignes;
         nbColonnes = p_nbColonnes;
@@ -26,7 +38,9 @@ class GrilleDeJeu {
         }
     }
 
-    // Méthode pour initialiser deux cellules aléatoires avec les valeurs 1 et 2
+    /**
+     * Initialise deux cellules aléatoires avec les valeurs 1 et 2.
+     */
     public void initialiserCellulesAleatoires() {
         Random random = new Random();
         int count = 0;
@@ -44,6 +58,11 @@ class GrilleDeJeu {
         }
     }
 
+    /**
+     * Calcule le nombre de cellules vides dans la grille.
+     *
+     * @return Le nombre de cellules vides.
+     */
     public int nombreCellulesVides() {
         int count = 0;
 
@@ -58,6 +77,9 @@ class GrilleDeJeu {
         return count;
     }
 
+    /**
+     * Ajoute aléatoirement une cellule à gauche de la grille.
+     */
     public void ajouterAleatoirementAGauche() {
         Random random = new Random();
         int stop = 2;
@@ -78,6 +100,9 @@ class GrilleDeJeu {
         }
     }
 
+    /**
+     * Ajoute aléatoirement une cellule à droite de la grille.
+     */
     public void ajouterAleatoirementADroite() {
         Random random = new Random();
 
@@ -98,6 +123,9 @@ class GrilleDeJeu {
         }
     }
 
+    /**
+     * Ajoute aléatoirement une cellule en haut de la grille.
+     */
     public void ajouterAleatoirementEnHaut() {
         Random random = new Random();
         int stop = 2;
@@ -118,6 +146,9 @@ class GrilleDeJeu {
         }
     }
 
+    /**
+     * Ajoute aléatoirement une cellule en bas de la grille.
+     */
     public void ajouterAleatoirementEnBas() {
         Random random = new Random();
 
@@ -139,6 +170,9 @@ class GrilleDeJeu {
         }
     }
 
+    /**
+     * Additionne les cellules adjacentes vers la droite.
+     */
     public void additionnerCellulesAdjacentesVersLaDroite() {
         for (int ligne = nbLignes - 1; ligne >= 0; ligne--) {
             for (int colonne = nbColonnes - 2; colonne >= 0; colonne--) {
@@ -182,6 +216,9 @@ class GrilleDeJeu {
         ajouterAleatoirementAGauche();
     }
 
+    /**
+     * Additionne les cellules adjacentes vers la gauche.
+     */
     public void additionnerCellulesAdjacentesVersLaGauche() {
         for (int ligne = 0; ligne < nbLignes; ligne++) {
             for (int colonne = 1; colonne < nbColonnes; colonne++) {
@@ -224,11 +261,20 @@ class GrilleDeJeu {
         ajouterAleatoirementADroite();
     }
 
+    /**
+     * Additionne les cellules adjacentes vers le haut dans la grille. Si deux
+     * cellules adjacentes ont la même valeur, elles sont fusionnées. Les
+     * cellules vides résultantes sont déplacées vers le haut. Enfin, une
+     * nouvelle cellule est ajoutée aléatoirement en bas de la grille.
+     */
     public void additionnerCellulesAdjacentesVersLeHaut() {
+        // Parcours de chaque colonne
         for (int colonne = 0; colonne < nbColonnes; colonne++) {
+            // Parcours de chaque ligne à partir de la deuxième
             for (int ligne = 1; ligne < nbLignes; ligne++) {
                 Cellule celluleCourante = matriceCellules[ligne][colonne];
 
+                // Vérifie si la cellule courante n'est pas vide
                 if (celluleCourante.getValeur() != 0) {
                     // Trouver la première cellule non vide au-dessus
                     int ligneHaut = ligne - 1;
@@ -263,24 +309,30 @@ class GrilleDeJeu {
                 }
             }
         }
+        // Ajoute une nouvelle cellule aléatoirement en bas de la grille
         ajouterAleatoirementEnBas();
     }
 
+    /**
+     * Additionne les cellules adjacentes vers le bas dans la grille. Si deux
+     * cellules adjacentes ont la même valeur, elles sont fusionnées. Les
+     * cellules vides résultantes sont déplacées vers le bas. Enfin, une
+     * nouvelle cellule est ajoutée aléatoirement en haut de la grille.
+     */
     public void additionnerCellulesAdjacentesVersLeBas() {
+        // Parcours de chaque colonne
         for (int colonne = 0; colonne < nbColonnes; colonne++) {
-            System.out.println("TEST 1");
+            // Parcours de chaque ligne en partant de l'avant-dernière
             for (int ligne = nbLignes - 2; ligne >= 0; ligne--) {
                 Cellule celluleCourante = matriceCellules[ligne][colonne];
-                System.out.println("TEST 2");
+                // Vérifie si la cellule courante n'est pas vide
                 if (celluleCourante.getValeur() != 0) {
                     // Trouver la première cellule non vide en dessous
                     int ligneBas = ligne + 1;
-                    System.out.println("TEST 3");
                     if (ligneBas < nbLignes) {
                         Cellule celluleBas = matriceCellules[ligneBas][colonne];
                         int valeurBas = celluleBas.getValeur();
                         int valeurCourante = celluleCourante.getValeur();
-                        System.out.println("TEST 4");
                         // Additionner les cellules adjacentes
                         if (valeurBas == valeurCourante) {
                             if (valeurBas == 2 && valeurCourante == 2) {
@@ -288,36 +340,37 @@ class GrilleDeJeu {
                             } else {
                                 celluleBas.modifierValeur(valeurBas + valeurCourante);
                                 celluleCourante.modifierValeur(0);
-                                System.out.println("TEST 5");
                             }
                         } else if (valeurBas == 0) {
                             celluleBas.modifierValeur(valeurBas + valeurCourante);
                             celluleCourante.modifierValeur(0);
-                            System.out.println("TEST 6");
                         } else if (valeurBas == 1 && valeurCourante == 2) {
                             celluleBas.modifierValeur(valeurBas + valeurCourante);
                             celluleCourante.modifierValeur(0);
-                            System.out.println("TEST 7");
                         } else if (valeurBas == 2 && valeurCourante == 1) {
                             celluleBas.modifierValeur(valeurBas + valeurCourante);
                             celluleCourante.modifierValeur(0);
-                            System.out.println("TEST 8");
                         } else if (valeurBas == 1 && valeurCourante == 1) {
                             celluleBas.modifierValeur(valeurBas + valeurCourante);
                             celluleCourante.modifierValeur(0);
-                            System.out.println("TEST 9");
                         }
                     }
                 }
             }
         }
-        System.out.println("TEST 10");
+        // Ajoute une nouvelle cellule aléatoirement en haut de la grille
         ajouterAleatoirementEnHaut();
     }
 
+    /**
+     * Sauvegarde l'état actuel de la grille dans une matrice d'entiers.
+     *
+     * @return Une matrice d'entiers représentant l'état actuel de la grille.
+     */
     public int[][] sauvegarderGrille() {
         int[][] copieGrille = new int[nbLignes][nbColonnes];
 
+        // Copie la valeur de chaque cellule dans la nouvelle matrice
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
                 copieGrille[i][j] = matriceCellules[i][j].getValeur();
@@ -327,7 +380,14 @@ class GrilleDeJeu {
         return copieGrille;
     }
 
+    /**
+     * Charge l'état de la grille à partir d'une matrice d'entiers sauvegardée.
+     *
+     * @param sauvegarde La matrice d'entiers représentant l'état sauvegardé de
+     * la grille.
+     */
     public void chargerGrille(int[][] sauvegarde) {
+        // Modifie la valeur de chaque cellule avec les valeurs de la matrice sauvegardée
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
                 matriceCellules[i][j].modifierValeur(sauvegarde[i][j]);
@@ -335,8 +395,14 @@ class GrilleDeJeu {
         }
     }
 
+    /**
+     * Calcule et retourne le score actuel de la grille.
+     *
+     * @return Le score actuel de la grille.
+     */
     public int getScore() {
         int score = 0;
+        // Calcule la somme des valeurs de toutes les cellules
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
                 score += matriceCellules[i][j].getValeur();
@@ -344,5 +410,4 @@ class GrilleDeJeu {
         }
         return score;
     }
-
 }

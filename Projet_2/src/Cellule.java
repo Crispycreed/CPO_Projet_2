@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
 /**
- * La classe qui caractérise une cellule (peut être vide ou associée à un chiffre positif différent de 0)
+ * La classe qui caractérise une cellule (peut être vide ou associée à un chiffre positif différent de 0).
+ * Elle permet de représenter une cellule dans le jeu.
  *
  * @author MAUMEJEAN DENIS
  */
@@ -14,7 +11,8 @@ public class Cellule {
     private boolean vide; // Indique si la cellule est vide
 
     /**
-     * Constructeur pour une cellule vide
+     * Constructeur pour une cellule vide. Initialise une cellule avec une
+     * valeur de 0, indiquant qu'elle est vide.
      */
     public Cellule() {
         this.vide = true;
@@ -22,51 +20,58 @@ public class Cellule {
     }
 
     /**
-     * Méthode pour modifier la valeur de la cellule
+     * Méthode pour modifier la valeur de la cellule. La nouvelle valeur doit
+     * être un chiffre positif différent de 0.
      *
-     * @param nouvelleValeur La nouvelle valeur à assigner à la cellule
+     * @param nouvelleValeur La nouvelle valeur à assigner à la cellule.
+     * @throws IllegalArgumentException Si la nouvelle valeur n'est pas un
+     * chiffre positif différent de 0.
      */
     public void modifierValeur(int nouvelleValeur) {
         if (nouvelleValeur < 0) {
-            throw new IllegalArgumentException("La nouvelle valeur doit être un chiffre positif différent de 0.");
         }
         this.valeur = nouvelleValeur;
         this.vide = false;
     }
 
     /**
-     * Méthode pour obtenir la valeur de la cellule
+     * Méthode pour obtenir la valeur de la cellule.
      *
-     * @return La valeur de la cellule
+     * @return La valeur de la cellule.
      */
     public int getValeur() {
         return valeur;
     }
 
     /**
-     * Méthode pour vérifier si la cellule est vide
+     * Méthode pour vérifier si la cellule est vide.
      *
-     * @return true si la cellule est vide, false sinon
+     * @return true si la cellule est vide, false sinon.
      */
     public boolean estVide() {
         return vide;
     }
 
-    // Méthode pour doubler la valeur de la cellule
+    /**
+     * Méthode pour doubler la valeur de la cellule.
+     */
     public void doubleValeur() {
         this.valeur *= 2;
     }
 
-    // Méthode pour vider la cellule
+    /**
+     * Méthode pour vider la cellule. Réinitialise la valeur de la cellule à 0,
+     * indiquant qu'elle est vide.
+     */
     public void viderCellule() {
         this.valeur = 0;
     }
 
     /**
-     * Redéfinition de la méthode toString pour afficher la cellule
+     * Redéfinition de la méthode toString pour afficher la cellule.
      *
      * @return La représentation de la cellule sous forme de chaîne de
-     * caractères
+     * caractères.
      */
     @Override
     public String toString() {

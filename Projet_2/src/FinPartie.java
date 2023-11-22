@@ -1,8 +1,5 @@
 
 import java.awt.Color;
-import static java.awt.Color.BLACK;
-import static java.awt.Color.black;
-import static java.awt.Color.white;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,13 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.Border;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 /**
- *
- * @author ordim
+ * Cette classe représente la fenêtre de fin de partie pour le jeu 2048.
  */
 public class FinPartie extends javax.swing.JFrame {
 
@@ -26,9 +18,14 @@ public class FinPartie extends javax.swing.JFrame {
     int nbCoups;
     int i;
 
-
     /**
-     * Creates new form FenetrePrincipale
+     * Constructeur de la classe FinPartie. Initialise la fenêtre de fin de
+     * partie avec la grille de jeu sauvegardée.
+     *
+     * @param sauvegarde La matrice d'entiers représentant l'état sauvegardé de
+     * la grille.
+     * @param nbColonnes Le nombre de colonnes de la grille.
+     * @param nbLignes Le nombre de lignes de la grille.
      */
     public FinPartie(int[][] sauvegarde, int nbColonnes, int nbLignes) {
 
@@ -48,7 +45,6 @@ public class FinPartie extends javax.swing.JFrame {
 
                 PanneauGrille.add(bouton_cellule); // ajout au Jpanel PanneauGrille
             }
-
         }
         setLocationRelativeTo(null);
         ImageIcon icon = new ImageIcon(getClass().getResource("/logo.jpg"));
@@ -56,7 +52,6 @@ public class FinPartie extends javax.swing.JFrame {
 
         int score = grille.getScore();
         jLabelScore.setText(String.valueOf(score)); // Méthode 1
-
     }
 
     /**
@@ -172,12 +167,21 @@ public class FinPartie extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Cette méthode est appelée lorsqu'on appuie sur le bouton RELANCER. Elle
+     * gère les actions à effectuer lors du clic sur le bouton de relance.
+     *
+     * @param evt L'événement associé au clic sur le bouton RELANCER.
+     */
     private void RELANCERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RELANCERActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RELANCERActionPerformed
 
     /**
-     * @param args the command line arguments
+     * Méthode principale qui lance l'application de la fenêtre de fin de
+     * partie.
+     *
+     * @param args Les arguments de la ligne de commande.
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
