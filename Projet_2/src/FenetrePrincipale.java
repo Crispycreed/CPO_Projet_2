@@ -76,13 +76,22 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == bouton_droite) {
                     grille.additionnerCellulesAdjacentesVersLaDroite();
-                    System.out.print("test déplacement a droite");
                 }
                 repaint();
             }
         };
         bouton_droite.addActionListener(ecouteurClick);
-
+        
+        ActionListener ecouteurClick2 = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource() == bouton_gauche) {
+                    grille.additionnerCellulesAdjacentesVersLaGauche();
+                }
+                repaint();
+            }
+        };
+        bouton_gauche.addActionListener(ecouteurClick2);
 
     }
 
