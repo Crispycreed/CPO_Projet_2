@@ -44,27 +44,25 @@ class GrilleDeJeu {
         }
     }
 
-public void additionnerCellulesAdjacentesVersLaDroite(int ligne) {
-    for (int colonne = nbColonnes - 2; colonne >= 0; colonne--) {
-        Cellule celluleCourante = matriceCellules[ligne][colonne];
+    public void additionnerCellulesAdjacentesVersLaDroite() {
+        for (int ligne = nbLignes -1 ; ligne >= 0; ligne-- ) {
+            for (int colonne = nbColonnes - 2; colonne >= 0; colonne--) {
+                Cellule celluleCourante = matriceCellules[ligne][colonne];
 
-        if (celluleCourante.getValeur() != 0) {
-            // Trouver la première cellule non vide à droite
-            int colonneDroite = colonne + 1;
+                if (celluleCourante.getValeur() != 0) {
+                    // Trouver la première cellule non vide à droite
+                    int colonneDroite = colonne + 1;
 
+                    if (colonneDroite < nbColonnes) {
+                        Cellule celluleDroite = matriceCellules[ligne][colonneDroite];
 
-            if (colonneDroite < nbColonnes) {
-                Cellule celluleDroite = matriceCellules[ligne][colonneDroite];
-
-                // Additionner les cellules adjacentes
-                celluleDroite.modifierValeur(celluleDroite.getValeur() + celluleCourante.getValeur());
-                celluleCourante.modifierValeur(0);
+                        // Additionner les cellules adjacentes
+                        celluleDroite.modifierValeur(celluleDroite.getValeur() + celluleCourante.getValeur());
+                        celluleCourante.modifierValeur(0);
+                    }
+                }
             }
         }
     }
-}
-
-
-
 
 }

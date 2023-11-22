@@ -52,10 +52,21 @@ public class Cellule {
         return vide;
     }
 
+    // Méthode pour doubler la valeur de la cellule
+    public void doubleValeur() {
+        this.valeur *= 2;
+    }
+
+    // Méthode pour vider la cellule
+    public void viderCellule() {
+        this.valeur = 0;
+    }
+
     /**
      * Redéfinition de la méthode toString pour afficher la cellule
      *
-     * @return La représentation de la cellule sous forme de chaîne de caractères
+     * @return La représentation de la cellule sous forme de chaîne de
+     * caractères
      */
     @Override
     public String toString() {

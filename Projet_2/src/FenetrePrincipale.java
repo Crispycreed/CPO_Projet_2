@@ -25,7 +25,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     int nbCoups;
     int i;
     private int nbColonnes = 4;
-    private int nbLignes = 1;
+    private int nbLignes = 4;
 
     /**
      * Creates new form FenetrePrincipale
@@ -75,7 +75,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == bouton_droite) {
-                    grille.additionnerCellulesAdjacentesVersLaDroite(0);
+                    grille.additionnerCellulesAdjacentesVersLaDroite();
                     System.out.print("test déplacement a droite");
                 }
                 repaint();
