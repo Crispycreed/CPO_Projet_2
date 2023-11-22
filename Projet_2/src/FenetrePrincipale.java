@@ -75,7 +75,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == bouton_droite) {
-                    grille.deplacerToutesCellulesDroite();
+                    grille.AdditionnerToutesCellulesValideVersLaDroite();
                     System.out.print("test déplacement a droite");
                 }
                 repaint();
@@ -83,17 +83,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         };
         bouton_droite.addActionListener(ecouteurClick);
 
-        ActionListener ecouteurClick2 = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource() == bouton_haut) {
-                    grille.deplacerToutesCellulesHaut();
-                    System.out.print("test déplacement a Haut");
-                }
-                repaint();
-            }
-        };
-        bouton_haut.addActionListener(ecouteurClick2);
 
     }
 
