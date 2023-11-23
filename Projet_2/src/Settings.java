@@ -69,6 +69,17 @@ public class Settings extends javax.swing.JFrame {
             }
 
         });
+        
+        ANNULER.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DebutPartie f = new DebutPartie();
+                f.setVisible(true);
+                dispose();
+
+            }
+
+        });
 
         SliderLignes.setMinimum(2); // Valeur minimale
         SliderLignes.setMaximum(8); // Valeur maximale
@@ -206,6 +217,7 @@ public class Settings extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
         jSeparator4 = new javax.swing.JSeparator();
+        ANNULER = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -267,6 +279,15 @@ public class Settings extends javax.swing.JFrame {
             }
         });
 
+        ANNULER.setBackground(new java.awt.Color(237, 237, 237));
+        ANNULER.setFont(new java.awt.Font("Snap ITC", 0, 14)); // NOI18N
+        ANNULER.setText("RENITIALISER");
+        ANNULER.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ANNULERActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -293,6 +314,10 @@ public class Settings extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jSeparator3)
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator4)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -304,10 +329,6 @@ public class Settings extends javax.swing.JFrame {
                     .addComponent(SliderColonnes, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator4)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
@@ -315,8 +336,11 @@ public class Settings extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(VALIDER)))
+                        .addGap(56, 56, 56)
+                        .addComponent(VALIDER))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(ANNULER)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -348,9 +372,11 @@ public class Settings extends javax.swing.JFrame {
                     .addComponent(jToggleButton1))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(VALIDER)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(ANNULER)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -378,6 +404,10 @@ public class Settings extends javax.swing.JFrame {
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void ANNULERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ANNULERActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ANNULERActionPerformed
 
     /**
      * @param args the command line arguments
@@ -414,6 +444,7 @@ public class Settings extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ANNULER;
     private javax.swing.JComboBox<String> ComboBox_tps;
     private javax.swing.JLabel LabelColonnes;
     private javax.swing.JLabel LabelLignes;
