@@ -71,7 +71,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                Settings f = new Settings(nbLignes2, nbColonnes2);
+                Settings f = new Settings(nbLignes2, nbColonnes2, PresetChrono);
                 f.setVisible(true);
                 dispose();
 

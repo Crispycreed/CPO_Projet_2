@@ -27,11 +27,13 @@ import javax.swing.Timer;
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
 
+    // ----------------------------------------------------Déclaration_Variables
     GrilleDeJeu grille;
     int nbCoups;
     int i;
-    int minutes;
-    int secondes;
+    int minutes = 0;
+    int secondes = 0;
+    private String temps;
 
     private int nbColonnes;
     private int nbLignes;
@@ -42,15 +44,25 @@ public class FenetrePrincipale extends javax.swing.JFrame {
      * Creates new form FenetrePrincipale
      */
     public FenetrePrincipale(int nbLignes2, int nbColonnes2, String PresetChrono) {
+
+        // ------------------------------------------------Déclaration_Variables
         this.nbColonnes = nbColonnes2;
         this.nbLignes = nbLignes2;
         this.PresetChrono = PresetChrono;
         initComponents();
 
+        // ---------------------------------------------------Panels/Emplacement
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, nbColonnes * 40, nbLignes * 40));
         grille.initialiserCellulesAleatoires();
+
+        ControlPanel.setLayout(null);
+        getContentPane().add(ControlPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
+        getContentPane().add(jPanelText1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
+        getContentPane().add(jPanelText2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
+        this.pack();
+        this.revalidate();
 
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
@@ -61,20 +73,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         }
 
-        ControlPanel.setLayout(null);
-        getContentPane().add(ControlPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
-        getContentPane().add(jPanelText1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
-        getContentPane().add(jPanelText2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
-        this.pack();
-        this.revalidate();
-
-        // création des boutons directionnels
+        // ---------------------------------------------------- Création_Boutons
         JButton bouton_droite = new JButton("→");
         JButton bouton_gauche = new JButton("←");
         JButton bouton_haut = new JButton("↑");
         JButton bouton_bas = new JButton("↓");
 
-        // positionnement des boutons
         bouton_gauche.setBounds(10, 4 * 20 - 20, 40, 40);
         bouton_haut.setBounds(4 * 20 - 20, 10, 40, 40);
         bouton_bas.setBounds(4 * 20 - 20, 4 * 20 - 20, 40, 40);
@@ -85,6 +89,19 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         ControlPanel.add(bouton_bas);
         ControlPanel.add(bouton_droite);
 
+        // --------------------------------------------------------------Boutons
+        QUITTER.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
+                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono);
+                f.setVisible(true);
+                dispose();
+
+            }
+        });
+
+        // --------------------------------------------------------EcouteurClick
         ActionListener ecouteurClick = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -92,12 +109,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     grille.additionnerCellulesAdjacentesVersLaDroite();
                 }
                 repaint();
-                requestFocusInWindow(); // Assurez-vous que la fenêtre a le focus
+                requestFocusInWindow();
                 int cellulesVides = grille.nombreCellulesVides();
                 if (cellulesVides == 0) {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono);
+                    timer.stop();
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps);
                     f.setVisible(true);
                 }
             }
@@ -116,7 +134,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 if (cellulesVides == 0) {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono);
+                    timer.stop();
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps);
                     f.setVisible(true);
                 }
             }
@@ -128,6 +147,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == bouton_haut) {
                     grille.additionnerCellulesAdjacentesVersLeHaut();
+
                 }
                 repaint();
                 requestFocusInWindow(); // Assurez-vous que la fenêtre a le focus
@@ -135,7 +155,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 if (cellulesVides == 0) {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono);
+                    timer.stop();
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps);
                     f.setVisible(true);
                 }
             }
@@ -154,21 +175,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 if (cellulesVides == 0) {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono);
+                    timer.stop();
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps);
                     f.setVisible(true);
                 }
             }
         };
         bouton_bas.addActionListener(ecouteurClick4);
-        setLocationRelativeTo(null);
-        ImageIcon icon = new ImageIcon(getClass().getResource("/logo.jpg"));
-        setIconImage(icon.getImage());
 
-        // Ajoutez un KeyListener à votre fenêtre
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                // Traitement des touches de direction
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_LEFT:
                         grille.additionnerCellulesAdjacentesVersLaGauche();
@@ -192,36 +209,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 if (cellulesVides == 0) {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono);
+                    timer.stop();
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps);
                     f.setVisible(true);
                 }
             }
         });
 
-        // Assurez-vous que votre fenêtre est focalisée pour recevoir des événements clavier
-        setFocusable(true);
-        setResizable(false);
-
-        QUITTER.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono);
-                f.setVisible(true);
-                dispose();
-
-            }
-        });
-
         // --------------------------------------------------------------- TIMER
-        // Initialisation du Timer pour exécuter une tâche toutes les 1000 millisecondes
-        minutes = 0;
-        secondes = 0;
-
-        
-        System.out.println("woww preset : " + PresetChrono);
-        
-        
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -232,35 +227,39 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 }
 
                 // Formatage pour afficher les minutes et les secondes sous la forme MM:SS
-                String temps = String.format("%02d:%02d", minutes, secondes);
+                temps = String.format("%02d:%02d", minutes, secondes);
                 LabelChrono.setText(temps);
 
                 if (PresetChrono == "30secs") {
                     if (secondes == 30) {
                         int[][] sauvegarde = grille.sauvegarderGrille();
+                        timer.stop();
                         dispose();
-                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono);
+                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps);
                         f.setVisible(true);
                     }
                 } else if (PresetChrono.equals("1min")) {
                     if (minutes == 1) {
                         int[][] sauvegarde = grille.sauvegarderGrille();
+                        timer.stop();
                         dispose();
-                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono);
+                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps);
                         f.setVisible(true);
                     }
                 } else if (PresetChrono.equals("2mins")) {
                     if (minutes == 2) {
                         int[][] sauvegarde = grille.sauvegarderGrille();
+                        timer.stop();
                         dispose();
-                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono);
+                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps);
                         f.setVisible(true);
                     }
                 } else if (PresetChrono.equals("3mins")) {
                     if (minutes == 3) {
                         int[][] sauvegarde = grille.sauvegarderGrille();
+                        timer.stop();
                         dispose();
-                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono);
+                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps);
                         f.setVisible(true);
                     }
                 }
@@ -268,6 +267,15 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
         timer.start(); // Démarre le Timer
+
+        // ------------------------------------------------------------- Fenetre
+        setFocusable(true);
+        setResizable(false);
+        setLocationRelativeTo(null);
+
+        // ---------------------------------------------------------Icon_Fenetre
+        ImageIcon icon = new ImageIcon(getClass().getResource("/logo.jpg"));
+        setIconImage(icon.getImage());
 
     }
 

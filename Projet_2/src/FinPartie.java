@@ -17,6 +17,8 @@ public class FinPartie extends javax.swing.JFrame {
     GrilleDeJeu grille;
     int nbCoups;
     int i;
+    private String PresetChrono;
+    private String temps;
 
     /**
      * Constructeur de la classe FinPartie. Initialise la fenêtre de fin de
@@ -27,10 +29,11 @@ public class FinPartie extends javax.swing.JFrame {
      * @param nbColonnes Le nombre de colonnes de la grille.
      * @param nbLignes Le nombre de lignes de la grille.
      */
-    public FinPartie(int[][] sauvegarde, int nbColonnes, int nbLignes, String PresetChrono) {
+    public FinPartie(int[][] sauvegarde, int nbColonnes, int nbLignes, String PresetChrono, String temps) {
 
         initComponents();
-
+        this.PresetChrono = PresetChrono;
+        this.temps = temps;
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
 
@@ -52,9 +55,8 @@ public class FinPartie extends javax.swing.JFrame {
 
         int score = grille.getScore();
         jLabelScore.setText(String.valueOf(score)); // Méthode 1
-        
-        
-            RELANCER.addActionListener(new ActionListener() {
+
+        RELANCER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
@@ -64,8 +66,11 @@ public class FinPartie extends javax.swing.JFrame {
 
             }
         });
-        
-        
+
+        LabelChrono.setText(temps);
+
+        System.out.println("woww preset : " + PresetChrono);
+
         setLocationRelativeTo(null);
         setResizable(false);
     }
@@ -84,8 +89,10 @@ public class FinPartie extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         RELANCER = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabelScore = new javax.swing.JLabel();
+        LabelChrono = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(500, 600));
@@ -123,11 +130,15 @@ public class FinPartie extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Snap ITC", 0, 18)); // NOI18N
         jLabel2.setText("Ton Score :");
 
-        jLabel3.setText("Chrono  :");
-
         jLabelScore.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabelScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelScore.setText("Score");
+
+        LabelChrono.setFont(new java.awt.Font("Snap ITC", 0, 18)); // NOI18N
+        LabelChrono.setText("00:00");
+
+        jLabel3.setFont(new java.awt.Font("Snap ITC", 0, 18)); // NOI18N
+        jLabel3.setText("Temps de jeu :");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -137,34 +148,49 @@ public class FinPartie extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelScore, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(RELANCER)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(51, 51, 51))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(52, 52, 52))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(LabelChrono, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabelScore, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(RELANCER)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
+                .addGap(64, 64, 64)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(LabelChrono)
+                .addGap(50, 50, 50)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelScore, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(114, 114, 114)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(RELANCER)
-                .addGap(36, 36, 36))
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -233,6 +259,7 @@ public class FinPartie extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LabelChrono;
     private javax.swing.JPanel PanneauGrille;
     private javax.swing.JButton RELANCER;
     private javax.swing.JLabel jLabel1;
@@ -240,5 +267,6 @@ public class FinPartie extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelScore;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

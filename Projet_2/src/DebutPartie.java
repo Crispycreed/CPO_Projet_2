@@ -68,16 +68,12 @@ public class DebutPartie extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                Settings f = new Settings(nbLignes, nbColonnes);
+                Settings f = new Settings(nbLignes, nbColonnes, PresetChrono);
                 f.setVisible(true);
                 dispose();
 
             }
         });
-
-
-
-
 
         setResizable(false);
     }

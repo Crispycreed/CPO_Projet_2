@@ -19,6 +19,11 @@ public class Settings extends javax.swing.JFrame {
     GrilleDeJeu grille;
     int nbCoups;
     int i;
+    String tp1;
+    String tp2;
+    String tp3;
+    String tp4;
+    String tp5;
     private int nbColonnes = 4;
     private int nbLignes = 4;
     private int nbColonnes2;
@@ -28,7 +33,7 @@ public class Settings extends javax.swing.JFrame {
     /**
      * Creates new form Settings
      */
-    public Settings(int nbLignes2, int nbColonnes2) {
+    public Settings(int nbLignes2, int nbColonnes2, String PresetChrono) {
         initComponents();
 
         this.nbColonnes2 = nbColonnes2;
@@ -55,9 +60,9 @@ public class Settings extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 int nbLignes2 = SliderLignes.getValue();
                 int nbColonnes2 = SliderColonnes.getValue();
-                PresetChrono = (String) ComboBox_tps.getSelectedItem();
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono);
+                String PresetChrono2 = (String) ComboBox_tps.getSelectedItem();
+                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono2);
                 f.setVisible(true);
                 dispose();
 
@@ -125,19 +130,48 @@ public class Settings extends javax.swing.JFrame {
                 } else {
                     SliderLignes.setMinimum(valeurMin); // Valeur maximale
                 }
-                
+
                 LabelColonnes.setText(String.valueOf("Colonnes : " + nouvelleValeur2));
             }
         });
+        if (PresetChrono.equals("Infinie")) {
+            tp1 = "Infinie";
+            tp2 = "30secs";
+            tp3 = "1min";
+            tp4 = "2mins";
+            tp5 = "3mins";
+        } else if (PresetChrono.equals("30secs")) {
+            tp1 = "30secs";
+            tp5 = "Infinie";
+            tp2 = "1min";
+            tp3 = "2mins";
+            tp4 = "3mins";
+        } else if (PresetChrono.equals("1min")) {
+            tp1 = "1min";
+            tp2 = "30secs";
+            tp3 = "2mins";
+            tp4 = "3mins";
+            tp5 = "Infinie";
+        } else if (PresetChrono.equals("2mins")) {
+            tp1 = "2mins";
+            tp4 = "3mins";
+            tp5 = "Infinie";
+            tp2 = "30secs";
+            tp3 = "1min";
+        } else if (PresetChrono.equals("3mins")) {
+            tp1 = "3mins";
+            tp5 = "Infinie";
+            tp2 = "30secs";
+            tp3 = "1min";
+            tp4 = "2mins";
+        }
 
         ComboBox_tps.removeAllItems();
-        ComboBox_tps.addItem("Infinie");
-        ComboBox_tps.addItem("30secs");
-        ComboBox_tps.addItem("1min");
-        ComboBox_tps.addItem("2mins");
-        ComboBox_tps.addItem("3mins");
-        
-        
+        ComboBox_tps.addItem(tp1);
+        ComboBox_tps.addItem(tp2);
+        ComboBox_tps.addItem(tp3);
+        ComboBox_tps.addItem(tp4);
+        ComboBox_tps.addItem(tp5);
 
         setLocationRelativeTo(null);
         ImageIcon icon = new ImageIcon(getClass().getResource("/logo.jpg"));
