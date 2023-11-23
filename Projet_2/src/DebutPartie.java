@@ -20,6 +20,7 @@ public class DebutPartie extends javax.swing.JFrame {
     int i;
     private int nbColonnes = 4;
     private int nbLignes = 4;
+    private String PresetChrono = "Infinie";
 
     /**
      * Constructeur de la classe FinPartie. Initialise la fenêtre de fin de
@@ -56,7 +57,7 @@ public class DebutPartie extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                FenetrePrincipale f = new FenetrePrincipale(nbLignes, nbColonnes);
+                FenetrePrincipale f = new FenetrePrincipale(nbLignes, nbColonnes, PresetChrono);
                 f.setVisible(true);
                 dispose();
 

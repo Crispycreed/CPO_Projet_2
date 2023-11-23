@@ -27,7 +27,7 @@ public class FinPartie extends javax.swing.JFrame {
      * @param nbColonnes Le nombre de colonnes de la grille.
      * @param nbLignes Le nombre de lignes de la grille.
      */
-    public FinPartie(int[][] sauvegarde, int nbColonnes, int nbLignes) {
+    public FinPartie(int[][] sauvegarde, int nbColonnes, int nbLignes, String PresetChrono) {
 
         initComponents();
 
@@ -58,7 +58,7 @@ public class FinPartie extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                DebutPartieClone f = new DebutPartieClone(nbLignes, nbColonnes);
+                DebutPartieClone f = new DebutPartieClone(nbLignes, nbColonnes, PresetChrono);
                 f.setVisible(true);
                 dispose();
 

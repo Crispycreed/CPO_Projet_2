@@ -21,6 +21,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
     private int nbLignes = 4;
     private int nbColonnes2;
     private int nbLignes2;
+    private String PresetChrono;
 
     /**
      * Constructeur de la classe FinPartie. Initialise la fenêtre de fin de
@@ -31,9 +32,10 @@ public class DebutPartieClone extends javax.swing.JFrame {
      * @param nbColonnes Le nombre de colonnes de la grille.
      * @param nbLignes Le nombre de lignes de la grille.
      */
-    public DebutPartieClone(int nbLignes2, int nbColonnes2) {
+    public DebutPartieClone(int nbLignes2, int nbColonnes2, String PresetChrono) {
         this.nbColonnes2 = nbColonnes2;
         this.nbLignes2 = nbLignes2;
+        this.PresetChrono = PresetChrono;
         initComponents();
 
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
@@ -58,7 +60,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                FenetrePrincipale f = new FenetrePrincipale(nbLignes2, nbColonnes2);
+                FenetrePrincipale f = new FenetrePrincipale(nbLignes2, nbColonnes2, PresetChrono);
                 f.setVisible(true);
                 dispose();
 

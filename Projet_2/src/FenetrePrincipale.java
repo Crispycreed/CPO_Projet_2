@@ -11,7 +11,11 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.Timer;
 import javax.swing.border.Border;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -26,15 +30,21 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     GrilleDeJeu grille;
     int nbCoups;
     int i;
+    int minutes;
+    int secondes;
+
     private int nbColonnes;
     private int nbLignes;
+    private Timer timer;
+    private String PresetChrono;
 
     /**
      * Creates new form FenetrePrincipale
      */
-    public FenetrePrincipale(int nbLignes2, int nbColonnes2) {
+    public FenetrePrincipale(int nbLignes2, int nbColonnes2, String PresetChrono) {
         this.nbColonnes = nbColonnes2;
         this.nbLignes = nbLignes2;
+        this.PresetChrono = PresetChrono;
         initComponents();
 
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
@@ -87,7 +97,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 if (cellulesVides == 0) {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes);
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono);
                     f.setVisible(true);
                 }
             }
@@ -106,7 +116,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 if (cellulesVides == 0) {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes);
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono);
                     f.setVisible(true);
                 }
             }
@@ -125,7 +135,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 if (cellulesVides == 0) {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes);
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono);
                     f.setVisible(true);
                 }
             }
@@ -144,7 +154,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 if (cellulesVides == 0) {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes);
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono);
                     f.setVisible(true);
                 }
             }
@@ -182,7 +192,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 if (cellulesVides == 0) {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes);
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono);
                     f.setVisible(true);
                 }
             }
@@ -196,16 +206,69 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2);
+                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono);
                 f.setVisible(true);
                 dispose();
 
             }
         });
 
-        // --------------------------------------------------------------- MENU
-        //Menu.add(Settings);
-        //Menu.add(LANCER);
+        // --------------------------------------------------------------- TIMER
+        // Initialisation du Timer pour exécuter une tâche toutes les 1000 millisecondes
+        minutes = 0;
+        secondes = 0;
+
+        
+        System.out.println("woww preset : " + PresetChrono);
+        
+        
+        timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                secondes++;
+                if (secondes == 60) {
+                    secondes = 0;
+                    minutes++;
+                }
+
+                // Formatage pour afficher les minutes et les secondes sous la forme MM:SS
+                String temps = String.format("%02d:%02d", minutes, secondes);
+                LabelChrono.setText(temps);
+
+                if (PresetChrono == "30secs") {
+                    if (secondes == 30) {
+                        int[][] sauvegarde = grille.sauvegarderGrille();
+                        dispose();
+                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono);
+                        f.setVisible(true);
+                    }
+                } else if (PresetChrono.equals("1min")) {
+                    if (minutes == 1) {
+                        int[][] sauvegarde = grille.sauvegarderGrille();
+                        dispose();
+                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono);
+                        f.setVisible(true);
+                    }
+                } else if (PresetChrono.equals("2mins")) {
+                    if (minutes == 2) {
+                        int[][] sauvegarde = grille.sauvegarderGrille();
+                        dispose();
+                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono);
+                        f.setVisible(true);
+                    }
+                } else if (PresetChrono.equals("3mins")) {
+                    if (minutes == 3) {
+                        int[][] sauvegarde = grille.sauvegarderGrille();
+                        dispose();
+                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono);
+                        f.setVisible(true);
+                    }
+                }
+
+            }
+        });
+        timer.start(); // Démarre le Timer
+
     }
 
     /**
@@ -223,6 +286,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         ControlPanel = new javax.swing.JPanel();
         jPanelText2 = new javax.swing.JPanel();
         QUITTER = new javax.swing.JButton();
+        LabelChrono = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(500, 600));
@@ -288,6 +352,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
+        LabelChrono.setFont(new java.awt.Font("Snap ITC", 0, 24)); // NOI18N
+        LabelChrono.setText("00:00");
+
         javax.swing.GroupLayout jPanelText2Layout = new javax.swing.GroupLayout(jPanelText2);
         jPanelText2.setLayout(jPanelText2Layout);
         jPanelText2Layout.setHorizontalGroup(
@@ -296,11 +363,16 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addComponent(QUITTER)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelText2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(LabelChrono, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanelText2Layout.setVerticalGroup(
             jPanelText2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelText2Layout.createSequentialGroup()
-                .addContainerGap(279, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
+                .addComponent(LabelChrono)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
                 .addComponent(QUITTER)
                 .addGap(18, 18, 18))
         );
@@ -312,10 +384,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ControlPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelText2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelText1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ControlPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelText2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelText1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -374,6 +446,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ControlPanel;
+    private javax.swing.JLabel LabelChrono;
     private javax.swing.JPanel PanneauGrille;
     private javax.swing.JButton QUITTER;
     private javax.swing.JLabel jLabel1;

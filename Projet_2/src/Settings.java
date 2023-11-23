@@ -23,6 +23,7 @@ public class Settings extends javax.swing.JFrame {
     private int nbLignes = 4;
     private int nbColonnes2;
     private int nbLignes2;
+    private String PresetChrono;
 
     /**
      * Creates new form Settings
@@ -32,6 +33,7 @@ public class Settings extends javax.swing.JFrame {
 
         this.nbColonnes2 = nbColonnes2;
         this.nbLignes2 = nbLignes2;
+        this.PresetChrono = PresetChrono;
 
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
@@ -53,8 +55,9 @@ public class Settings extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 int nbLignes2 = SliderLignes.getValue();
                 int nbColonnes2 = SliderColonnes.getValue();
+                PresetChrono = (String) ComboBox_tps.getSelectedItem();
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2);
+                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono);
                 f.setVisible(true);
                 dispose();
 
@@ -129,10 +132,12 @@ public class Settings extends javax.swing.JFrame {
 
         ComboBox_tps.removeAllItems();
         ComboBox_tps.addItem("Infinie");
-        ComboBox_tps.addItem("30 sec");
-        ComboBox_tps.addItem("1 min");
-        ComboBox_tps.addItem("2 minu");
-        ComboBox_tps.addItem("3 minu");
+        ComboBox_tps.addItem("30secs");
+        ComboBox_tps.addItem("1min");
+        ComboBox_tps.addItem("2mins");
+        ComboBox_tps.addItem("3mins");
+        
+        
 
         setLocationRelativeTo(null);
         ImageIcon icon = new ImageIcon(getClass().getResource("/logo.jpg"));
