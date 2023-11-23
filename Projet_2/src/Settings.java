@@ -3,6 +3,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -19,12 +21,19 @@ public class Settings extends javax.swing.JFrame {
     int i;
     private int nbColonnes = 4;
     private int nbLignes = 4;
+    private int nbColonnes2;
+    private int nbLignes2;
 
     /**
      * Creates new form Settings
      */
-    public Settings() {
+    public Settings(int nbLignes2, int nbColonnes2) {
         initComponents();
+        
+        this.nbColonnes2 = nbColonnes2;
+        this.nbLignes2 = nbLignes2;
+        
+        
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, nbColonnes * 40, nbLignes * 40));
@@ -43,27 +52,56 @@ public class Settings extends javax.swing.JFrame {
         VALIDER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int nbLignes2 = SliderLignes.getValue();
+                int nbColonnes2 = SliderColonnes.getValue();
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                DebutPartie f = new DebutPartie();
+                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2);
                 f.setVisible(true);
                 dispose();
 
             }
-            
-            
-            
 
         });
 
-        
         SliderLignes.setMinimum(2); // Valeur minimale
-        SliderLignes.setMaximum(14); // Valeur maximale
-
+        SliderLignes.setMaximum(8); // Valeur maximale
+        SliderLignes.setValue(nbLignes2);
         // Définition des valeurs minimales et maximales pour SliderColonnes
         SliderColonnes.setMinimum(2); // Valeur minimale
-        SliderColonnes.setMaximum(14); // Valeur maximale
-        
-        
+        SliderColonnes.setMaximum(8); // Valeur maximale
+        SliderColonnes.setValue(nbColonnes2);
+
+        int nouvelleValeur = SliderLignes.getValue();
+        LabelLignes.setText(String.valueOf("Ligne : " + nouvelleValeur));
+
+        SliderLignes.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                // Récupérer la nouvelle valeur de SliderLignes
+                int nouvelleValeur = SliderLignes.getValue();
+                LabelLignes.setText(String.valueOf("Ligne : " + nouvelleValeur));
+            }
+        });
+
+        int nouvelleValeur2 = SliderColonnes.getValue();
+        LabelColonnes.setText(String.valueOf("Colonnes : " + nouvelleValeur2));
+
+        SliderColonnes.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                // Récupérer la nouvelle valeur de SliderLignes
+                int nouvelleValeur2 = SliderColonnes.getValue();
+                LabelColonnes.setText(String.valueOf("Colonnes : " + nouvelleValeur2));
+            }
+        });
+
+        ComboBox_tps.removeAllItems();
+        ComboBox_tps.addItem("Infinie");
+        ComboBox_tps.addItem("30 sec");
+        ComboBox_tps.addItem("1 min");
+        ComboBox_tps.addItem("2 minu");
+        ComboBox_tps.addItem("3 minu");
+
         setLocationRelativeTo(null);
         ImageIcon icon = new ImageIcon(getClass().getResource("/logo.jpg"));
         setIconImage(icon.getImage());
@@ -88,10 +126,10 @@ public class Settings extends javax.swing.JFrame {
         SliderLignes = new javax.swing.JSlider();
         SliderColonnes = new javax.swing.JSlider();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        LabelLignes = new javax.swing.JLabel();
+        LabelColonnes = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        ComboBox_tps = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
@@ -129,11 +167,11 @@ public class Settings extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Lignes");
+        LabelLignes.setText("Lignes : ");
 
-        jLabel2.setText("Colonnes");
+        LabelColonnes.setText("Colonnes");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboBox_tps.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel3.setText("Chrono max :");
 
@@ -164,9 +202,9 @@ public class Settings extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ComboBox_tps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
@@ -174,13 +212,10 @@ public class Settings extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(LabelColonnes, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                    .addComponent(LabelLignes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(SliderLignes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
                     .addComponent(SliderColonnes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
@@ -211,16 +246,16 @@ public class Settings extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SliderLignes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(LabelLignes))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SliderColonnes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(LabelColonnes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComboBox_tps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -291,20 +326,19 @@ public class Settings extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Settings().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboBox_tps;
+    private javax.swing.JLabel LabelColonnes;
+    private javax.swing.JLabel LabelLignes;
     private javax.swing.JPanel PanneauGrille;
     private javax.swing.JSlider SliderColonnes;
     private javax.swing.JSlider SliderLignes;
     private javax.swing.JButton VALIDER;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

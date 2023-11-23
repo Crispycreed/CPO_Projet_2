@@ -26,15 +26,15 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     GrilleDeJeu grille;
     int nbCoups;
     int i;
-    private int nbColonnes = 4;
-    private int nbLignes = 4;
+    private int nbColonnes;
+    private int nbLignes;
 
     /**
      * Creates new form FenetrePrincipale
      */
-    public FenetrePrincipale() {
-        this.nbColonnes = nbColonnes;
-        this.nbLignes = nbLignes;
+    public FenetrePrincipale(int nbLignes2, int nbColonnes2) {
+        this.nbColonnes = nbColonnes2;
+        this.nbLignes = nbLignes2;
         initComponents();
 
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
@@ -316,7 +316,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FenetrePrincipale().setVisible(true);
             }
         });
     }

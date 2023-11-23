@@ -46,12 +46,27 @@ public class FinPartie extends javax.swing.JFrame {
                 PanneauGrille.add(bouton_cellule); // ajout au Jpanel PanneauGrille
             }
         }
-        setLocationRelativeTo(null);
+
         ImageIcon icon = new ImageIcon(getClass().getResource("/logo.jpg"));
         setIconImage(icon.getImage());
 
         int score = grille.getScore();
         jLabelScore.setText(String.valueOf(score)); // Méthode 1
+        
+        
+            RELANCER.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
+                DebutPartieClone f = new DebutPartieClone(nbLignes, nbColonnes);
+                f.setVisible(true);
+                dispose();
+
+            }
+        });
+        
+        
+        setLocationRelativeTo(null);
         setResizable(false);
     }
 
@@ -213,7 +228,6 @@ public class FinPartie extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FenetrePrincipale().setVisible(true);
             }
         });
     }

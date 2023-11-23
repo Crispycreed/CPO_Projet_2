@@ -12,13 +12,15 @@ import javax.swing.ImageIcon;
  *
  * @author ordim
  */
-public class DebutPartie extends javax.swing.JFrame {
+public class DebutPartieClone extends javax.swing.JFrame {
 
     GrilleDeJeu grille;
     int nbCoups;
     int i;
     private int nbColonnes = 4;
     private int nbLignes = 4;
+    private int nbColonnes2;
+    private int nbLignes2;
 
     /**
      * Constructeur de la classe FinPartie. Initialise la fenêtre de fin de
@@ -29,8 +31,9 @@ public class DebutPartie extends javax.swing.JFrame {
      * @param nbColonnes Le nombre de colonnes de la grille.
      * @param nbLignes Le nombre de lignes de la grille.
      */
-    public DebutPartie() {
-
+    public DebutPartieClone(int nbLignes2, int nbColonnes2) {
+        this.nbColonnes2 = nbColonnes2;
+        this.nbLignes2 = nbLignes2;
         initComponents();
 
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
@@ -55,7 +58,7 @@ public class DebutPartie extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                FenetrePrincipale f = new FenetrePrincipale(nbLignes, nbColonnes);
+                FenetrePrincipale f = new FenetrePrincipale(nbLignes2, nbColonnes2);
                 f.setVisible(true);
                 dispose();
 
@@ -66,7 +69,7 @@ public class DebutPartie extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                Settings f = new Settings(nbLignes, nbColonnes);
+                Settings f = new Settings(nbLignes2, nbColonnes2);
                 f.setVisible(true);
                 dispose();
 
@@ -93,7 +96,6 @@ public class DebutPartie extends javax.swing.JFrame {
         Settings = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(560, 500));
 
         PanneauGrille.setBackground(new java.awt.Color(0, 0, 0));
         PanneauGrille.setPreferredSize(new java.awt.Dimension(310, 500));
