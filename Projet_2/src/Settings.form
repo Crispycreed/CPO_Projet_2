@@ -28,8 +28,8 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="PanneauGrille" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="PanneauGrille" min="-2" pref="298" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="32767" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -55,7 +55,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="310" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="298" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -110,13 +110,13 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="LabelColonnes" pref="59" max="32767" attributes="0"/>
+                      <Component id="LabelColonnes" pref="74" max="32767" attributes="0"/>
                       <Component id="LabelLignes" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="SliderLignes" alignment="1" pref="134" max="32767" attributes="0"/>
-                      <Component id="SliderColonnes" alignment="1" pref="0" max="32767" attributes="0"/>
+                      <Component id="SliderLignes" pref="114" max="32767" attributes="0"/>
+                      <Component id="SliderColonnes" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -218,7 +218,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="LabelColonnes">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Colonnes"/>
+            <Property name="text" type="java.lang.String" value="Colonnes :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator2">

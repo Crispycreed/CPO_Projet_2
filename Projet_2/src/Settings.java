@@ -29,11 +29,10 @@ public class Settings extends javax.swing.JFrame {
      */
     public Settings(int nbLignes2, int nbColonnes2) {
         initComponents();
-        
+
         this.nbColonnes2 = nbColonnes2;
         this.nbLignes2 = nbLignes2;
-        
-        
+
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, nbColonnes * 40, nbLignes * 40));
@@ -78,7 +77,23 @@ public class Settings extends javax.swing.JFrame {
             @Override
             public void stateChanged(ChangeEvent e) {
                 // Récupérer la nouvelle valeur de SliderLignes
+
                 int nouvelleValeur = SliderLignes.getValue();
+                int valeurMax = nouvelleValeur + 3;
+                int valeurMin = nouvelleValeur - 4;
+
+                if (valeurMax > 8) {
+                    SliderColonnes.setMaximum(8); // Valeur maximale
+                } else {
+                    SliderColonnes.setMaximum(valeurMax); // Valeur maximale
+                }
+
+                if (valeurMin < 2) {
+                    SliderColonnes.setMinimum(2); // Valeur maximale
+                } else {
+                    SliderColonnes.setMinimum(valeurMin); // Valeur maximale
+                }
+
                 LabelLignes.setText(String.valueOf("Ligne : " + nouvelleValeur));
             }
         });
@@ -87,10 +102,27 @@ public class Settings extends javax.swing.JFrame {
         LabelColonnes.setText(String.valueOf("Colonnes : " + nouvelleValeur2));
 
         SliderColonnes.addChangeListener(new ChangeListener() {
+
             @Override
+
             public void stateChanged(ChangeEvent e) {
-                // Récupérer la nouvelle valeur de SliderLignes
+
                 int nouvelleValeur2 = SliderColonnes.getValue();
+                int valeurMax = nouvelleValeur2 + 3;
+                int valeurMin = nouvelleValeur2 - 4;
+
+                if (valeurMax > 8) {
+                    SliderLignes.setMaximum(8); // Valeur maximale
+                } else {
+                    SliderLignes.setMaximum(valeurMax); // Valeur maximale
+                }
+
+                if (valeurMin < 2) {
+                    SliderLignes.setMinimum(2); // Valeur maximale
+                } else {
+                    SliderLignes.setMinimum(valeurMin); // Valeur maximale
+                }
+                
                 LabelColonnes.setText(String.valueOf("Colonnes : " + nouvelleValeur2));
             }
         });
@@ -145,7 +177,7 @@ public class Settings extends javax.swing.JFrame {
         PanneauGrille.setLayout(PanneauGrilleLayout);
         PanneauGrilleLayout.setHorizontalGroup(
             PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 298, Short.MAX_VALUE)
         );
         PanneauGrilleLayout.setVerticalGroup(
             PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,7 +201,7 @@ public class Settings extends javax.swing.JFrame {
 
         LabelLignes.setText("Lignes : ");
 
-        LabelColonnes.setText("Colonnes");
+        LabelColonnes.setText("Colonnes :");
 
         ComboBox_tps.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -213,12 +245,12 @@ public class Settings extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(LabelColonnes, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                    .addComponent(LabelColonnes, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
                     .addComponent(LabelLignes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(SliderLignes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                    .addComponent(SliderColonnes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                    .addComponent(SliderLignes, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                    .addComponent(SliderColonnes, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
@@ -275,8 +307,8 @@ public class Settings extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
