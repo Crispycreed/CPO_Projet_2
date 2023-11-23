@@ -230,7 +230,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jPanelText1.setBackground(new java.awt.Color(237, 237, 237));
         jPanelText1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setFont(new java.awt.Font("Sylfaen", 2, 10)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Snap ITC", 0, 10)); // NOI18N
         jLabel1.setText("Ou touches Clavier");
 
         javax.swing.GroupLayout jPanelText1Layout = new javax.swing.GroupLayout(jPanelText1);
@@ -238,15 +238,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jPanelText1Layout.setHorizontalGroup(
             jPanelText1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelText1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
         jPanelText1Layout.setVerticalGroup(
             jPanelText1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelText1Layout.createSequentialGroup()
-                .addGap(0, 8, Short.MAX_VALUE)
-                .addComponent(jLabel1))
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
         );
 
         PanneauGrille.setBackground(new java.awt.Color(0, 0, 0));
@@ -297,7 +295,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGroup(jPanelText2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(QUITTER)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelText2Layout.setVerticalGroup(
             jPanelText2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

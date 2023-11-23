@@ -199,14 +199,26 @@ public class Settings extends javax.swing.JFrame {
             }
         });
 
+        SliderLignes.setSnapToTicks(true);
+        SliderLignes.setToolTipText("");
+        SliderLignes.setCursor(new java.awt.Cursor(java.awt.Cursor.E_RESIZE_CURSOR));
+
+        SliderColonnes.setSnapToTicks(true);
+        SliderColonnes.setCursor(new java.awt.Cursor(java.awt.Cursor.E_RESIZE_CURSOR));
+
+        LabelLignes.setFont(new java.awt.Font("Snap ITC", 0, 10)); // NOI18N
         LabelLignes.setText("Lignes : ");
 
+        LabelColonnes.setFont(new java.awt.Font("Snap ITC", 0, 10)); // NOI18N
         LabelColonnes.setText("Colonnes :");
 
         ComboBox_tps.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboBox_tps.setDoubleBuffered(true);
 
+        jLabel3.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
         jLabel3.setText("Chrono max :");
 
+        jLabel5.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
         jLabel5.setText("Dark Mode :");
 
         jToggleButton1.setText("DARK");
@@ -260,11 +272,11 @@ public class Settings extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
+                        .addGap(52, 52, 52)
                         .addComponent(VALIDER)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
