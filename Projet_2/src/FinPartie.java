@@ -52,6 +52,7 @@ public class FinPartie extends javax.swing.JFrame {
 
         int score = grille.getScore();
         jLabelScore.setText(String.valueOf(score)); // Méthode 1
+        setResizable(false);
     }
 
     /**
@@ -73,8 +74,10 @@ public class FinPartie extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(500, 600));
+        setPreferredSize(new java.awt.Dimension(560, 500));
 
         PanneauGrille.setBackground(new java.awt.Color(0, 0, 0));
+        PanneauGrille.setPreferredSize(new java.awt.Dimension(310, 500));
 
         javax.swing.GroupLayout PanneauGrilleLayout = new javax.swing.GroupLayout(PanneauGrille);
         PanneauGrille.setLayout(PanneauGrilleLayout);
@@ -84,7 +87,7 @@ public class FinPartie extends javax.swing.JFrame {
         );
         PanneauGrilleLayout.setVerticalGroup(
             PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
+            .addGap(0, 456, Short.MAX_VALUE)
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -155,12 +158,12 @@ public class FinPartie extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 

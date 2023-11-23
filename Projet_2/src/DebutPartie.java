@@ -19,7 +19,7 @@ public class DebutPartie extends javax.swing.JFrame {
     int i;
     private int nbColonnes = 4;
     private int nbLignes = 4;
-    
+
     /**
      * Constructeur de la classe FinPartie. Initialise la fenêtre de fin de
      * partie avec la grille de jeu sauvegardée.
@@ -50,9 +50,8 @@ public class DebutPartie extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         ImageIcon icon = new ImageIcon(getClass().getResource("/logo.jpg"));
         setIconImage(icon.getImage());
-        
-        
-            LANCER.addActionListener(new ActionListener() {
+
+        LANCER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
@@ -63,6 +62,18 @@ public class DebutPartie extends javax.swing.JFrame {
             }
         });
 
+        Settings.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
+                Settings f = new Settings();
+                f.setVisible(true);
+                dispose();
+
+            }
+        });
+
+        setResizable(false);
     }
 
     /**
@@ -82,8 +93,10 @@ public class DebutPartie extends javax.swing.JFrame {
         Settings = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(560, 500));
 
         PanneauGrille.setBackground(new java.awt.Color(0, 0, 0));
+        PanneauGrille.setPreferredSize(new java.awt.Dimension(310, 500));
 
         javax.swing.GroupLayout PanneauGrilleLayout = new javax.swing.GroupLayout(PanneauGrille);
         PanneauGrille.setLayout(PanneauGrilleLayout);
@@ -93,7 +106,7 @@ public class DebutPartie extends javax.swing.JFrame {
         );
         PanneauGrilleLayout.setVerticalGroup(
             PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 441, Short.MAX_VALUE)
+            .addGap(0, 456, Short.MAX_VALUE)
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -157,12 +170,12 @@ public class DebutPartie extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 

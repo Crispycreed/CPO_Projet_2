@@ -189,7 +189,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         // Assurez-vous que votre fenêtre est focalisée pour recevoir des événements clavier
         setFocusable(true);
-
+        setResizable(false);
     }
 
     /**
@@ -232,6 +232,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         );
 
         PanneauGrille.setBackground(new java.awt.Color(0, 0, 0));
+        PanneauGrille.setPreferredSize(new java.awt.Dimension(310, 500));
 
         javax.swing.GroupLayout PanneauGrilleLayout = new javax.swing.GroupLayout(PanneauGrille);
         PanneauGrille.setLayout(PanneauGrilleLayout);
@@ -279,7 +280,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(343, Short.MAX_VALUE))
-            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
         );
 
         pack();
