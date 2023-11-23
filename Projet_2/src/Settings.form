@@ -120,8 +120,8 @@
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jSlider1" alignment="1" pref="134" max="32767" attributes="0"/>
-                      <Component id="jSlider2" alignment="1" pref="0" max="32767" attributes="0"/>
+                      <Component id="SliderLignes" alignment="1" pref="134" max="32767" attributes="0"/>
+                      <Component id="SliderColonnes" alignment="1" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -156,12 +156,12 @@
                   <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jSlider1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="SliderLignes" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jSlider2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="SliderColonnes" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -210,9 +210,9 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VALIDERActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JSlider" name="jSlider1">
+        <Component class="javax.swing.JSlider" name="SliderLignes">
         </Component>
-        <Component class="javax.swing.JSlider" name="jSlider2">
+        <Component class="javax.swing.JSlider" name="SliderColonnes">
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
         </Component>
