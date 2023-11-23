@@ -54,6 +54,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         ControlPanel.setLayout(null);
         getContentPane().add(ControlPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
         getContentPane().add(jPanelText1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
+        getContentPane().add(jPanelText2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
         this.pack();
         this.revalidate();
 
@@ -190,6 +191,21 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         // Assurez-vous que votre fenêtre est focalisée pour recevoir des événements clavier
         setFocusable(true);
         setResizable(false);
+
+        QUITTER.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
+                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2);
+                f.setVisible(true);
+                dispose();
+
+            }
+        });
+
+        // --------------------------------------------------------------- MENU
+        //Menu.add(Settings);
+        //Menu.add(LANCER);
     }
 
     /**
@@ -205,6 +221,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         PanneauGrille = new javax.swing.JPanel();
         ControlPanel = new javax.swing.JPanel();
+        jPanelText2 = new javax.swing.JPanel();
+        QUITTER = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(500, 600));
@@ -219,15 +237,15 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jPanelText1.setLayout(jPanelText1Layout);
         jPanelText1Layout.setHorizontalGroup(
             jPanelText1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelText1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelText1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
         jPanelText1Layout.setVerticalGroup(
             jPanelText1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelText1Layout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
+                .addGap(0, 8, Short.MAX_VALUE)
                 .addComponent(jLabel1))
         );
 
@@ -245,7 +263,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        ControlPanel.setBackground(new java.awt.Color(255, 255, 255));
+        ControlPanel.setBackground(new java.awt.Color(237, 237, 237));
         ControlPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ControlPanel.setPreferredSize(new java.awt.Dimension(160, 120));
 
@@ -253,11 +271,40 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         ControlPanel.setLayout(ControlPanelLayout);
         ControlPanelLayout.setHorizontalGroup(
             ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 156, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         ControlPanelLayout.setVerticalGroup(
             ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 116, Short.MAX_VALUE)
+        );
+
+        jPanelText2.setBackground(new java.awt.Color(237, 237, 237));
+        jPanelText2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        QUITTER.setBackground(new java.awt.Color(237, 237, 237));
+        QUITTER.setFont(new java.awt.Font("Snap ITC", 0, 14)); // NOI18N
+        QUITTER.setText("QUITTER");
+        QUITTER.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QUITTERActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelText2Layout = new javax.swing.GroupLayout(jPanelText2);
+        jPanelText2.setLayout(jPanelText2Layout);
+        jPanelText2Layout.setHorizontalGroup(
+            jPanelText2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelText2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(QUITTER)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        jPanelText2Layout.setVerticalGroup(
+            jPanelText2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelText2Layout.createSequentialGroup()
+                .addContainerGap(279, Short.MAX_VALUE)
+                .addComponent(QUITTER)
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -267,10 +314,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ControlPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelText2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelText1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(84, 84, 84))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,12 +327,18 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(ControlPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(343, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelText2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void QUITTERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QUITTERActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_QUITTERActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,7 +377,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ControlPanel;
     private javax.swing.JPanel PanneauGrille;
+    private javax.swing.JButton QUITTER;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelText1;
+    private javax.swing.JPanel jPanelText2;
     // End of variables declaration//GEN-END:variables
 }
