@@ -363,7 +363,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         QUITTER.setBackground(new java.awt.Color(237, 237, 237));
         QUITTER.setFont(new java.awt.Font("Snap ITC", 0, 14)); // NOI18N
-        QUITTER.setText("QUITTER");
+        QUITTER.setText("LEAVE");
         QUITTER.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 QUITTERActionPerformed(evt);
@@ -377,22 +377,20 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jPanelText2.setLayout(jPanelText2Layout);
         jPanelText2Layout.setHorizontalGroup(
             jPanelText2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelText2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(QUITTER)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelText2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(LabelChrono, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 33, Short.MAX_VALUE)
+                .addGroup(jPanelText2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(QUITTER)
+                    .addComponent(LabelChrono, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanelText2Layout.setVerticalGroup(
             jPanelText2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelText2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(LabelChrono)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
                 .addComponent(QUITTER)
-                .addGap(18, 18, 18))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

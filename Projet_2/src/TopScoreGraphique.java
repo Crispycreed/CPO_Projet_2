@@ -81,22 +81,22 @@ public class TopScoreGraphique extends javax.swing.JFrame {
                 TopScore.afficherScoresSauvegardes();
 
                 int scoreRang1 = TopScore.recupererScore(1);
-                jLabel1.setText("TOP 1 : " + String.valueOf(scoreRang1));
+                jLabel1.setText("TOP 1 : " + String.valueOf(Math.max(scoreRang1, 0)));
 
                 int scoreRang2 = TopScore.recupererScore(2);
-                jLabel2.setText("TOP 2 : " + String.valueOf(scoreRang2));
+                jLabel2.setText("TOP 2 : " + String.valueOf(Math.max(scoreRang2, 0)));
 
                 int scoreRang3 = TopScore.recupererScore(3);
-                jLabel3.setText("TOP 3 : " + String.valueOf(scoreRang3));
+                jLabel3.setText("TOP 3 : " + String.valueOf(Math.max(scoreRang3, 0)));
 
                 int scoreRang4 = TopScore.recupererScore(4);
-                jLabel4.setText("TOP 4 : " + String.valueOf(scoreRang4));
+                jLabel4.setText("TOP 4 : " + String.valueOf(Math.max(scoreRang4, 0)));
 
                 int scoreRang5 = TopScore.recupererScore(5);
-                jLabel5.setText("TOP 5 : " + String.valueOf(scoreRang5));
+                jLabel5.setText("TOP 5 : " + String.valueOf(Math.max(scoreRang5, 0)));
 
                 int scoreRang6 = TopScore.recupererScore(6);
-                jLabel6.setText("TOP 6 : " + String.valueOf(scoreRang6));
+                jLabel6.setText("TOP 6 : " + String.valueOf(Math.max(scoreRang6, 0)));
 
                 repaint();
 
@@ -107,22 +107,22 @@ public class TopScoreGraphique extends javax.swing.JFrame {
         TopScore.afficherScoresSauvegardes();
 
         int scoreRang1 = TopScore.recupererScore(1);
-        jLabel1.setText("TOP 1 : " + String.valueOf(scoreRang1));
+        jLabel1.setText("TOP 1 : " + String.valueOf(Math.max(scoreRang1, 0)));
 
         int scoreRang2 = TopScore.recupererScore(2);
-        jLabel2.setText("TOP 2 : " + String.valueOf(scoreRang2));
+        jLabel2.setText("TOP 2 : " + String.valueOf(Math.max(scoreRang2, 0)));
 
         int scoreRang3 = TopScore.recupererScore(3);
-        jLabel3.setText("TOP 3 : " + String.valueOf(scoreRang3));
+        jLabel3.setText("TOP 3 : " + String.valueOf(Math.max(scoreRang3, 0)));
 
         int scoreRang4 = TopScore.recupererScore(4);
-        jLabel4.setText("TOP 4 : " + String.valueOf(scoreRang4));
+        jLabel4.setText("TOP 4 : " + String.valueOf(Math.max(scoreRang4, 0)));
 
         int scoreRang5 = TopScore.recupererScore(5);
-        jLabel5.setText("TOP 5 : " + String.valueOf(scoreRang5));
+        jLabel5.setText("TOP 5 : " + String.valueOf(Math.max(scoreRang5, 0)));
 
         int scoreRang6 = TopScore.recupererScore(6);
-        jLabel6.setText("TOP 6 : " + String.valueOf(scoreRang6));
+        jLabel6.setText("TOP 6 : " + String.valueOf(Math.max(scoreRang6, 0)));
 
         setResizable(false);
     }
