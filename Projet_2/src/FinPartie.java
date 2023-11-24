@@ -76,10 +76,12 @@ public class FinPartie extends javax.swing.JFrame {
             }
         });
 
+        
         LabelChrono.setText(temps);
 
-        System.out.println("woww preset : " + PresetChrono);
-
+        
+        
+        
         setLocationRelativeTo(null);
         setResizable(false);
     }
@@ -129,7 +131,7 @@ public class FinPartie extends javax.swing.JFrame {
 
         RELANCER.setBackground(new java.awt.Color(237, 237, 237));
         RELANCER.setFont(new java.awt.Font("Snap ITC", 0, 14)); // NOI18N
-        RELANCER.setText("RELANCER");
+        RELANCER.setText("RETOUR");
         RELANCER.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RELANCERActionPerformed(evt);
@@ -178,7 +180,7 @@ public class FinPartie extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabelScore, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
+                        .addGap(63, 63, 63)
                         .addComponent(RELANCER)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

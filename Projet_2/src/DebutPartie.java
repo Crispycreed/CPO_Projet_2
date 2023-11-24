@@ -1,7 +1,15 @@
 
+import java.awt.Desktop;
 import java.awt.GridLayout;
+import static java.awt.SystemColor.desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -75,6 +83,34 @@ public class DebutPartie extends javax.swing.JFrame {
             }
         });
 
+        Desktop desktop = Desktop.getDesktop();
+        livre.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // Obtenez l'URL du fichier PDF
+                    URL url = getClass().getResource("/regles.pdf");
+                    if (url != null) {
+                        // Convertissez l'URL en URI et ouvrez-le avec l'application par défaut
+                        desktop.browse(url.toURI());
+                    } else {
+                        System.out.println("Fichier PDF introuvable.");
+                    }
+                } catch (IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+        top.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TopScoreGraphique f = new TopScoreGraphique(nbLignes, nbColonnes, PresetChrono);
+                f.setVisible(true);
+                dispose();
+            }
+        });
+
         setResizable(false);
     }
 
@@ -117,7 +153,7 @@ public class DebutPartie extends javax.swing.JFrame {
         );
         PanneauGrilleLayout.setVerticalGroup(
             PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));

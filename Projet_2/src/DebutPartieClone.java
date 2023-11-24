@@ -1,7 +1,11 @@
 
+import java.awt.Desktop;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import javax.swing.ImageIcon;
 
 /*
@@ -77,6 +81,35 @@ public class DebutPartieClone extends javax.swing.JFrame {
 
             }
         });
+
+        Desktop desktop = Desktop.getDesktop();
+        livre.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // Obtenez l'URL du fichier PDF
+                    URL url = getClass().getResource("/regles.pdf");
+                    if (url != null) {
+                        // Convertissez l'URL en URI et ouvrez-le avec l'application par défaut
+                        desktop.browse(url.toURI());
+                    } else {
+                        System.out.println("Fichier PDF introuvable.");
+                    }
+                } catch (IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        
+        top.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TopScoreGraphique f = new TopScoreGraphique(nbLignes2, nbColonnes2, PresetChrono);
+                f.setVisible(true);
+                dispose();
+            }
+        });
+        
 
         setResizable(false);
     }
