@@ -5,6 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -37,7 +40,7 @@ public class FinPartie extends javax.swing.JFrame {
         this.temps = temps;
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
-
+        
         
         CustomPopup popup = new CustomPopup("GAME OVER", "Page de fin");
         popup.setVisible(true);
@@ -60,7 +63,8 @@ public class FinPartie extends javax.swing.JFrame {
 
         int score = grille.getScore();
         jLabelScore.setText(String.valueOf(score)); // Méthode 1
-
+        sauvegarderScore(score);
+        
         RELANCER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -216,6 +220,24 @@ public class FinPartie extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+            /**
+     * Méthode pour sauvegarder le score dans un fichier texte.
+     * @param score Le score à sauvegarder.
+     */
+    private void sauvegarderScore(int score) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("topscores.txt", true))) {
+            // Ajouter le score au fichier
+            writer.write(String.valueOf(score));
+            writer.newLine();  // passer à la ligne suivante pour le prochain score
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
+    
     /**
      * Cette méthode est appelée lorsqu'on appuie sur le bouton RELANCER. Elle
      * gère les actions à effectuer lors du clic sur le bouton de relance.

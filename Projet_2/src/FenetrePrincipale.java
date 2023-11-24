@@ -15,6 +15,9 @@ import javax.swing.Timer;
 import javax.swing.border.Border;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.Timer;
 
 /*
@@ -276,6 +279,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         // ---------------------------------------------------------Icon_Fenetre
         ImageIcon icon = new ImageIcon(getClass().getResource("/logo.jpg"));
         setIconImage(icon.getImage());
+        
+        
+        
+        
+        
+        
+        
 
     }
 
@@ -414,6 +424,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+
+    
+    
     private void QUITTERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QUITTERActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_QUITTERActionPerformed
