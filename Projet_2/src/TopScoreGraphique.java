@@ -78,7 +78,6 @@ public class TopScoreGraphique extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 TopScore.supprimerTopScores();
-                TopScore.afficherScoresSauvegardes();
 
                 int scoreRang1 = TopScore.recupererScore(1);
                 jLabel1.setText("TOP 1 : " + String.valueOf(Math.max(scoreRang1, 0)));
@@ -103,8 +102,6 @@ public class TopScoreGraphique extends javax.swing.JFrame {
             }
 
         });
-
-        TopScore.afficherScoresSauvegardes();
 
         int scoreRang1 = TopScore.recupererScore(1);
         jLabel1.setText("TOP 1 : " + String.valueOf(Math.max(scoreRang1, 0)));
