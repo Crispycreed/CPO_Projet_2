@@ -58,7 +58,7 @@ public class CelluleGraphique extends JButton {
 
             // Calculer les composantes RGB en fonction de la valeur
             int red = maxRed;
-            int green = maxGreen - ((valeur - 3) / 3) * 10;
+            int green = maxGreen - ((valeur - 3) / 3) * 15;
             int blue = 0;
 
             // Assurer que green reste dans les limites de 0 à 255
