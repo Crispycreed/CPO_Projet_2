@@ -71,7 +71,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             for (int j = 0; j < nbColonnes; j++) {
                 CelluleGraphique bouton_cellule = new CelluleGraphique(grille.matriceCellules[i][j], 36, 36);
 
-                PanneauGrille.add(bouton_cellule); // ajout au Jpanel PanneauGrille
+                PanneauGrille.add(bouton_cellule);
             }
 
         }
@@ -96,7 +96,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         QUITTER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
                 DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono);
                 f.setVisible(true);
                 dispose();
@@ -132,7 +131,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     grille.additionnerCellulesAdjacentesVersLaGauche();
                 }
                 repaint();
-                requestFocusInWindow(); // Assurez-vous que la fenêtre a le focus
+                requestFocusInWindow();
                 int cellulesVides = grille.nombreCellulesVides();
                 if (cellulesVides == 0) {
                     int[][] sauvegarde = grille.sauvegarderGrille();
@@ -153,7 +152,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
                 }
                 repaint();
-                requestFocusInWindow(); // Assurez-vous que la fenêtre a le focus
+                requestFocusInWindow();
                 int cellulesVides = grille.nombreCellulesVides();
                 if (cellulesVides == 0) {
                     int[][] sauvegarde = grille.sauvegarderGrille();
@@ -173,7 +172,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     grille.additionnerCellulesAdjacentesVersLeBas();
                 }
                 repaint();
-                requestFocusInWindow(); // Assurez-vous que la fenêtre a le focus
+                requestFocusInWindow();
                 int cellulesVides = grille.nombreCellulesVides();
                 if (cellulesVides == 0) {
                     int[][] sauvegarde = grille.sauvegarderGrille();
@@ -203,11 +202,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         grille.additionnerCellulesAdjacentesVersLeBas();
                         break;
                 }
-
-                // Redessinez la grille
                 repaint();
 
-                // Vérifiez s'il y a des cellules vides
                 int cellulesVides = grille.nombreCellulesVides();
                 if (cellulesVides == 0) {
                     int[][] sauvegarde = grille.sauvegarderGrille();
@@ -269,7 +265,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
             }
         });
-        timer.start(); // Démarre le Timer
+        timer.start();
 
         // ------------------------------------------------------------- Fenetre
         setFocusable(true);
@@ -303,7 +299,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(500, 600));
 
         jPanelText1.setBackground(new java.awt.Color(237, 237, 237));
-        jPanelText1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelText1.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), new javax.swing.border.LineBorder(new java.awt.Color(229, 229, 48), 2, true)));
 
         jLabel1.setFont(new java.awt.Font("Snap ITC", 0, 10)); // NOI18N
         jLabel1.setText("Ou touches Clavier");
@@ -313,7 +309,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jPanelText1Layout.setHorizontalGroup(
             jPanelText1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelText1Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
@@ -323,13 +319,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         );
 
         PanneauGrille.setBackground(new java.awt.Color(0, 0, 0));
+        PanneauGrille.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(173, 216, 230), 4)));
         PanneauGrille.setPreferredSize(new java.awt.Dimension(310, 500));
 
         javax.swing.GroupLayout PanneauGrilleLayout = new javax.swing.GroupLayout(PanneauGrille);
         PanneauGrille.setLayout(PanneauGrilleLayout);
         PanneauGrilleLayout.setHorizontalGroup(
             PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 298, Short.MAX_VALUE)
         );
         PanneauGrilleLayout.setVerticalGroup(
             PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,7 +334,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         );
 
         ControlPanel.setBackground(new java.awt.Color(237, 237, 237));
-        ControlPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ControlPanel.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), new javax.swing.border.LineBorder(new java.awt.Color(128, 128, 128), 3, true)));
         ControlPanel.setPreferredSize(new java.awt.Dimension(160, 120));
 
         javax.swing.GroupLayout ControlPanelLayout = new javax.swing.GroupLayout(ControlPanel);
@@ -348,11 +345,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         );
         ControlPanelLayout.setVerticalGroup(
             ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 116, Short.MAX_VALUE)
+            .addGap(0, 110, Short.MAX_VALUE)
         );
 
         jPanelText2.setBackground(new java.awt.Color(237, 237, 237));
-        jPanelText2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelText2.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), new javax.swing.border.LineBorder(new java.awt.Color(173, 216, 230), 4, true)));
 
         QUITTER.setBackground(new java.awt.Color(237, 237, 237));
         QUITTER.setFont(new java.awt.Font("Snap ITC", 0, 14)); // NOI18N
@@ -371,7 +368,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jPanelText2Layout.setHorizontalGroup(
             jPanelText2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelText2Layout.createSequentialGroup()
-                .addGap(0, 33, Short.MAX_VALUE)
+                .addGap(0, 25, Short.MAX_VALUE)
                 .addGroup(jPanelText2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(QUITTER)
                     .addComponent(LabelChrono, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -381,7 +378,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelText2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(LabelChrono)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
                 .addComponent(QUITTER)
                 .addGap(21, 21, 21))
         );

@@ -45,8 +45,8 @@ public class Settings extends javax.swing.JFrame {
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, nbColonnes * 40, nbLignes * 40));
         grille.initialiserCellulesAleatoires();
         grille.initialiserCellulesAleatoires();
-        grille.initialiserCellulesAleatoires2();
-        grille.initialiserCellulesAleatoires3();
+        grille.initialiserCellulesAleatoires();
+        grille.initialiserCellulesAleatoires();
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
                 CelluleGraphique bouton_cellule = new CelluleGraphique(grille.matriceCellules[i][j], 36, 36);
@@ -69,7 +69,7 @@ public class Settings extends javax.swing.JFrame {
             }
 
         });
-        
+
         ANNULER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -222,13 +222,14 @@ public class Settings extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PanneauGrille.setBackground(new java.awt.Color(0, 0, 0));
+        PanneauGrille.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 4)));
         PanneauGrille.setPreferredSize(new java.awt.Dimension(310, 500));
 
         javax.swing.GroupLayout PanneauGrilleLayout = new javax.swing.GroupLayout(PanneauGrille);
         PanneauGrille.setLayout(PanneauGrilleLayout);
         PanneauGrilleLayout.setHorizontalGroup(
             PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 298, Short.MAX_VALUE)
+            .addGap(0, 286, Short.MAX_VALUE)
         );
         PanneauGrilleLayout.setVerticalGroup(
             PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,7 +237,7 @@ public class Settings extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 4)));
 
         jLabel4.setFont(new java.awt.Font("Snap ITC", 0, 24)); // NOI18N
         jLabel4.setText("   Settings   ");
@@ -389,7 +390,7 @@ public class Settings extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 

@@ -81,6 +81,16 @@ public class TopScore {
         return sortedScores.get(rang - 1);
     }
 
+    /**
+     * Cette méthode lit les scores à partir du fichier "topscores.txt". Chaque
+     * ligne du fichier est interprétée comme un score entier, qui est ensuite
+     * ajouté à un ensemble. En cas d'erreur d'entrée/sortie, une trace de la
+     * pile est affichée, mais l'exécution de la méthode se poursuit avec un
+     * ensemble vide.
+     *
+     * @return Un ensemble d'entiers représentant les scores lus à partir du
+     * fichier.
+     */
     private static Set<Integer> lireScores() {
         Set<Integer> scores = new HashSet<>();
         try ( BufferedReader reader = new BufferedReader(new FileReader("topscores.txt"))) {

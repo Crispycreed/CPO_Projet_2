@@ -463,6 +463,11 @@ class GrilleDeJeu {
         return score;
     }
 
+    /**
+     * Vide la grille en réinitialisant les valeurs de toutes les cellules à
+     * zéro. Cette méthode parcourt toutes les lignes et colonnes de la grille,
+     * modifiant la valeur de chaque cellule à zéro.
+     */
     public void viderGrille() {
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {

@@ -51,7 +51,7 @@ public class TopScoreGraphique extends javax.swing.JFrame {
         grille.initialiserCellulesAleatoires();
         grille.initialiserCellulesAleatoires();
         grille.initialiserCellulesAleatoires2();
-        grille.initialiserCellulesAleatoires3();
+        grille.initialiserCellulesAleatoires2();
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
                 CelluleGraphique bouton_cellule = new CelluleGraphique(grille.matriceCellules[i][j], 36, 36);
@@ -152,13 +152,14 @@ public class TopScoreGraphique extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PanneauGrille.setBackground(new java.awt.Color(0, 0, 0));
+        PanneauGrille.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 204, 0), 4)));
         PanneauGrille.setPreferredSize(new java.awt.Dimension(310, 500));
 
         javax.swing.GroupLayout PanneauGrilleLayout = new javax.swing.GroupLayout(PanneauGrille);
         PanneauGrille.setLayout(PanneauGrilleLayout);
         PanneauGrilleLayout.setHorizontalGroup(
             PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 298, Short.MAX_VALUE)
         );
         PanneauGrilleLayout.setVerticalGroup(
             PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +167,7 @@ public class TopScoreGraphique extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 204, 0), 4)));
 
         titre.setFont(new java.awt.Font("Snap ITC", 0, 24)); // NOI18N
         titre.setText("  TOP SCORE");
@@ -184,11 +185,11 @@ public class TopScoreGraphique extends javax.swing.JFrame {
         jLabel3.setText("jLabel3");
 
         jLabel4.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel4.setForeground(new java.awt.Color(30, 232, 209));
         jLabel4.setText("jLabel4");
 
         jLabel5.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel5.setForeground(new java.awt.Color(32, 151, 167));
         jLabel5.setText("jLabel5");
 
         RETOUR.setBackground(new java.awt.Color(237, 237, 237));
@@ -201,6 +202,7 @@ public class TopScoreGraphique extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(25, 94, 175));
         jLabel6.setText("jLabel6");
 
         RESET.setBackground(new java.awt.Color(237, 237, 237));
@@ -258,7 +260,7 @@ public class TopScoreGraphique extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -273,7 +275,7 @@ public class TopScoreGraphique extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
