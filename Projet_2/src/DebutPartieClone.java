@@ -49,6 +49,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
         grille.initialiserCellulesAleatoires();
         grille.initialiserCellulesAleatoires2();
         grille.initialiserCellulesAleatoires3();
+
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
                 CelluleGraphique bouton_cellule = new CelluleGraphique(grille.matriceCellules[i][j], 36, 36);
@@ -100,7 +101,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
                 }
             }
         });
-        
+
         top.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -109,7 +110,6 @@ public class DebutPartieClone extends javax.swing.JFrame {
                 dispose();
             }
         });
-        
 
         setResizable(false);
     }

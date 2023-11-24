@@ -25,7 +25,6 @@ public class TopScore {
             // Ajouter le score au fichier
             writer.write(String.valueOf(score));
             writer.newLine();  // passer à la ligne suivante pour le prochain score
-            System.out.println("Score sauvegardé : " + score);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -37,7 +36,6 @@ public class TopScore {
     public static void afficherScoresSauvegardes() {
         try ( BufferedReader reader = new BufferedReader(new FileReader("topscores.txt"))) {
             String line;
-            System.out.println("Scores sauvegardés :");
 
             while ((line = reader.readLine()) != null) {
                 // Imprimer chaque score
@@ -60,9 +58,6 @@ public class TopScore {
 
             if (Files.exists(fichierPath)) {
                 Files.delete(fichierPath);
-                System.out.println("Le fichier topscores.txt a été supprimé.");
-            } else {
-                System.out.println("Le fichier topscores.txt n'existe pas.");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -77,9 +72,8 @@ public class TopScore {
      */
     public static int recupererScore(int rang) {
         Set<Integer> scores = lireScores();
-        
+
         if (rang <= 0 || rang > scores.size()) {
-            System.out.println("Rang invalide");
             return -1; // Valeur par défaut ou code d'erreur selon le contexte
         }
 
@@ -89,10 +83,10 @@ public class TopScore {
 
     private static Set<Integer> lireScores() {
         Set<Integer> scores = new HashSet<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("topscores.txt"))) {
+        try ( BufferedReader reader = new BufferedReader(new FileReader("topscores.txt"))) {
             reader.lines()
-                .map(Integer::parseInt)
-                .forEach(scores::add);
+                    .map(Integer::parseInt)
+                    .forEach(scores::add);
         } catch (IOException e) {
             e.printStackTrace();
         }

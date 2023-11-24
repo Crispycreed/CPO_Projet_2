@@ -54,6 +54,7 @@ public class FinPartie extends javax.swing.JFrame {
                 CelluleGraphique bouton_cellule = new CelluleGraphique(grille.matriceCellules[i][j], 36, 36);
 
                 PanneauGrille.add(bouton_cellule); // ajout au Jpanel PanneauGrille
+                repaint();
             }
         }
 
@@ -63,7 +64,6 @@ public class FinPartie extends javax.swing.JFrame {
         int score = grille.getScore();
         jLabelScore.setText(String.valueOf(score)); // Méthode 1
         TopScore.sauvegarderScore(score);
-        TopScore.afficherScoresSauvegardes();
 
         RELANCER.addActionListener(new ActionListener() {
             @Override
@@ -76,12 +76,8 @@ public class FinPartie extends javax.swing.JFrame {
             }
         });
 
-        
         LabelChrono.setText(temps);
 
-        
-        
-        
         setLocationRelativeTo(null);
         setResizable(false);
     }

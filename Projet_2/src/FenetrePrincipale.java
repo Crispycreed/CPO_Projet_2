@@ -279,13 +279,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         // ---------------------------------------------------------Icon_Fenetre
         ImageIcon icon = new ImageIcon(getClass().getResource("/logo.jpg"));
         setIconImage(icon.getImage());
-        
-        
-        
-        
-        
-        
-        
 
     }
 
@@ -422,10 +415,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
 
-    
-    
     private void QUITTERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QUITTERActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_QUITTERActionPerformed
