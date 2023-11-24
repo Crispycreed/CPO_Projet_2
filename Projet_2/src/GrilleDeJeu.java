@@ -127,7 +127,8 @@ class GrilleDeJeu {
         while (stop == 2) {
 
             // Choisir aléatoirement une valeur parmi 1, 2 ou 3
-            int valeur = random.nextInt(3) + 1;
+            int[] valeursPossibles = {1, 2, 3, 6};
+            int valeur = valeursPossibles[random.nextInt(valeursPossibles.length)];
             int randomLigne = random.nextInt(nbLignes);
             int valeurExistante = matriceCellules[randomLigne][0].getValeur();
             int cellulesVides = nombreCellulesVides();
@@ -150,7 +151,8 @@ class GrilleDeJeu {
 
         while (stop == 2) {
             // Choisir aléatoirement une valeur parmi 1, 2 ou 3
-            int valeur = random.nextInt(3) + 1;
+            int[] valeursPossibles = {1, 2, 3, 6};
+            int valeur = valeursPossibles[random.nextInt(valeursPossibles.length)];
             int randomLigne = random.nextInt(nbLignes);
             int valeurExistante = matriceCellules[randomLigne][nbColonnes - 1].getValeur();
             int cellulesVides = nombreCellulesVides();
@@ -173,7 +175,8 @@ class GrilleDeJeu {
         while (stop == 2) {
             // Choisir aléatoirement une valeur parmi 1, 2 ou 3
             int randomColonne = random.nextInt(nbColonnes);
-            int valeur = random.nextInt(3) + 1;
+            int[] valeursPossibles = {1, 2, 3, 6};
+            int valeur = valeursPossibles[random.nextInt(valeursPossibles.length)];
             int valeurExistante = matriceCellules[0][randomColonne].getValeur();
             int cellulesVides = nombreCellulesVides();
             if (valeurExistante == 0) {
@@ -196,7 +199,8 @@ class GrilleDeJeu {
 
         while (stop == 2) {
             // Choisir aléatoirement une valeur parmi 1, 2 ou 3
-            int valeur = random.nextInt(3) + 1;
+            int[] valeursPossibles = {1, 2, 3, 6};
+            int valeur = valeursPossibles[random.nextInt(valeursPossibles.length)];
             int randomColonne = random.nextInt(nbColonnes);
             int valeurExistante = matriceCellules[nbLignes - 1][randomColonne].getValeur();
             int cellulesVides = nombreCellulesVides();
@@ -279,6 +283,8 @@ class GrilleDeJeu {
                         if (valeurGauche == valeurCourante) {
                             if (valeurGauche == 2 && valeurCourante == 2) {
                                 celluleGauche.modifierValeur(valeurGauche);
+                            } else if (valeurGauche == 1 && valeurCourante == 1) {
+                                celluleGauche.modifierValeur(valeurGauche);
                             } else {
                                 celluleGauche.modifierValeur(valeurGauche + valeurCourante);
                                 celluleCourante.modifierValeur(0);
@@ -330,6 +336,8 @@ class GrilleDeJeu {
                         if (valeurHaut == valeurCourante) {
                             if (valeurHaut == 2 && valeurCourante == 2) {
                                 celluleHaut.modifierValeur(valeurHaut);
+                            } else if (valeurHaut == 1 && valeurCourante == 1) {
+                                celluleHaut.modifierValeur(valeurHaut);
                             } else {
                                 celluleHaut.modifierValeur(valeurHaut + valeurCourante);
                                 celluleCourante.modifierValeur(0);
@@ -378,6 +386,8 @@ class GrilleDeJeu {
                         // Additionner les cellules adjacentes
                         if (valeurBas == valeurCourante) {
                             if (valeurBas == 2 && valeurCourante == 2) {
+                                celluleBas.modifierValeur(valeurBas);
+                            } else if (valeurBas == 1 && valeurCourante == 1) {
                                 celluleBas.modifierValeur(valeurBas);
                             } else {
                                 celluleBas.modifierValeur(valeurBas + valeurCourante);

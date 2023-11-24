@@ -7,6 +7,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.border.Border;
 
 /**
@@ -37,6 +38,10 @@ public class FinPartie extends javax.swing.JFrame {
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
 
+        
+        CustomPopup popup = new CustomPopup("GAME OVER", "Page de fin");
+        popup.setVisible(true);
+        
         // Charger la grille à partir de la sauvegarde
         grille.chargerGrille(sauvegarde);
 
@@ -218,7 +223,7 @@ public class FinPartie extends javax.swing.JFrame {
      * @param evt L'événement associé au clic sur le bouton RELANCER.
      */
     private void RELANCERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RELANCERActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_RELANCERActionPerformed
 
     /**
