@@ -40,11 +40,10 @@ public class FinPartie extends javax.swing.JFrame {
         this.temps = temps;
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
-        
-        
+
         CustomPopup popup = new CustomPopup("GAME OVER", "Page de fin");
         popup.setVisible(true);
-        
+
         // Charger la grille à partir de la sauvegarde
         grille.chargerGrille(sauvegarde);
 
@@ -63,8 +62,9 @@ public class FinPartie extends javax.swing.JFrame {
 
         int score = grille.getScore();
         jLabelScore.setText(String.valueOf(score)); // Méthode 1
-        sauvegarderScore(score);
-        
+        TopScore.sauvegarderScore(score);
+        TopScore.afficherScoresSauvegardes();
+
         RELANCER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -220,24 +220,6 @@ public class FinPartie extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-            /**
-     * Méthode pour sauvegarder le score dans un fichier texte.
-     * @param score Le score à sauvegarder.
-     */
-    private void sauvegarderScore(int score) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("topscores.txt", true))) {
-            // Ajouter le score au fichier
-            writer.write(String.valueOf(score));
-            writer.newLine();  // passer à la ligne suivante pour le prochain score
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    
-    
-    
     /**
      * Cette méthode est appelée lorsqu'on appuie sur le bouton RELANCER. Elle
      * gère les actions à effectuer lors du clic sur le bouton de relance.
