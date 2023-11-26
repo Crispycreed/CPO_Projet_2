@@ -97,6 +97,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         QUITTER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 lecteur.arreterLecture();
                 DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono, icon);
                 f.setVisible(true);

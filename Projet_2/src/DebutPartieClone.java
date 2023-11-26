@@ -43,6 +43,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
         this.PresetChrono = PresetChrono;
         this.icon = icon;
         initComponents();
+        LecteurWAV lecteur = new LecteurWAV();
 
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
@@ -66,6 +67,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
         LANCER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
                 FenetrePrincipale f = new FenetrePrincipale(nbLignes2, nbColonnes2, PresetChrono, icon);
                 f.setVisible(true);
@@ -75,8 +77,10 @@ public class DebutPartieClone extends javax.swing.JFrame {
         });
 
         Settings.addActionListener(new ActionListener() {
+            
             @Override
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
                 Settings f = new Settings(nbLignes2, nbColonnes2, PresetChrono, icon);
                 f.setVisible(true);
@@ -89,6 +93,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
         livre.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 try {
                     // Obtenez l'URL du fichier PDF
                     URL url = getClass().getResource("/regles.pdf");
@@ -107,6 +112,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
         top.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 TopScoreGraphique f = new TopScoreGraphique(nbLignes2, nbColonnes2, PresetChrono, icon);
                 f.setVisible(true);
                 dispose();

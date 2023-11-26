@@ -39,7 +39,7 @@ public class Settings extends javax.swing.JFrame {
      */
     public Settings(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon) {
         initComponents();
-
+LecteurWAV lecteur = new LecteurWAV();
         this.nbColonnes2 = nbColonnes2;
         this.nbLignes2 = nbLignes2;
         this.PresetChrono = PresetChrono;
@@ -63,6 +63,7 @@ public class Settings extends javax.swing.JFrame {
         VALIDER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 int nbLignes2 = SliderLignes.getValue();
                 int nbColonnes2 = SliderColonnes.getValue();
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
@@ -78,6 +79,7 @@ public class Settings extends javax.swing.JFrame {
         ANNULER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 DebutPartie f = new DebutPartie();
                 f.setVisible(true);
                 dispose();
@@ -198,6 +200,7 @@ public class Settings extends javax.swing.JFrame {
         ICON1.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 icon2 = new ImageIcon(getClass().getResource("/lOGO1.png"));
                 setIconImage(icon2.getImage());
             }
@@ -207,6 +210,7 @@ public class Settings extends javax.swing.JFrame {
         ICON2.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 icon2 = new ImageIcon(getClass().getResource("/lOGO2.png"));
                 setIconImage(icon2.getImage());
             }
@@ -216,6 +220,7 @@ public class Settings extends javax.swing.JFrame {
         ICON3.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 icon2 = new ImageIcon(getClass().getResource("/lOGO3.png"));
                 setIconImage(icon2.getImage());
             }
@@ -225,6 +230,7 @@ public class Settings extends javax.swing.JFrame {
         ICON4.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 icon2 = new ImageIcon(getClass().getResource("/lOGO4.png"));
                 setIconImage(icon2.getImage());
             }
@@ -234,6 +240,7 @@ public class Settings extends javax.swing.JFrame {
         ICON5.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 icon2 = new ImageIcon(getClass().getResource("/lOGO5.png"));
                 setIconImage(icon2.getImage());
             }

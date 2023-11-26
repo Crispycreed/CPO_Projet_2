@@ -50,6 +50,7 @@ public class FinPartie extends javax.swing.JFrame {
         
         LecteurWAV lecteur = new LecteurWAV();
         lecteur.arreterLecture();
+        lecteur.lireFichierWAV("Sgameover.wav");
         
         
         
@@ -77,6 +78,7 @@ public class FinPartie extends javax.swing.JFrame {
         RELANCER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
                 DebutPartieClone f = new DebutPartieClone(nbLignes, nbColonnes, PresetChrono, icon);
                 f.setVisible(true);

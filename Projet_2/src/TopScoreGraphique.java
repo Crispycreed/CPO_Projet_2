@@ -47,7 +47,7 @@ public class TopScoreGraphique extends javax.swing.JFrame {
         this.icon = icon;
         
         initComponents();
-
+LecteurWAV lecteur = new LecteurWAV();
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, nbColonnes * 40, nbLignes * 40));
@@ -68,6 +68,7 @@ public class TopScoreGraphique extends javax.swing.JFrame {
         RETOUR.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono, icon);
                 f.setVisible(true);
                 dispose();
@@ -79,6 +80,7 @@ public class TopScoreGraphique extends javax.swing.JFrame {
         RESET.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 TopScore.supprimerTopScores();
 
                 int scoreRang1 = TopScore.recupererScore(1);

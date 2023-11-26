@@ -45,6 +45,7 @@ public class DebutPartie extends javax.swing.JFrame {
      */
     public DebutPartie() {
         initComponents();
+        LecteurWAV lecteur = new LecteurWAV();
 
         // ---------------------------------------------------Panneau_Grille
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
@@ -70,6 +71,7 @@ public class DebutPartie extends javax.swing.JFrame {
         LANCER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 FenetrePrincipale f = new FenetrePrincipale(nbLignes, nbColonnes, PresetChrono, icon);
                 f.setVisible(true);
                 dispose();
@@ -80,6 +82,7 @@ public class DebutPartie extends javax.swing.JFrame {
         Settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 Settings f = new Settings(nbLignes, nbColonnes, PresetChrono, icon);
                 f.setVisible(true);
                 dispose();
@@ -91,6 +94,7 @@ public class DebutPartie extends javax.swing.JFrame {
         livre.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 try {
                     URL url = getClass().getResource("/regles.pdf");
                     if (url != null) {
@@ -108,6 +112,7 @@ public class DebutPartie extends javax.swing.JFrame {
         top.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
                 TopScoreGraphique f = new TopScoreGraphique(nbLignes, nbColonnes, PresetChrono, icon);
                 f.setVisible(true);
                 dispose();
