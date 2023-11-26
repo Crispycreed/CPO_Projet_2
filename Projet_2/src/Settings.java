@@ -40,6 +40,7 @@ public class Settings extends javax.swing.JFrame {
     public Settings(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon) {
         initComponents();
 LecteurWAV lecteur = new LecteurWAV();
+lecteur.arreterLecture();
         this.nbColonnes2 = nbColonnes2;
         this.nbLignes2 = nbLignes2;
         this.PresetChrono = PresetChrono;

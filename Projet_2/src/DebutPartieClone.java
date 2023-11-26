@@ -44,6 +44,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
         this.icon = icon;
         initComponents();
         LecteurWAV lecteur = new LecteurWAV();
+        lecteur.arreterLecture();
 
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);

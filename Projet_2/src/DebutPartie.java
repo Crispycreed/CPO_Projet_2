@@ -46,6 +46,7 @@ public class DebutPartie extends javax.swing.JFrame {
     public DebutPartie() {
         initComponents();
         LecteurWAV lecteur = new LecteurWAV();
+        lecteur.arreterLecture();
 
         // ---------------------------------------------------Panneau_Grille
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));

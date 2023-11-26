@@ -48,6 +48,7 @@ public class TopScoreGraphique extends javax.swing.JFrame {
         
         initComponents();
 LecteurWAV lecteur = new LecteurWAV();
+lecteur.arreterLecture();
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, nbColonnes * 40, nbLignes * 40));
