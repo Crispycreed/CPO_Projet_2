@@ -59,6 +59,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, nbColonnes * 40, nbLignes * 40));
         grille.initialiserCellulesAleatoires();
+        LecteurWAV lecteur = new LecteurWAV();
 
         ControlPanel.setLayout(null);
         getContentPane().add(ControlPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
@@ -96,6 +97,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         QUITTER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                lecteur.arreterLecture();
                 DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono, icon);
                 f.setVisible(true);
                 dispose();
@@ -117,6 +119,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
                     timer.stop();
+                    lecteur.arreterLecture();
                     FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
                     f.setVisible(true);
                 }
@@ -137,6 +140,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
                     timer.stop();
+                    lecteur.arreterLecture();
                     FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
                     f.setVisible(true);
                 }
@@ -158,6 +162,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
                     timer.stop();
+                    lecteur.arreterLecture();
                     FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
                     f.setVisible(true);
                 }
@@ -178,6 +183,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
                     timer.stop();
+                    lecteur.arreterLecture();
                     FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
                     f.setVisible(true);
                 }
@@ -209,6 +215,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
                     timer.stop();
+                    lecteur.arreterLecture();
                     FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
                     f.setVisible(true);
                 }
@@ -234,6 +241,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         int[][] sauvegarde = grille.sauvegarderGrille();
                         timer.stop();
                         dispose();
+                        lecteur.arreterLecture();
                         FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
                         f.setVisible(true);
                     }
@@ -242,6 +250,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         int[][] sauvegarde = grille.sauvegarderGrille();
                         timer.stop();
                         dispose();
+                        lecteur.arreterLecture();
                         FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
                         f.setVisible(true);
                     }
@@ -250,6 +259,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         int[][] sauvegarde = grille.sauvegarderGrille();
                         timer.stop();
                         dispose();
+                        lecteur.arreterLecture();
                         FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
                         f.setVisible(true);
                     }
@@ -258,6 +268,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         int[][] sauvegarde = grille.sauvegarderGrille();
                         timer.stop();
                         dispose();
+                        lecteur.arreterLecture();
                         FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
                         f.setVisible(true);
                     }
@@ -274,6 +285,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         // ---------------------------------------------------------Icon_Fenetre
         setIconImage(icon.getImage());
+        
+        
+
+        lecteur.lireFichierWAV("Scalme.wav");
+
+        
 
     }
 

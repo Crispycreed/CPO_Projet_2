@@ -6,8 +6,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -43,8 +47,13 @@ public class FinPartie extends javax.swing.JFrame {
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         this.icon = icon;
 
-
-
+        
+        LecteurWAV lecteur = new LecteurWAV();
+        lecteur.arreterLecture();
+        
+        
+        
+        
         // Charger la grille à partir de la sauvegarde
         grille.chargerGrille(sauvegarde);
 
@@ -80,7 +89,7 @@ public class FinPartie extends javax.swing.JFrame {
 
         setLocationRelativeTo(null);
         setResizable(false);
-        
+
     }
 
     /**

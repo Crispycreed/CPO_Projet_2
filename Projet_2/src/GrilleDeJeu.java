@@ -260,6 +260,8 @@ class GrilleDeJeu {
             }
         }
         ajouterAleatoirementAGauche();
+        LecteurWAV lecteur = new LecteurWAV();
+        lecteur.lireFichierWAV("Sfusion.wav");
     }
 
     /**
@@ -307,6 +309,8 @@ class GrilleDeJeu {
             }
         }
         ajouterAleatoirementADroite();
+        LecteurWAV lecteur = new LecteurWAV();
+        lecteur.lireFichierWAV("Sfusion.wav");
     }
 
     /**
@@ -361,6 +365,8 @@ class GrilleDeJeu {
         }
         // Ajoute une nouvelle cellule aléatoirement en bas de la grille
         ajouterAleatoirementEnBas();
+        LecteurWAV lecteur = new LecteurWAV();
+        lecteur.lireFichierWAV("Sfusion.wav");
     }
 
     /**
@@ -412,6 +418,8 @@ class GrilleDeJeu {
         }
         // Ajoute une nouvelle cellule aléatoirement en haut de la grille
         ajouterAleatoirementEnHaut();
+        LecteurWAV lecteur = new LecteurWAV();
+        lecteur.lireFichierWAV("Sfusion.wav");
     }
 
     /**
