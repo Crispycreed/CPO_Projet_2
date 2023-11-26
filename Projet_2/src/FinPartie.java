@@ -23,6 +23,7 @@ public class FinPartie extends javax.swing.JFrame {
     int i;
     private String PresetChrono;
     private String temps;
+    private ImageIcon icon;
 
     /**
      * Constructeur de la classe FinPartie. Initialise la fenêtre de fin de
@@ -33,13 +34,14 @@ public class FinPartie extends javax.swing.JFrame {
      * @param nbColonnes Le nombre de colonnes de la grille.
      * @param nbLignes Le nombre de lignes de la grille.
      */
-    public FinPartie(int[][] sauvegarde, int nbColonnes, int nbLignes, String PresetChrono, String temps) {
+    public FinPartie(int[][] sauvegarde, int nbColonnes, int nbLignes, String PresetChrono, String temps, ImageIcon icon) {
 
         initComponents();
         this.PresetChrono = PresetChrono;
         this.temps = temps;
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
+        this.icon = icon;
 
 
 
@@ -57,7 +59,6 @@ public class FinPartie extends javax.swing.JFrame {
             }
         }
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/logo.jpg"));
         setIconImage(icon.getImage());
 
         int score = grille.getScore();
@@ -68,7 +69,7 @@ public class FinPartie extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                DebutPartieClone f = new DebutPartieClone(nbLignes, nbColonnes, PresetChrono);
+                DebutPartieClone f = new DebutPartieClone(nbLignes, nbColonnes, PresetChrono, icon);
                 f.setVisible(true);
                 dispose();
 
@@ -79,6 +80,7 @@ public class FinPartie extends javax.swing.JFrame {
 
         setLocationRelativeTo(null);
         setResizable(false);
+        
     }
 
     /**

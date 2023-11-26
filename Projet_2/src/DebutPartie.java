@@ -38,6 +38,7 @@ public class DebutPartie extends javax.swing.JFrame {
     private int nbColonnes = 4;
     private int nbLignes = 4;
     private String PresetChrono = "Infinie";
+    private ImageIcon icon = new ImageIcon(getClass().getResource("/lOGO1.png"));
 
     /**
      * Constructeur de la classe DebutPartie.
@@ -61,16 +62,15 @@ public class DebutPartie extends javax.swing.JFrame {
             }
         }
 
-        // --------------------------------------------------- Paramètres des boutons
+        // --------------------------------------------------- changer logo
         setLocationRelativeTo(null);
-        ImageIcon icon = new ImageIcon(getClass().getResource("/logo.jpg"));
         setIconImage(icon.getImage());
 
         // --------------------------------------------------- Action du bouton "PLAY"
         LANCER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FenetrePrincipale f = new FenetrePrincipale(nbLignes, nbColonnes, PresetChrono);
+                FenetrePrincipale f = new FenetrePrincipale(nbLignes, nbColonnes, PresetChrono, icon);
                 f.setVisible(true);
                 dispose();
             }
@@ -80,7 +80,7 @@ public class DebutPartie extends javax.swing.JFrame {
         Settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Settings f = new Settings(nbLignes, nbColonnes, PresetChrono);
+                Settings f = new Settings(nbLignes, nbColonnes, PresetChrono, icon);
                 f.setVisible(true);
                 dispose();
             }
@@ -108,7 +108,7 @@ public class DebutPartie extends javax.swing.JFrame {
         top.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TopScoreGraphique f = new TopScoreGraphique(nbLignes, nbColonnes, PresetChrono);
+                TopScoreGraphique f = new TopScoreGraphique(nbLignes, nbColonnes, PresetChrono, icon);
                 f.setVisible(true);
                 dispose();
             }

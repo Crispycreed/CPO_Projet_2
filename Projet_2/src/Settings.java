@@ -1,7 +1,10 @@
 
 import java.awt.GridLayout;
+import java.awt.Image;
+import static java.awt.Image.SCALE_SMOOTH;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -29,16 +32,18 @@ public class Settings extends javax.swing.JFrame {
     private int nbColonnes2;
     private int nbLignes2;
     private String PresetChrono;
+    private ImageIcon icon2;
 
     /**
      * Creates new form Settings
      */
-    public Settings(int nbLignes2, int nbColonnes2, String PresetChrono) {
+    public Settings(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon) {
         initComponents();
 
         this.nbColonnes2 = nbColonnes2;
         this.nbLignes2 = nbLignes2;
         this.PresetChrono = PresetChrono;
+        icon2 = icon;
 
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
@@ -62,7 +67,7 @@ public class Settings extends javax.swing.JFrame {
                 int nbColonnes2 = SliderColonnes.getValue();
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
                 String PresetChrono2 = (String) ComboBox_tps.getSelectedItem();
-                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono2);
+                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono2, icon2);
                 f.setVisible(true);
                 dispose();
 
@@ -185,9 +190,35 @@ public class Settings extends javax.swing.JFrame {
         ComboBox_tps.addItem(tp5);
 
         setLocationRelativeTo(null);
-        ImageIcon icon = new ImageIcon(getClass().getResource("/logo.jpg"));
         setIconImage(icon.getImage());
         setResizable(false);
+
+        
+        
+        // --------------------------------------------------- Changer ICON        
+        
+        
+        jMenu1.add(ICON1);
+        ICON1.addActionListener(new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+                icon2 = new ImageIcon(getClass().getResource("/lOGO1.png"));
+                setIconImage(icon2.getImage());
+            }
+        });
+
+
+        jMenu1.add(ICON2);
+        ICON2.addActionListener(new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+                icon2 = new ImageIcon(getClass().getResource("/lOGO2.png"));
+                setIconImage(icon2.getImage());
+            }
+        });
+        
+        
+        // --------------------------------------------------- Changer ICON FIN
 
     }
 
@@ -201,6 +232,8 @@ public class Settings extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        ICON1 = new javax.swing.JButton();
+        ICON2 = new javax.swing.JButton();
         PanneauGrille = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -218,6 +251,26 @@ public class Settings extends javax.swing.JFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
         jSeparator4 = new javax.swing.JSeparator();
         ANNULER = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+
+        ICON1.setBackground(new java.awt.Color(237, 237, 237));
+        ICON1.setFont(new java.awt.Font("Snap ITC", 0, 14)); // NOI18N
+        ICON1.setText("Icon 1");
+        ICON1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ICON1ActionPerformed(evt);
+            }
+        });
+
+        ICON2.setBackground(new java.awt.Color(237, 237, 237));
+        ICON2.setFont(new java.awt.Font("Snap ITC", 0, 14)); // NOI18N
+        ICON2.setText("Icon 2");
+        ICON2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ICON2ActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -376,8 +429,14 @@ public class Settings extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ANNULER)
                     .addComponent(VALIDER))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
+
+        jMenu1.setText("Changer Icon");
+        jMenu1.setActionCommand("Changer Icon");
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -390,7 +449,7 @@ public class Settings extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -408,6 +467,14 @@ public class Settings extends javax.swing.JFrame {
     private void ANNULERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ANNULERActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ANNULERActionPerformed
+
+    private void ICON1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ICON1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ICON1ActionPerformed
+
+    private void ICON2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ICON2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ICON2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -446,6 +513,8 @@ public class Settings extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ANNULER;
     private javax.swing.JComboBox<String> ComboBox_tps;
+    private javax.swing.JButton ICON1;
+    private javax.swing.JButton ICON2;
     private javax.swing.JLabel LabelColonnes;
     private javax.swing.JLabel LabelLignes;
     private javax.swing.JPanel PanneauGrille;
@@ -456,6 +525,8 @@ public class Settings extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

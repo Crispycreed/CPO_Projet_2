@@ -46,7 +46,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     /**
      * Creates new form FenetrePrincipale
      */
-    public FenetrePrincipale(int nbLignes2, int nbColonnes2, String PresetChrono) {
+    public FenetrePrincipale(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon) {
 
         // ------------------------------------------------Déclaration_Variables
         this.nbColonnes = nbColonnes2;
@@ -96,7 +96,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         QUITTER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono);
+                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono, icon);
                 f.setVisible(true);
                 dispose();
 
@@ -117,7 +117,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
                     timer.stop();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps);
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
                     f.setVisible(true);
                 }
             }
@@ -137,7 +137,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
                     timer.stop();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps);
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
                     f.setVisible(true);
                 }
             }
@@ -158,7 +158,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
                     timer.stop();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps);
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
                     f.setVisible(true);
                 }
             }
@@ -178,7 +178,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
                     timer.stop();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps);
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
                     f.setVisible(true);
                 }
             }
@@ -209,7 +209,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     int[][] sauvegarde = grille.sauvegarderGrille();
                     dispose();
                     timer.stop();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps);
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
                     f.setVisible(true);
                 }
             }
@@ -234,7 +234,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         int[][] sauvegarde = grille.sauvegarderGrille();
                         timer.stop();
                         dispose();
-                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps);
+                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
                         f.setVisible(true);
                     }
                 } else if (PresetChrono.equals("1min")) {
@@ -242,7 +242,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         int[][] sauvegarde = grille.sauvegarderGrille();
                         timer.stop();
                         dispose();
-                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps);
+                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
                         f.setVisible(true);
                     }
                 } else if (PresetChrono.equals("2mins")) {
@@ -250,7 +250,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         int[][] sauvegarde = grille.sauvegarderGrille();
                         timer.stop();
                         dispose();
-                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps);
+                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
                         f.setVisible(true);
                     }
                 } else if (PresetChrono.equals("3mins")) {
@@ -258,7 +258,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         int[][] sauvegarde = grille.sauvegarderGrille();
                         timer.stop();
                         dispose();
-                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps);
+                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
                         f.setVisible(true);
                     }
                 }
@@ -273,7 +273,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         setLocationRelativeTo(null);
 
         // ---------------------------------------------------------Icon_Fenetre
-        ImageIcon icon = new ImageIcon(getClass().getResource("/logo.jpg"));
         setIconImage(icon.getImage());
 
     }

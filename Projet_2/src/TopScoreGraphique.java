@@ -29,6 +29,7 @@ public class TopScoreGraphique extends javax.swing.JFrame {
     private int nbColonnes2;
     private int nbLignes2;
     private String PresetChrono;
+    private ImageIcon icon;
 
     /**
      * Constructeur de la classe FinPartie. Initialise la fenêtre de fin de
@@ -39,10 +40,12 @@ public class TopScoreGraphique extends javax.swing.JFrame {
      * @param nbColonnes Le nombre de colonnes de la grille.
      * @param nbLignes Le nombre de lignes de la grille.
      */
-    public TopScoreGraphique(int nbLignes2, int nbColonnes2, String PresetChrono) {
+    public TopScoreGraphique(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon) {
         this.nbColonnes2 = nbColonnes2;
         this.nbLignes2 = nbLignes2;
         this.PresetChrono = PresetChrono;
+        this.icon = icon;
+        
         initComponents();
 
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
@@ -60,13 +63,12 @@ public class TopScoreGraphique extends javax.swing.JFrame {
             }
         }
         setLocationRelativeTo(null);
-        ImageIcon icon = new ImageIcon(getClass().getResource("/logo.jpg"));
         setIconImage(icon.getImage());
 
         RETOUR.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono);
+                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono, icon);
                 f.setVisible(true);
                 dispose();
 
@@ -122,6 +124,8 @@ public class TopScoreGraphique extends javax.swing.JFrame {
         jLabel6.setText("TOP 6 : " + String.valueOf(Math.max(scoreRang6, 0)));
 
         setResizable(false);
+        
+        
     }
 
     /**

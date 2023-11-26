@@ -26,6 +26,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
     private int nbColonnes2;
     private int nbLignes2;
     private String PresetChrono;
+    private ImageIcon icon;
 
     /**
      * Constructeur de la classe FinPartie. Initialise la fenêtre de fin de
@@ -36,10 +37,11 @@ public class DebutPartieClone extends javax.swing.JFrame {
      * @param nbColonnes Le nombre de colonnes de la grille.
      * @param nbLignes Le nombre de lignes de la grille.
      */
-    public DebutPartieClone(int nbLignes2, int nbColonnes2, String PresetChrono) {
+    public DebutPartieClone(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon) {
         this.nbColonnes2 = nbColonnes2;
         this.nbLignes2 = nbLignes2;
         this.PresetChrono = PresetChrono;
+        this.icon = icon;
         initComponents();
 
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
@@ -59,14 +61,13 @@ public class DebutPartieClone extends javax.swing.JFrame {
             }
         }
         setLocationRelativeTo(null);
-        ImageIcon icon = new ImageIcon(getClass().getResource("/logo.jpg"));
         setIconImage(icon.getImage());
 
         LANCER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                FenetrePrincipale f = new FenetrePrincipale(nbLignes2, nbColonnes2, PresetChrono);
+                FenetrePrincipale f = new FenetrePrincipale(nbLignes2, nbColonnes2, PresetChrono, icon);
                 f.setVisible(true);
                 dispose();
 
@@ -77,7 +78,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                Settings f = new Settings(nbLignes2, nbColonnes2, PresetChrono);
+                Settings f = new Settings(nbLignes2, nbColonnes2, PresetChrono, icon);
                 f.setVisible(true);
                 dispose();
 
@@ -106,7 +107,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
         top.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TopScoreGraphique f = new TopScoreGraphique(nbLignes2, nbColonnes2, PresetChrono);
+                TopScoreGraphique f = new TopScoreGraphique(nbLignes2, nbColonnes2, PresetChrono, icon);
                 f.setVisible(true);
                 dispose();
             }
