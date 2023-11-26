@@ -68,7 +68,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
         LANCER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                lecteur.lireFichierWAV("Sclic.wav");
+                lecteur.lireFichierWAV("Slancer.wav");
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
                 FenetrePrincipale f = new FenetrePrincipale(nbLignes2, nbColonnes2, PresetChrono, icon);
                 f.setVisible(true);

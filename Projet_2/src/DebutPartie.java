@@ -72,7 +72,7 @@ public class DebutPartie extends javax.swing.JFrame {
         LANCER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                lecteur.lireFichierWAV("Sclic.wav");
+                lecteur.lireFichierWAV("Slancer.wav");
                 FenetrePrincipale f = new FenetrePrincipale(nbLignes, nbColonnes, PresetChrono, icon);
                 f.setVisible(true);
                 dispose();

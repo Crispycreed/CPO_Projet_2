@@ -4,6 +4,8 @@ import java.awt.Image;
 import static java.awt.Image.SCALE_SMOOTH;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.event.ChangeEvent;
@@ -39,8 +41,8 @@ public class Settings extends javax.swing.JFrame {
      */
     public Settings(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon) {
         initComponents();
-LecteurWAV lecteur = new LecteurWAV();
-lecteur.arreterLecture();
+        LecteurWAV lecteur = new LecteurWAV();
+        lecteur.arreterLecture();
         this.nbColonnes2 = nbColonnes2;
         this.nbLignes2 = nbLignes2;
         this.PresetChrono = PresetChrono;
@@ -226,7 +228,7 @@ lecteur.arreterLecture();
                 setIconImage(icon2.getImage());
             }
         });
-        
+
         jMenu1.add(ICON4);
         ICON4.addActionListener(new ActionListener() {
 
@@ -236,7 +238,7 @@ lecteur.arreterLecture();
                 setIconImage(icon2.getImage());
             }
         });
-        
+
         jMenu1.add(ICON5);
         ICON5.addActionListener(new ActionListener() {
 
@@ -247,7 +249,18 @@ lecteur.arreterLecture();
             }
         });
 
-        // --------------------------------------------------- Changer ICON FIN
+        // --------------------------------------------------- bouton son on/off
+        jToggleButton1.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (jToggleButton1.isSelected()) {
+                    jToggleButton1.setText("Off");
+                } else {
+                    jToggleButton1.setText("On");
+                }
+            }
+        });
+
     }
 
     /**
@@ -382,9 +395,9 @@ lecteur.arreterLecture();
         jLabel3.setText("Chrono max :");
 
         jLabel5.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
-        jLabel5.setText("Dark Mode :");
+        jLabel5.setText("Sound O/N");
 
-        jToggleButton1.setText("DARK");
+        jToggleButton1.setText("On");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
@@ -491,7 +504,6 @@ lecteur.arreterLecture();
         );
 
         jMenu1.setText("Changer Icon");
-        jMenu1.setActionCommand("Changer Icon");
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
