@@ -193,33 +193,53 @@ public class Settings extends javax.swing.JFrame {
         setIconImage(icon.getImage());
         setResizable(false);
 
-        
-        
         // --------------------------------------------------- Changer ICON        
-        
-        
         jMenu1.add(ICON1);
         ICON1.addActionListener(new ActionListener() {
-            
+
             public void actionPerformed(ActionEvent e) {
                 icon2 = new ImageIcon(getClass().getResource("/lOGO1.png"));
                 setIconImage(icon2.getImage());
             }
         });
 
-
         jMenu1.add(ICON2);
         ICON2.addActionListener(new ActionListener() {
-            
+
             public void actionPerformed(ActionEvent e) {
                 icon2 = new ImageIcon(getClass().getResource("/lOGO2.png"));
                 setIconImage(icon2.getImage());
             }
         });
-        
-        
-        // --------------------------------------------------- Changer ICON FIN
 
+        jMenu1.add(ICON3);
+        ICON3.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                icon2 = new ImageIcon(getClass().getResource("/lOGO3.png"));
+                setIconImage(icon2.getImage());
+            }
+        });
+        
+        jMenu1.add(ICON4);
+        ICON4.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                icon2 = new ImageIcon(getClass().getResource("/lOGO4.png"));
+                setIconImage(icon2.getImage());
+            }
+        });
+        
+        jMenu1.add(ICON5);
+        ICON5.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                icon2 = new ImageIcon(getClass().getResource("/lOGO5.png"));
+                setIconImage(icon2.getImage());
+            }
+        });
+
+        // --------------------------------------------------- Changer ICON FIN
     }
 
     /**
@@ -234,6 +254,9 @@ public class Settings extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         ICON1 = new javax.swing.JButton();
         ICON2 = new javax.swing.JButton();
+        ICON3 = new javax.swing.JButton();
+        ICON4 = new javax.swing.JButton();
+        ICON5 = new javax.swing.JButton();
         PanneauGrille = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -269,6 +292,33 @@ public class Settings extends javax.swing.JFrame {
         ICON2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ICON2ActionPerformed(evt);
+            }
+        });
+
+        ICON3.setBackground(new java.awt.Color(237, 237, 237));
+        ICON3.setFont(new java.awt.Font("Snap ITC", 0, 14)); // NOI18N
+        ICON3.setText("Icon 3");
+        ICON3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ICON3ActionPerformed(evt);
+            }
+        });
+
+        ICON4.setBackground(new java.awt.Color(237, 237, 237));
+        ICON4.setFont(new java.awt.Font("Snap ITC", 0, 14)); // NOI18N
+        ICON4.setText("Icon 4");
+        ICON4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ICON4ActionPerformed(evt);
+            }
+        });
+
+        ICON5.setBackground(new java.awt.Color(237, 237, 237));
+        ICON5.setFont(new java.awt.Font("Snap ITC", 0, 14)); // NOI18N
+        ICON5.setText("Icon 5");
+        ICON5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ICON5ActionPerformed(evt);
             }
         });
 
@@ -476,6 +526,18 @@ public class Settings extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ICON2ActionPerformed
 
+    private void ICON3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ICON3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ICON3ActionPerformed
+
+    private void ICON4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ICON4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ICON4ActionPerformed
+
+    private void ICON5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ICON5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ICON5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -515,6 +577,9 @@ public class Settings extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboBox_tps;
     private javax.swing.JButton ICON1;
     private javax.swing.JButton ICON2;
+    private javax.swing.JButton ICON3;
+    private javax.swing.JButton ICON4;
+    private javax.swing.JButton ICON5;
     private javax.swing.JLabel LabelColonnes;
     private javax.swing.JLabel LabelLignes;
     private javax.swing.JPanel PanneauGrille;
