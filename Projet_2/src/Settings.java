@@ -395,7 +395,7 @@ public class Settings extends javax.swing.JFrame {
         jLabel3.setText("Chrono max :");
 
         jLabel5.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
-        jLabel5.setText("Sound O/N");
+        jLabel5.setText("Music 0/F");
 
         jToggleButton1.setText("On");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
