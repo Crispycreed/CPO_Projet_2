@@ -1,11 +1,14 @@
 
 import java.awt.Desktop;
 import java.awt.GridLayout;
+import java.awt.Taskbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /*
@@ -64,6 +67,48 @@ public class DebutPartieClone extends javax.swing.JFrame {
         }
         setLocationRelativeTo(null);
         setIconImage(icon.getImage());
+        
+        
+        
+        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+
+            try {
+
+                // Charger l'image depuis le fichier LOGO1.png
+
+                BufferedImage dockIconImage = ImageIO.read(getClass().getResource("/LOGO5MAC.png"));
+
+ 
+
+                // Créer une icône à partir de l'image chargée
+
+                ImageIcon icon2 = new ImageIcon(dockIconImage);
+
+ 
+
+                // Obtenir la barre des tâches
+
+                Taskbar taskbar = Taskbar.getTaskbar();
+
+ 
+
+                // Vérifier si la barre des tâches prend en charge les icônes du Dock
+
+                if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE)) {
+
+                    taskbar.setIconImage(icon2.getImage());
+
+                }
+
+            } catch (IOException e) {
+
+                // Gérer les exceptions, si nécessaire
+
+                e.printStackTrace();
+
+            }
+
+        }
 
         LANCER.addActionListener(new ActionListener() {
             @Override
