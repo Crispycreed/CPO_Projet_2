@@ -76,7 +76,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
 
                 // Charger l'image depuis le fichier LOGO1.png
 
-                BufferedImage dockIconImage = ImageIO.read(getClass().getResource("/LOGO5MAC.png"));
+                BufferedImage dockIconImage = ImageIO.read(getClass().getResource("/LOGO1.png"));
 
  
 
