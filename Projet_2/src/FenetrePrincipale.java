@@ -57,6 +57,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         // ---------------------------------------------------Panels/Emplacement
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
+        
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, nbColonnes * 40, nbLignes * 40));
         grille.initialiserCellulesAleatoires();
         LecteurWAV lecteur = new LecteurWAV();

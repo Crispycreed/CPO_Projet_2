@@ -2,14 +2,17 @@
 import java.awt.Desktop;
 import java.awt.GridLayout;
 import static java.awt.SystemColor.desktop;
+import java.awt.Taskbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -67,6 +70,53 @@ public class DebutPartie extends javax.swing.JFrame {
         // --------------------------------------------------- changer logo
         setLocationRelativeTo(null);
         setIconImage(icon.getImage());
+        
+        // --------------------------------------------------- changer logo mac
+
+        setLocationRelativeTo(null);
+
+        setIconImage(icon.getImage());
+
+        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+
+            try {
+
+                // Charger l'image depuis le fichier LOGO1.png
+
+                BufferedImage dockIconImage = ImageIO.read(getClass().getResource("/LOGO5MAC.png"));
+
+ 
+
+                // Créer une icône à partir de l'image chargée
+
+                ImageIcon icon = new ImageIcon(dockIconImage);
+
+ 
+
+                // Obtenir la barre des tâches
+
+                Taskbar taskbar = Taskbar.getTaskbar();
+
+ 
+
+                // Vérifier si la barre des tâches prend en charge les icônes du Dock
+
+                if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE)) {
+
+                    taskbar.setIconImage(icon.getImage());
+
+                }
+
+            } catch (IOException e) {
+
+                // Gérer les exceptions, si nécessaire
+
+                e.printStackTrace();
+
+            }
+
+        }
+        
 
         // --------------------------------------------------- Action du bouton "PLAY"
         LANCER.addActionListener(new ActionListener() {
