@@ -41,7 +41,7 @@ public class DebutPartie extends javax.swing.JFrame {
     private int nbColonnes = 4;
     private int nbLignes = 4;
     private String PresetChrono = "Infinie";
-    private ImageIcon icon = new ImageIcon(getClass().getResource("/lOGO1.png"));
+    private ImageIcon icon;
 
     /**
      * Constructeur de la classe DebutPartie.
@@ -69,13 +69,25 @@ public class DebutPartie extends javax.swing.JFrame {
 
         // --------------------------------------------------- changer logo
         setLocationRelativeTo(null);
-        setIconImage(icon.getImage());
+
+        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+            Taskbar taskbar = Taskbar.getTaskbar();
+            icon = new ImageIcon(getClass().getResource("/lOGO1mac.png"));
+
+            // Vérifier si la barre des tâches prend en charge les icônes du Dock
+            if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE)) {
+
+                taskbar.setIconImage(icon.getImage());
+
+            }
+        } else {
+            icon = new ImageIcon(getClass().getResource("/lOGO1.png"));
+            setIconImage(icon.getImage());
+        }
         
+
         // --------------------------------------------------- changer logo mac
-
         setLocationRelativeTo(null);
-
-        setIconImage(icon.getImage());
 
         if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 
@@ -89,7 +101,6 @@ public class DebutPartie extends javax.swing.JFrame {
             }
 
         }
-        
 
         // --------------------------------------------------- Action du bouton "PLAY"
         LANCER.addActionListener(new ActionListener() {
