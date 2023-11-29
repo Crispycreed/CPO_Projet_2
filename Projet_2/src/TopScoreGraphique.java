@@ -1,6 +1,7 @@
 
 import java.awt.Desktop;
 import java.awt.GridLayout;
+import java.awt.Taskbar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,10 +46,10 @@ public class TopScoreGraphique extends javax.swing.JFrame {
         this.nbLignes2 = nbLignes2;
         this.PresetChrono = PresetChrono;
         this.icon = icon;
-        
+
         initComponents();
-LecteurWAV lecteur = new LecteurWAV();
-lecteur.arreterLecture();
+        LecteurWAV lecteur = new LecteurWAV();
+        lecteur.arreterLecture();
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, nbColonnes * 40, nbLignes * 40));
@@ -65,6 +66,19 @@ lecteur.arreterLecture();
         }
         setLocationRelativeTo(null);
         setIconImage(icon.getImage());
+
+        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+
+            Taskbar taskbar = Taskbar.getTaskbar();
+
+            // Vérifier si la barre des tâches prend en charge les icônes du Dock
+            if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE)) {
+
+                taskbar.setIconImage(icon.getImage());
+
+            }
+
+        }
 
         RETOUR.addActionListener(new ActionListener() {
             @Override
@@ -127,8 +141,7 @@ lecteur.arreterLecture();
         jLabel6.setText("TOP 6 : " + String.valueOf(Math.max(scoreRang6, 0)));
 
         setResizable(false);
-        
-        
+
     }
 
     /**

@@ -2,6 +2,7 @@
 import java.awt.GridLayout;
 import java.awt.Image;
 import static java.awt.Image.SCALE_SMOOTH;
+import java.awt.Taskbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -196,7 +197,21 @@ public class Settings extends javax.swing.JFrame {
 
         setLocationRelativeTo(null);
         setIconImage(icon.getImage());
+
         setResizable(false);
+
+        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+
+            Taskbar taskbar = Taskbar.getTaskbar();
+
+            // Vérifier si la barre des tâches prend en charge les icônes du Dock
+            if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE)) {
+
+                taskbar.setIconImage(icon.getImage());
+
+            }
+
+        }
 
         // --------------------------------------------------- Changer ICON        
         jMenu1.add(ICON1);

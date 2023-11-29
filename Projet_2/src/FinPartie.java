@@ -1,6 +1,7 @@
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Taskbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -47,14 +48,10 @@ public class FinPartie extends javax.swing.JFrame {
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         this.icon = icon;
 
-        
         LecteurWAV lecteur = new LecteurWAV();
         lecteur.arreterLecture();
         lecteur.lireFichierWAV("Sgameover.wav");
-        
-        
-        
-        
+
         // Charger la grille à partir de la sauvegarde
         grille.chargerGrille(sauvegarde);
 
@@ -68,8 +65,6 @@ public class FinPartie extends javax.swing.JFrame {
                 repaint();
             }
         }
-
-        setIconImage(icon.getImage());
 
         int score = grille.getScore();
         jLabelScore.setText(String.valueOf(score)); // Méthode 1
@@ -91,6 +86,21 @@ public class FinPartie extends javax.swing.JFrame {
 
         setLocationRelativeTo(null);
         setResizable(false);
+
+        setIconImage(icon.getImage());
+
+        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+
+            Taskbar taskbar = Taskbar.getTaskbar();
+
+            // Vérifier si la barre des tâches prend en charge les icônes du Dock
+            if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE)) {
+
+                taskbar.setIconImage(icon.getImage());
+
+            }
+
+        }
 
     }
 

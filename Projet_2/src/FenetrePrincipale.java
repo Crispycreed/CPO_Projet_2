@@ -5,6 +5,7 @@ import static java.awt.Color.black;
 import static java.awt.Color.white;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Taskbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -57,7 +58,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         // ---------------------------------------------------Panels/Emplacement
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
-        
+
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, nbColonnes * 40, nbLignes * 40));
         grille.initialiserCellulesAleatoires();
         LecteurWAV lecteur = new LecteurWAV();
@@ -289,6 +290,19 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         // ---------------------------------------------------------Icon_Fenetre
         setIconImage(icon.getImage());
+
+        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+
+            Taskbar taskbar = Taskbar.getTaskbar();
+
+            // Vérifier si la barre des tâches prend en charge les icônes du Dock
+            if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE)) {
+
+                taskbar.setIconImage(icon.getImage());
+
+            }
+
+        }
 
         lecteur.lireFichierWAV("Scalme.wav");
 

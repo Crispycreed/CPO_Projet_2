@@ -57,7 +57,6 @@ public class DebutPartieClone extends javax.swing.JFrame {
         grille.initialiserCellulesAleatoires();
         grille.initialiserCellulesAleatoires();
 
-
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
                 CelluleGraphique bouton_cellule = new CelluleGraphique(grille.matriceCellules[i][j], 36, 36);
@@ -67,44 +66,15 @@ public class DebutPartieClone extends javax.swing.JFrame {
         }
         setLocationRelativeTo(null);
         setIconImage(icon.getImage());
-        
-        
-        
+
         if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 
-            try {
+            Taskbar taskbar = Taskbar.getTaskbar();
 
-                // Charger l'image depuis le fichier LOGO1.png
+            // Vérifier si la barre des tâches prend en charge les icônes du Dock
+            if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE)) {
 
-                BufferedImage dockIconImage = ImageIO.read(getClass().getResource("/LOGO1.png"));
-
- 
-
-                // Créer une icône à partir de l'image chargée
-
-                ImageIcon icon2 = new ImageIcon(dockIconImage);
-
- 
-
-                // Obtenir la barre des tâches
-
-                Taskbar taskbar = Taskbar.getTaskbar();
-
- 
-
-                // Vérifier si la barre des tâches prend en charge les icônes du Dock
-
-                if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE)) {
-
-                    taskbar.setIconImage(icon2.getImage());
-
-                }
-
-            } catch (IOException e) {
-
-                // Gérer les exceptions, si nécessaire
-
-                e.printStackTrace();
+                taskbar.setIconImage(icon.getImage());
 
             }
 
@@ -123,7 +93,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
         });
 
         Settings.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 lecteur.lireFichierWAV("Sclic.wav");
