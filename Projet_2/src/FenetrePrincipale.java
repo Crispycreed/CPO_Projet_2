@@ -128,7 +128,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 // Si l'utilisateur clique sur "Valider"
                 if (choix == JOptionPane.YES_OPTION) {
                     reset = 1;
-
+                    lecteur.lireFichierWAV("Sclic.wav");
                     lecteur.arreterLecture();
 
                     DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono, icon, mute);
@@ -138,6 +138,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
                 } else {
                     reset = 0;
+                    lecteur.lireFichierWAV("Sclic.wav");
                     // L'utilisateur a cliqué sur "Retour" ou fermé la fenêtre
                 }
             }

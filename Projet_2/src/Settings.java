@@ -115,6 +115,7 @@ public class Settings extends javax.swing.JFrame {
 
                 // Si l'utilisateur clique sur "Valider"
                 if (choix == JOptionPane.YES_OPTION) {
+                    lecteur.lireFichierWAV("Sclic.wav");
                     reset = 1;
 
                     DebutPartie f = new DebutPartie();
@@ -122,6 +123,7 @@ public class Settings extends javax.swing.JFrame {
                     dispose();
 
                 } else {
+                    lecteur.lireFichierWAV("Sclic.wav");
                     reset = 0;
                     // L'utilisateur a cliqué sur "Retour" ou fermé la fenêtre
                 }
@@ -319,6 +321,7 @@ public class Settings extends javax.swing.JFrame {
                 }
             }
         });
+        
 
     }
 
