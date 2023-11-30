@@ -1,4 +1,6 @@
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import static java.awt.Image.SCALE_SMOOTH;
@@ -9,6 +11,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -37,6 +43,7 @@ public class Settings extends javax.swing.JFrame {
     private String PresetChrono;
     private ImageIcon icon2;
     private int mute2;
+    private int reset;
 
     /**
      * Creates new form Settings
@@ -86,10 +93,38 @@ public class Settings extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lecteur.lireFichierWAV("Sclic.wav");
-                DebutPartie f = new DebutPartie();
-                f.setVisible(true);
-                dispose();
 
+                String messagePart1 = "Êtes-vous sûr de votre choix ?";
+                String messagePart2 = "(Vos paramètres seront rétablis par défaut)";
+
+                Font largerFont = new Font(Font.DIALOG, Font.PLAIN, UIManager.getFont("Label.font").getSize());
+
+                JLabel messageLabel = new JLabel("<html><div style='text-align: center;'>"
+                        + messagePart1 + "<br>"
+                        + "<font size=-2 color='gray'>" + messagePart2 + "</font></div></html>");
+                messageLabel.setFont(largerFont);
+
+                // Créer un bouton personnalisé avec le texte "Retour" en rouge
+                JButton retourButton = new JButton("Retour");
+                retourButton.setForeground(Color.BLUE);
+
+                // Afficher une fenêtre de confirmation avec le texte et le bouton personnalisés
+                int choix = JOptionPane.showOptionDialog(null, messageLabel, "Confirmation",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Valider", "Retour"},
+                        "Valider");
+
+                // Si l'utilisateur clique sur "Valider"
+                if (choix == JOptionPane.YES_OPTION) {
+                    reset = 1;
+
+                    DebutPartie f = new DebutPartie();
+                    f.setVisible(true);
+                    dispose();
+
+                } else {
+                    reset = 0;
+                    // L'utilisateur a cliqué sur "Retour" ou fermé la fenêtre
+                }
             }
 
         });

@@ -3,6 +3,7 @@ import java.awt.Color;
 import static java.awt.Color.BLACK;
 import static java.awt.Color.black;
 import static java.awt.Color.white;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Taskbar;
@@ -19,7 +20,10 @@ import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -38,13 +42,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     int minutes = 0;
     int secondes = 0;
     private String temps;
-
     private int nbColonnes;
     private int nbLignes;
     private Timer timer;
     private String PresetChrono;
     private int mute;
-    
+    private int reset;
 
     /**
      * Creates new form FenetrePrincipale
@@ -103,13 +106,40 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                lecteur.arreterLecture();
+                String messagePart1 = "Êtes-vous sûr de votre choix ?";
+                String messagePart2 = "(Vous allez quitter la partie sans sauvegarder votre score)";
 
-                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono, icon, mute);
-                f.setVisible(true);
+                Font largerFont = new Font(Font.DIALOG, Font.PLAIN, UIManager.getFont("Label.font").getSize());
 
-                dispose();
+                JLabel messageLabel = new JLabel("<html><div style='text-align: center;'>"
+                        + messagePart1 + "<br>"
+                        + "<font size=-2 color='gray'>" + messagePart2 + "</font></div></html>");
+                messageLabel.setFont(largerFont);
 
+                // Créer un bouton personnalisé avec le texte "Retour" en rouge
+                JButton retourButton = new JButton("Retour");
+                retourButton.setForeground(Color.BLUE);
+
+                // Afficher une fenêtre de confirmation avec le texte et le bouton personnalisés
+                int choix = JOptionPane.showOptionDialog(null, messageLabel, "Confirmation",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Valider", "Retour"},
+                        "Valider");
+
+                // Si l'utilisateur clique sur "Valider"
+                if (choix == JOptionPane.YES_OPTION) {
+                    reset = 1;
+
+                    lecteur.arreterLecture();
+
+                    DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono, icon, mute);
+                    f.setVisible(true);
+
+                    dispose();
+
+                } else {
+                    reset = 0;
+                    // L'utilisateur a cliqué sur "Retour" ou fermé la fenêtre
+                }
             }
         });
 
@@ -310,7 +340,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         if (mute == 1) {
             lecteur.lireFichierWAV("Scalme.wav");
         }
-
 
     }
 

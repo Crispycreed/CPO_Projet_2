@@ -1,5 +1,7 @@
 
+import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Taskbar;
 
@@ -10,6 +12,10 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 
 /*
@@ -32,6 +38,7 @@ public class TopScoreGraphique extends javax.swing.JFrame {
     private String PresetChrono;
     private ImageIcon icon;
     private int mute;
+    private int reset;
 
     /**
      * Constructeur de la classe FinPartie. Initialise la fenêtre de fin de
@@ -94,35 +101,63 @@ public class TopScoreGraphique extends javax.swing.JFrame {
 
         });
 
-        RESET.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                lecteur.lireFichierWAV("Sclic.wav");
-                TopScore.supprimerTopScores();
+RESET.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        lecteur.lireFichierWAV("Sclic.wav");
 
-                int scoreRang1 = TopScore.recupererScore(1);
-                jLabel1.setText("TOP 1 : " + String.valueOf(Math.max(scoreRang1, 0)));
+        // Message principal avec une police différente pour chaque partie
+        String messagePart1 = "Êtes-vous sûr de votre choix ?";
+        String messagePart2 = "(cette action va supprimer tous vos anciens scores)";
+        
+        Font largerFont = new Font(Font.DIALOG, Font.PLAIN, UIManager.getFont("Label.font").getSize());
 
-                int scoreRang2 = TopScore.recupererScore(2);
-                jLabel2.setText("TOP 2 : " + String.valueOf(Math.max(scoreRang2, 0)));
+        JLabel messageLabel = new JLabel("<html><div style='text-align: center;'>" +
+                                        messagePart1 + "<br>" +
+                                        "<font size=-2 color='gray'>" + messagePart2 + "</font></div></html>");
+        messageLabel.setFont(largerFont);
 
-                int scoreRang3 = TopScore.recupererScore(3);
-                jLabel3.setText("TOP 3 : " + String.valueOf(Math.max(scoreRang3, 0)));
+        // Créer un bouton personnalisé avec le texte "Retour" en rouge
+        JButton retourButton = new JButton("Retour");
+        retourButton.setForeground(Color.BLUE);
 
-                int scoreRang4 = TopScore.recupererScore(4);
-                jLabel4.setText("TOP 4 : " + String.valueOf(Math.max(scoreRang4, 0)));
+        // Afficher une fenêtre de confirmation avec le texte et le bouton personnalisés
+        int choix = JOptionPane.showOptionDialog(null, messageLabel, "Confirmation",
+                                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Valider", "Retour" },
+                "Valider");
 
-                int scoreRang5 = TopScore.recupererScore(5);
-                jLabel5.setText("TOP 5 : " + String.valueOf(Math.max(scoreRang5, 0)));
+        // Si l'utilisateur clique sur "Valider"
+        if (choix == JOptionPane.YES_OPTION) {
+            reset = 1;
 
-                int scoreRang6 = TopScore.recupererScore(6);
-                jLabel6.setText("TOP 6 : " + String.valueOf(Math.max(scoreRang6, 0)));
+            // Réinitialiser le code
+            TopScore.supprimerTopScores();
 
-                repaint();
+            int scoreRang1 = TopScore.recupererScore(1);
+            jLabel1.setText("TOP 1 : " + Math.max(scoreRang1, 0));
 
-            }
+            int scoreRang2 = TopScore.recupererScore(2);
+            jLabel2.setText("TOP 2 : " + Math.max(scoreRang2, 0));
 
-        });
+            int scoreRang3 = TopScore.recupererScore(3);
+            jLabel3.setText("TOP 3 : " + Math.max(scoreRang3, 0));
+
+            int scoreRang4 = TopScore.recupererScore(4);
+            jLabel4.setText("TOP 4 : " + Math.max(scoreRang4, 0));
+
+            int scoreRang5 = TopScore.recupererScore(5);
+            jLabel5.setText("TOP 5 : " + Math.max(scoreRang5, 0));
+
+            int scoreRang6 = TopScore.recupererScore(6);
+            jLabel6.setText("TOP 6 : " + Math.max(scoreRang6, 0));
+
+            repaint();
+        } else {
+            reset = 0;
+            // L'utilisateur a cliqué sur "Retour" ou fermé la fenêtre
+        }
+    }
+});
 
         int scoreRang1 = TopScore.recupererScore(1);
         jLabel1.setText("TOP 1 : " + String.valueOf(Math.max(scoreRang1, 0)));
