@@ -30,6 +30,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
     private int nbLignes2;
     private String PresetChrono;
     private ImageIcon icon;
+    private int mute;
 
     /**
      * Constructeur de la classe FinPartie. Initialise la fenêtre de fin de
@@ -40,11 +41,12 @@ public class DebutPartieClone extends javax.swing.JFrame {
      * @param nbColonnes Le nombre de colonnes de la grille.
      * @param nbLignes Le nombre de lignes de la grille.
      */
-    public DebutPartieClone(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon) {
+    public DebutPartieClone(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon, int mute) {
         this.nbColonnes2 = nbColonnes2;
         this.nbLignes2 = nbLignes2;
         this.PresetChrono = PresetChrono;
         this.icon = icon;
+        this.mute = mute;
         initComponents();
         LecteurWAV lecteur = new LecteurWAV();
         lecteur.arreterLecture();
@@ -85,7 +87,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 lecteur.lireFichierWAV("Slancer.wav");
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                FenetrePrincipale f = new FenetrePrincipale(nbLignes2, nbColonnes2, PresetChrono, icon);
+                FenetrePrincipale f = new FenetrePrincipale(nbLignes2, nbColonnes2, PresetChrono, icon, mute);
                 f.setVisible(true);
                 dispose();
 
@@ -98,7 +100,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 lecteur.lireFichierWAV("Sclic.wav");
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                Settings f = new Settings(nbLignes2, nbColonnes2, PresetChrono, icon);
+                Settings f = new Settings(nbLignes2, nbColonnes2, PresetChrono, icon, mute);
                 f.setVisible(true);
                 dispose();
 
@@ -129,7 +131,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lecteur.lireFichierWAV("Sclic.wav");
-                TopScoreGraphique f = new TopScoreGraphique(nbLignes2, nbColonnes2, PresetChrono, icon);
+                TopScoreGraphique f = new TopScoreGraphique(nbLignes2, nbColonnes2, PresetChrono, icon, mute);
                 f.setVisible(true);
                 dispose();
             }

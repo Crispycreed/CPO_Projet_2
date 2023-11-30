@@ -43,16 +43,19 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private int nbLignes;
     private Timer timer;
     private String PresetChrono;
+    private int mute;
+    
 
     /**
      * Creates new form FenetrePrincipale
      */
-    public FenetrePrincipale(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon) {
+    public FenetrePrincipale(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon, int mute) {
 
         // ------------------------------------------------Déclaration_Variables
         this.nbColonnes = nbColonnes2;
         this.nbLignes = nbLignes2;
         this.PresetChrono = PresetChrono;
+        this.mute = mute;
         initComponents();
 
         // ---------------------------------------------------Panels/Emplacement
@@ -102,7 +105,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
                 lecteur.arreterLecture();
 
-                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono, icon);
+                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono, icon, mute);
                 f.setVisible(true);
 
                 dispose();
@@ -125,7 +128,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     dispose();
                     timer.stop();
                     lecteur.arreterLecture();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon, mute);
                     f.setVisible(true);
                 }
             }
@@ -146,7 +149,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     dispose();
                     timer.stop();
                     lecteur.arreterLecture();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon, mute);
                     f.setVisible(true);
                 }
             }
@@ -168,7 +171,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     dispose();
                     timer.stop();
                     lecteur.arreterLecture();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon, mute);
                     f.setVisible(true);
                 }
             }
@@ -189,7 +192,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     dispose();
                     timer.stop();
                     lecteur.arreterLecture();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon, mute);
                     f.setVisible(true);
                 }
             }
@@ -221,7 +224,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     dispose();
                     timer.stop();
                     lecteur.arreterLecture();
-                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
+                    FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon, mute);
                     f.setVisible(true);
                 }
             }
@@ -247,7 +250,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         timer.stop();
                         dispose();
                         lecteur.arreterLecture();
-                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
+                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon, mute);
                         f.setVisible(true);
                     }
                 } else if (PresetChrono.equals("1min")) {
@@ -256,7 +259,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         timer.stop();
                         dispose();
                         lecteur.arreterLecture();
-                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
+                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon, mute);
                         f.setVisible(true);
                     }
                 } else if (PresetChrono.equals("2mins")) {
@@ -265,7 +268,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         timer.stop();
                         dispose();
                         lecteur.arreterLecture();
-                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
+                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon, mute);
                         f.setVisible(true);
                     }
                 } else if (PresetChrono.equals("3mins")) {
@@ -274,7 +277,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                         timer.stop();
                         dispose();
                         lecteur.arreterLecture();
-                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon);
+                        FinPartie f = new FinPartie(sauvegarde, nbColonnes, nbLignes, PresetChrono, temps, icon, mute);
                         f.setVisible(true);
                     }
                 }
@@ -304,7 +307,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         }
 
-        lecteur.lireFichierWAV("Scalme.wav");
+        if (mute == 1) {
+            lecteur.lireFichierWAV("Scalme.wav");
+        }
+
 
     }
 

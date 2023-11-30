@@ -42,6 +42,7 @@ public class DebutPartie extends javax.swing.JFrame {
     private int nbLignes = 4;
     private String PresetChrono = "Infinie";
     private ImageIcon icon;
+    private int mute = 1;
 
     /**
      * Constructeur de la classe DebutPartie.
@@ -107,7 +108,7 @@ public class DebutPartie extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lecteur.lireFichierWAV("Slancer.wav");
-                FenetrePrincipale f = new FenetrePrincipale(nbLignes, nbColonnes, PresetChrono, icon);
+                FenetrePrincipale f = new FenetrePrincipale(nbLignes, nbColonnes, PresetChrono, icon, mute);
                 f.setVisible(true);
                 dispose();
             }
@@ -118,7 +119,7 @@ public class DebutPartie extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lecteur.lireFichierWAV("Sclic.wav");
-                Settings f = new Settings(nbLignes, nbColonnes, PresetChrono, icon);
+                Settings f = new Settings(nbLignes, nbColonnes, PresetChrono, icon, mute);
                 f.setVisible(true);
                 dispose();
             }
@@ -148,7 +149,7 @@ public class DebutPartie extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lecteur.lireFichierWAV("Sclic.wav");
-                TopScoreGraphique f = new TopScoreGraphique(nbLignes, nbColonnes, PresetChrono, icon);
+                TopScoreGraphique f = new TopScoreGraphique(nbLignes, nbColonnes, PresetChrono, icon, mute);
                 f.setVisible(true);
                 dispose();
             }

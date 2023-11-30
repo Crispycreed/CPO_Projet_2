@@ -36,17 +36,19 @@ public class Settings extends javax.swing.JFrame {
     private int nbLignes2;
     private String PresetChrono;
     private ImageIcon icon2;
+    private int mute2;
 
     /**
      * Creates new form Settings
      */
-    public Settings(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon) {
+    public Settings(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon, int mute) {
         initComponents();
         LecteurWAV lecteur = new LecteurWAV();
         lecteur.arreterLecture();
         this.nbColonnes2 = nbColonnes2;
         this.nbLignes2 = nbLignes2;
         this.PresetChrono = PresetChrono;
+        mute2 = mute;
         icon2 = icon;
 
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
@@ -72,7 +74,7 @@ public class Settings extends javax.swing.JFrame {
                 int nbColonnes2 = SliderColonnes.getValue();
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
                 String PresetChrono2 = (String) ComboBox_tps.getSelectedItem();
-                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono2, icon2);
+                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono2, icon2, mute2);
                 f.setVisible(true);
                 dispose();
 
@@ -257,13 +259,28 @@ public class Settings extends javax.swing.JFrame {
         });
 
         // --------------------------------------------------- bouton son on/off
-        jToggleButton1.addItemListener(new ItemListener() {
+        ButtonMute.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                if (jToggleButton1.isSelected()) {
-                    jToggleButton1.setText("Off");
+                if (ButtonMute.isSelected()) {
+                    ButtonMute.setText("Off");
                 } else {
-                    jToggleButton1.setText("On");
+                    ButtonMute.setText("On");
+                }
+            }
+        });
+
+        ButtonMute.setSelected(mute == 0);
+        ButtonMute.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                // Vérifiez si le bouton est appuyé ou relâché
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    // Bouton appuyé
+                    mute2 = 0;
+                } else if (e.getStateChange() == ItemEvent.DESELECTED) {
+                    // Bouton relâché
+                    mute2 = 1;
                 }
             }
         });
@@ -297,7 +314,7 @@ public class Settings extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        ButtonMute = new javax.swing.JToggleButton();
         jSeparator4 = new javax.swing.JSeparator();
         ANNULER = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -384,10 +401,10 @@ public class Settings extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
         jLabel5.setText("Music 0/F");
 
-        jToggleButton1.setText("On");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        ButtonMute.setText("On");
+        ButtonMute.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                ButtonMuteActionPerformed(evt);
             }
         });
 
@@ -436,7 +453,7 @@ public class Settings extends javax.swing.JFrame {
                         .addGap(17, 17, 17)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ButtonMute, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(VALIDER)
@@ -480,7 +497,7 @@ public class Settings extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jToggleButton1))
+                    .addComponent(ButtonMute))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
@@ -517,9 +534,9 @@ public class Settings extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_VALIDERActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void ButtonMuteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonMuteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_ButtonMuteActionPerformed
 
     private void ANNULERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ANNULERActionPerformed
         // TODO add your handling code here:
@@ -573,6 +590,7 @@ public class Settings extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ANNULER;
+    private javax.swing.JToggleButton ButtonMute;
     private javax.swing.JComboBox<String> ComboBox_tps;
     private javax.swing.JButton ICON1;
     private javax.swing.JButton ICON2;
@@ -594,6 +612,5 @@ public class Settings extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
