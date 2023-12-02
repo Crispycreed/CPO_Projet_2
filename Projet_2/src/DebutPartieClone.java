@@ -41,7 +41,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
      * @param nbColonnes Le nombre de colonnes de la grille.
      * @param nbLignes Le nombre de lignes de la grille.
      */
-    public DebutPartieClone(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon, int mute) {
+    public DebutPartieClone(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon, int mute, String username) {
         this.nbColonnes2 = nbColonnes2;
         this.nbLignes2 = nbLignes2;
         this.PresetChrono = PresetChrono;
@@ -87,7 +87,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 lecteur.lireFichierWAV("Slancer.wav");
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                FenetrePrincipale f = new FenetrePrincipale(nbLignes2, nbColonnes2, PresetChrono, icon, mute);
+                FenetrePrincipale f = new FenetrePrincipale(nbLignes2, nbColonnes2, PresetChrono, icon, mute, username);
                 f.setVisible(true);
                 dispose();
 
@@ -100,7 +100,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 lecteur.lireFichierWAV("Sclic.wav");
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                Settings f = new Settings(nbLignes2, nbColonnes2, PresetChrono, icon, mute);
+                Settings f = new Settings(nbLignes2, nbColonnes2, PresetChrono, icon, mute, username);
                 f.setVisible(true);
                 dispose();
 
@@ -143,7 +143,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lecteur.lireFichierWAV("Sclic.wav");
-                TopScoreGraphique f = new TopScoreGraphique(nbLignes2, nbColonnes2, PresetChrono, icon, mute);
+                TopScoreGraphique f = new TopScoreGraphique(nbLignes2, nbColonnes2, PresetChrono, icon, mute, username);
                 f.setVisible(true);
                 dispose();
             }

@@ -43,15 +43,15 @@ public class DebutPartie extends javax.swing.JFrame {
     private String PresetChrono = "Infinie";
     private ImageIcon icon;
     private int mute = 1;
-
+private String username;
     /**
      * Constructeur de la classe DebutPartie.
      */
-    public DebutPartie() {
+    public DebutPartie(String username) {
         initComponents();
         LecteurWAV lecteur = new LecteurWAV();
         lecteur.arreterLecture();
-
+this.username = username;
         // ---------------------------------------------------Panneau_Grille
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
@@ -107,7 +107,7 @@ public class DebutPartie extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lecteur.lireFichierWAV("Slancer.wav");
-                FenetrePrincipale f = new FenetrePrincipale(nbLignes, nbColonnes, PresetChrono, icon, mute);
+                FenetrePrincipale f = new FenetrePrincipale(nbLignes, nbColonnes, PresetChrono, icon, mute, username);
                 f.setVisible(true);
                 dispose();
             }
@@ -118,7 +118,7 @@ public class DebutPartie extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lecteur.lireFichierWAV("Sclic.wav");
-                Settings f = new Settings(nbLignes, nbColonnes, PresetChrono, icon, mute);
+                Settings f = new Settings(nbLignes, nbColonnes, PresetChrono, icon, mute, username);
                 f.setVisible(true);
                 dispose();
             }
@@ -161,7 +161,7 @@ public class DebutPartie extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lecteur.lireFichierWAV("Sclic.wav");
-                TopScoreGraphique f = new TopScoreGraphique(nbLignes, nbColonnes, PresetChrono, icon, mute);
+                TopScoreGraphique f = new TopScoreGraphique(nbLignes, nbColonnes, PresetChrono, icon, mute, username);
                 f.setVisible(true);
                 dispose();
             }
@@ -417,7 +417,6 @@ public class DebutPartie extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DebutPartie().setVisible(true);
             }
         });
     }

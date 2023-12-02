@@ -49,7 +49,7 @@ public class TopScoreGraphique extends javax.swing.JFrame {
      * @param nbColonnes Le nombre de colonnes de la grille.
      * @param nbLignes Le nombre de lignes de la grille.
      */
-    public TopScoreGraphique(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon, int mute) {
+    public TopScoreGraphique(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon, int mute, String username) {
         this.nbColonnes2 = nbColonnes2;
         this.nbLignes2 = nbLignes2;
         this.PresetChrono = PresetChrono;
@@ -93,7 +93,7 @@ public class TopScoreGraphique extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lecteur.lireFichierWAV("Sclic.wav");
-                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono, icon, mute);
+                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono, icon, mute, username);
                 f.setVisible(true);
                 dispose();
 
@@ -132,24 +132,24 @@ public class TopScoreGraphique extends javax.swing.JFrame {
                     lecteur.lireFichierWAV("Sclic.wav");
 
                     // Réinitialiser le code
-                    TopScore.supprimerTopScores();
+                    TopScore.supprimerTopScores(username);
 
-                    int scoreRang1 = TopScore.recupererScore(1);
+                    int scoreRang1 = TopScore.recupererScore(1, username);
                     jLabel1.setText("TOP 1 : " + Math.max(scoreRang1, 0));
 
-                    int scoreRang2 = TopScore.recupererScore(2);
+                    int scoreRang2 = TopScore.recupererScore(2, username);
                     jLabel2.setText("TOP 2 : " + Math.max(scoreRang2, 0));
 
-                    int scoreRang3 = TopScore.recupererScore(3);
+                    int scoreRang3 = TopScore.recupererScore(3, username);
                     jLabel3.setText("TOP 3 : " + Math.max(scoreRang3, 0));
 
-                    int scoreRang4 = TopScore.recupererScore(4);
+                    int scoreRang4 = TopScore.recupererScore(4, username);
                     jLabel4.setText("TOP 4 : " + Math.max(scoreRang4, 0));
 
-                    int scoreRang5 = TopScore.recupererScore(5);
+                    int scoreRang5 = TopScore.recupererScore(5, username);
                     jLabel5.setText("TOP 5 : " + Math.max(scoreRang5, 0));
 
-                    int scoreRang6 = TopScore.recupererScore(6);
+                    int scoreRang6 = TopScore.recupererScore(6, username);
                     jLabel6.setText("TOP 6 : " + Math.max(scoreRang6, 0));
 
                     repaint();
@@ -161,22 +161,22 @@ public class TopScoreGraphique extends javax.swing.JFrame {
             }
         });
 
-        int scoreRang1 = TopScore.recupererScore(1);
+        int scoreRang1 = TopScore.recupererScore(1, username);
         jLabel1.setText("TOP 1 : " + String.valueOf(Math.max(scoreRang1, 0)));
 
-        int scoreRang2 = TopScore.recupererScore(2);
+        int scoreRang2 = TopScore.recupererScore(2, username);
         jLabel2.setText("TOP 2 : " + String.valueOf(Math.max(scoreRang2, 0)));
 
-        int scoreRang3 = TopScore.recupererScore(3);
+        int scoreRang3 = TopScore.recupererScore(3, username);
         jLabel3.setText("TOP 3 : " + String.valueOf(Math.max(scoreRang3, 0)));
 
-        int scoreRang4 = TopScore.recupererScore(4);
+        int scoreRang4 = TopScore.recupererScore(4, username);
         jLabel4.setText("TOP 4 : " + String.valueOf(Math.max(scoreRang4, 0)));
 
-        int scoreRang5 = TopScore.recupererScore(5);
+        int scoreRang5 = TopScore.recupererScore(5, username);
         jLabel5.setText("TOP 5 : " + String.valueOf(Math.max(scoreRang5, 0)));
 
-        int scoreRang6 = TopScore.recupererScore(6);
+        int scoreRang6 = TopScore.recupererScore(6, username);
         jLabel6.setText("TOP 6 : " + String.valueOf(Math.max(scoreRang6, 0)));
 
         setResizable(false);

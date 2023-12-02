@@ -48,7 +48,7 @@ public class Settings extends javax.swing.JFrame {
     /**
      * Creates new form Settings
      */
-    public Settings(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon, int mute) {
+    public Settings(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon, int mute, String username) {
         initComponents();
         LecteurWAV lecteur = new LecteurWAV();
         lecteur.arreterLecture();
@@ -81,7 +81,7 @@ public class Settings extends javax.swing.JFrame {
                 int nbColonnes2 = SliderColonnes.getValue();
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
                 String PresetChrono2 = (String) ComboBox_tps.getSelectedItem();
-                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono2, icon2, mute2);
+                DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono2, icon2, mute2, username);
                 f.setVisible(true);
                 dispose();
 
@@ -118,7 +118,7 @@ public class Settings extends javax.swing.JFrame {
                     lecteur.lireFichierWAV("Sclic.wav");
                     reset = 1;
 
-                    DebutPartie f = new DebutPartie();
+                    DebutPartie f = new DebutPartie(username);
                     f.setVisible(true);
                     dispose();
 

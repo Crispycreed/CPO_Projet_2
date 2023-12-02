@@ -20,8 +20,8 @@ public class TopScore {
      *
      * @param score Le score à sauvegarder.
      */
-    public static void sauvegarderScore(int score) {
-        try ( BufferedWriter writer = new BufferedWriter(new FileWriter("topscores.txt", true))) {
+    public static void sauvegarderScore(int score, String username) {
+        try ( BufferedWriter writer = new BufferedWriter(new FileWriter(username+".txt", true))) {
             // Ajouter le score au fichier
             writer.write(String.valueOf(score));
             writer.newLine();  // passer à la ligne suivante pour le prochain score
@@ -33,8 +33,8 @@ public class TopScore {
     /**
      * Méthode pour afficher tous les scores sauvegardés.
      */
-    public static void afficherScoresSauvegardes() {
-        try ( BufferedReader reader = new BufferedReader(new FileReader("topscores.txt"))) {
+    public static void afficherScoresSauvegardes(String username) {
+        try ( BufferedReader reader = new BufferedReader(new FileReader(username+".txt"))) {
             String line;
 
             while ((line = reader.readLine()) != null) {
@@ -50,8 +50,8 @@ public class TopScore {
     /**
      * Méthode pour supprimer le fichier topscores.txt.
      */
-    public static void supprimerTopScores() {
-        String cheminFichier = "topscores.txt";
+    public static void supprimerTopScores(String username) {
+        String cheminFichier = username+".txt";
 
         try {
             Path fichierPath = Paths.get(cheminFichier);
@@ -70,8 +70,8 @@ public class TopScore {
      * @param rang Le rang du score à récupérer.
      * @return Le score correspondant au rang.
      */
-    public static int recupererScore(int rang) {
-        Set<Integer> scores = lireScores();
+    public static int recupererScore(int rang, String username) {
+        Set<Integer> scores = lireScores(username+".txt");
 
         if (rang <= 0 || rang > scores.size()) {
             return -1; // Valeur par défaut ou code d'erreur selon le contexte
@@ -91,9 +91,9 @@ public class TopScore {
      * @return Un ensemble d'entiers représentant les scores lus à partir du
      * fichier.
      */
-    private static Set<Integer> lireScores() {
+    private static Set<Integer> lireScores(String username) {
         Set<Integer> scores = new HashSet<>();
-        try ( BufferedReader reader = new BufferedReader(new FileReader("topscores.txt"))) {
+        try ( BufferedReader reader = new BufferedReader(new FileReader(username+".txt"))) {
             reader.lines()
                     .map(Integer::parseInt)
                     .forEach(scores::add);

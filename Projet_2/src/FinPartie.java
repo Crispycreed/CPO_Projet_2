@@ -40,7 +40,7 @@ public class FinPartie extends javax.swing.JFrame {
      * @param nbColonnes Le nombre de colonnes de la grille.
      * @param nbLignes Le nombre de lignes de la grille.
      */
-    public FinPartie(int[][] sauvegarde, int nbColonnes, int nbLignes, String PresetChrono, String temps, ImageIcon icon, int mute) {
+    public FinPartie(int[][] sauvegarde, int nbColonnes, int nbLignes, String PresetChrono, String temps, ImageIcon icon, int mute, String username) {
 
         initComponents();
         this.PresetChrono = PresetChrono;
@@ -70,14 +70,14 @@ public class FinPartie extends javax.swing.JFrame {
 
         int score = grille.getScore();
         jLabelScore.setText(String.valueOf(score)); // Méthode 1
-        TopScore.sauvegarderScore(score);
+        TopScore.sauvegarderScore(score, username);
 
         RELANCER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lecteur.lireFichierWAV("Sclic.wav");
                 // Code à exécuter lorsque le bouton "LancerPartie" est cliqué.
-                DebutPartieClone f = new DebutPartieClone(nbLignes, nbColonnes, PresetChrono, icon, mute);
+                DebutPartieClone f = new DebutPartieClone(nbLignes, nbColonnes, PresetChrono, icon, mute, username);
                 f.setVisible(true);
                 dispose();
 
