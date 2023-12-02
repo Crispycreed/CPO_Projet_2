@@ -68,6 +68,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, nbColonnes * 40, nbLignes * 40));
         grille.initialiserCellulesAleatoires();
         LecteurWAV lecteur = new LecteurWAV();
+        lecteur.arreterLecture();
 
         ControlPanel.setLayout(null);
         getContentPane().add(ControlPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 0, 0));
@@ -128,6 +129,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 // Si l'utilisateur clique sur "Valider"
                 if (choix == JOptionPane.YES_OPTION) {
                     reset = 1;
+                    lecteur.arreterLecture();
                     lecteur.lireFichierWAV("Sclic.wav");
                     lecteur.arreterLecture();
 
