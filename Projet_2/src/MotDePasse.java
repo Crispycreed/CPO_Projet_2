@@ -64,9 +64,7 @@ public class MotDePasse {
         try {
             if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.OPEN)) {
                 Desktop.getDesktop().open(fichierMdp);
-            } else {
-                System.out.println("Desktop API n'est pas supportée sur ce système.");
-            }
+            } 
         } catch (IOException e) {
             e.printStackTrace();
         }

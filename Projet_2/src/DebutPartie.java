@@ -53,7 +53,6 @@ public class DebutPartie extends javax.swing.JFrame {
         LecteurWAV lecteur = new LecteurWAV();
         lecteur.arreterLecture();
         this.username = username;
-        System.out.println("username : " + username);
         // ---------------------------------------------------Panneau_Grille
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
@@ -177,7 +176,6 @@ public class DebutPartie extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lecteur.lireFichierWAV("Sclic.wav");
-                System.out.println("username vers partieloginclone: " + username);
                 PartieLoginClone f = new PartieLoginClone(nbLignes, nbColonnes, PresetChrono, icon, mute, username);
                 f.setVisible(true);
                 dispose();

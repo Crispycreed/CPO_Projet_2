@@ -49,7 +49,6 @@ public class DebutPartieClone extends javax.swing.JFrame {
         this.icon = icon;
         this.mute = mute;
         this.username = username;
-        System.out.println("username reçus: " + username);
         initComponents();
         LecteurWAV lecteur = new LecteurWAV();
         lecteur.arreterLecture();

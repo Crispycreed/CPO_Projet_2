@@ -114,7 +114,6 @@ GrilleDeJeu grille;
             public void focusLost(FocusEvent e) {
                 // À faire lorsque le champ de mot de passe perd le focus
                 password1 = password.getText();
-                System.out.println(password1);
             }
         });
 
@@ -128,7 +127,6 @@ GrilleDeJeu grille;
             public void focusLost(FocusEvent e) {
                 // À faire lorsque le champ de texte perd le focus
                 username1 = usernamE.getText();
-                System.out.println(username1);
             }
         });
 
@@ -211,7 +209,6 @@ GrilleDeJeu grille;
                     String passeword2 = MDP.recupererMotDePasse(username1);
 
                     lecteur.lireFichierWAV("Sclic.wav");
-                    System.out.println("username vers debutpartieClone : " + username1);
                     DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono, icon, mute, username1);
                     f.setVisible(true);
                     dispose();

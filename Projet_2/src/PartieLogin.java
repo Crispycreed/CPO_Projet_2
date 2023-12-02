@@ -121,7 +121,6 @@ public class PartieLogin extends javax.swing.JFrame {
             public void focusLost(FocusEvent e) {
                 // À faire lorsque le champ de mot de passe perd le focus
                 password1 = password.getText();
-                System.out.println(password1);
             }
         });
 
@@ -135,7 +134,6 @@ public class PartieLogin extends javax.swing.JFrame {
             public void focusLost(FocusEvent e) {
                 // À faire lorsque le champ de texte perd le focus
                 username1 = username.getText();
-                System.out.println(username1);
             }
         });
 
@@ -153,7 +151,6 @@ public class PartieLogin extends javax.swing.JFrame {
                     if (mdpfind.equals(password1)) {
                         lecteur.lireFichierWAV("Sclic.wav");
 
-                        System.out.println("username : " + username1);
 
                         DebutPartie f = new DebutPartie(username1);
                         f.setVisible(true);
