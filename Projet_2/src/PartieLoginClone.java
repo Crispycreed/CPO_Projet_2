@@ -33,14 +33,16 @@ import javax.swing.UIManager;
  *
  * @author ordim
  */
-public class PartieLogin extends javax.swing.JFrame {
+public class PartieLoginClone extends javax.swing.JFrame {
 
     // ----------------------------------------------------Déclaration_Variables
-    GrilleDeJeu grille;
+GrilleDeJeu grille;
     int nbCoups;
     int i;
     private int nbColonnes = 4;
     private int nbLignes = 4;
+    private int nbColonnes2;
+    private int nbLignes2;
     private String PresetChrono = "Infinie";
     private ImageIcon icon;
     private int mute = 1;
@@ -52,12 +54,19 @@ public class PartieLogin extends javax.swing.JFrame {
     /**
      * Constructeur de la classe DebutPartie.
      */
-    public PartieLogin() {
+    public PartieLoginClone(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon, int mute, String username) {
         initComponents();
+        this.nbColonnes2 = nbColonnes2;
+        this.nbLignes2 = nbLignes2;
+        this.PresetChrono = PresetChrono;
+        this.icon = icon;
+        this.mute = mute;
+        this.username1 = username;
         LecteurWAV lecteur = new LecteurWAV();
         lecteur.arreterLecture();
 
         // ---------------------------------------------------Panneau_Grille
+        
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, nbColonnes * 40, nbLignes * 40));
@@ -80,23 +89,7 @@ public class PartieLogin extends javax.swing.JFrame {
         // --------------------------------------------------- changer logo
         setLocationRelativeTo(null);
 
-        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-            Taskbar taskbar = Taskbar.getTaskbar();
-            icon = new ImageIcon(getClass().getResource("/lOGO1mac.png"));
-
-            // Vérifier si la barre des tâches prend en charge les icônes du Dock
-            if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE)) {
-
-                taskbar.setIconImage(icon.getImage());
-
-            }
-        } else {
-            icon = new ImageIcon(getClass().getResource("/lOGO1.png"));
-            setIconImage(icon.getImage());
-        }
-
-        // --------------------------------------------------- changer logo mac
-        setLocationRelativeTo(null);
+        setIconImage(icon.getImage());
 
         if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 
@@ -125,7 +118,7 @@ public class PartieLogin extends javax.swing.JFrame {
             }
         });
 
-        username.addFocusListener(new FocusListener() {
+        usernamE.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
                 // À faire lorsque le champ de texte obtient le focus
@@ -134,7 +127,7 @@ public class PartieLogin extends javax.swing.JFrame {
             @Override
             public void focusLost(FocusEvent e) {
                 // À faire lorsque le champ de texte perd le focus
-                username1 = username.getText();
+                username1 = usernamE.getText();
                 System.out.println(username1);
             }
         });
@@ -152,10 +145,7 @@ public class PartieLogin extends javax.swing.JFrame {
 
                     if (mdpfind.equals(password1)) {
                         lecteur.lireFichierWAV("Sclic.wav");
-
-                        System.out.println("username : " + username1);
-
-                        DebutPartie f = new DebutPartie(username1);
+                        DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono, icon, mute, username1);
                         f.setVisible(true);
                         dispose();
                     } else {
@@ -221,7 +211,8 @@ public class PartieLogin extends javax.swing.JFrame {
                     String passeword2 = MDP.recupererMotDePasse(username1);
 
                     lecteur.lireFichierWAV("Sclic.wav");
-                    DebutPartie f = new DebutPartie(username1);
+                    System.out.println("username vers debutpartieClone : " + username1);
+                    DebutPartieClone f = new DebutPartieClone(nbLignes2, nbColonnes2, PresetChrono, icon, mute, username1);
                     f.setVisible(true);
                     dispose();
 
@@ -252,6 +243,8 @@ public class PartieLogin extends javax.swing.JFrame {
             }
         });
 
+        
+        
         // Ajout du KeyListener pour détecter Ctrl + F
         addKeyListener(new KeyListener() {
             @Override
@@ -264,7 +257,7 @@ public class PartieLogin extends javax.swing.JFrame {
                 // Détecter Ctrl + F
                 if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_F) {
                     // Code à exécuter lorsque Ctrl + F est pressé
-                    MDP.ouvrirFichierSurBureau();
+                   MDP.ouvrirFichierSurBureau();
                 }
             }
 
@@ -274,10 +267,13 @@ public class PartieLogin extends javax.swing.JFrame {
             }
         });
 
+
         setFocusable(true);
         setResizable(false);
     }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -296,7 +292,7 @@ public class PartieLogin extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         password = new javax.swing.JPasswordField();
-        username = new javax.swing.JTextField();
+        usernamE = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         REGISTER = new javax.swing.JButton();
@@ -327,7 +323,7 @@ public class PartieLogin extends javax.swing.JFrame {
 
         LOGIN.setBackground(new java.awt.Color(237, 237, 237));
         LOGIN.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
-        LOGIN.setText(" LOGIN ");
+        LOGIN.setText("LOGIN");
         LOGIN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LOGINActionPerformed(evt);
@@ -344,7 +340,7 @@ public class PartieLogin extends javax.swing.JFrame {
             }
         });
 
-        username.setText("Username");
+        usernamE.setText("Username");
 
         jLabel8.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
         jLabel8.setText("  Connecte toi a ton compte  ");
@@ -354,7 +350,7 @@ public class PartieLogin extends javax.swing.JFrame {
 
         REGISTER.setBackground(new java.awt.Color(237, 237, 237));
         REGISTER.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
-        REGISTER.setText(" REGISTER ");
+        REGISTER.setText("REGISTER");
         REGISTER.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 REGISTERActionPerformed(evt);
@@ -382,22 +378,21 @@ public class PartieLogin extends javax.swing.JFrame {
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGap(57, 57, 57)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGap(60, 60, 60)
-                                    .addComponent(LOGIN))))
+                        .addGap(57, 57, 57)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(usernamE, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(REGISTER)
+                .addGap(50, 50, 50))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(LOGIN))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -413,21 +408,21 @@ public class PartieLogin extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(15, 15, 15)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(usernamE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(26, 26, 26)
                 .addComponent(LOGIN)
-                .addGap(30, 30, 30)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(REGISTER)
-                .addGap(31, 31, 31))
+                .addGap(38, 38, 38))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -510,6 +505,6 @@ public class PartieLogin extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JPasswordField password;
-    private javax.swing.JTextField username;
+    private javax.swing.JTextField usernamE;
     // End of variables declaration//GEN-END:variables
 }

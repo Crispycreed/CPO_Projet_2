@@ -31,6 +31,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
     private String PresetChrono;
     private ImageIcon icon;
     private int mute;
+    private String username;
 
     /**
      * Constructeur de la classe FinPartie. Initialise la fenêtre de fin de
@@ -47,6 +48,8 @@ public class DebutPartieClone extends javax.swing.JFrame {
         this.PresetChrono = PresetChrono;
         this.icon = icon;
         this.mute = mute;
+        this.username = username;
+        System.out.println("username reçus: " + username);
         initComponents();
         LecteurWAV lecteur = new LecteurWAV();
         lecteur.arreterLecture();
@@ -149,6 +152,20 @@ public class DebutPartieClone extends javax.swing.JFrame {
             }
         });
 
+        NOM.setText("  Bienvenue  " + username + "  ");
+        PROFIL.add(NOM);
+        PROFIL.add(BACK);
+
+        BACK.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lecteur.lireFichierWAV("Sclic.wav");
+                PartieLoginClone f = new PartieLoginClone(nbLignes2, nbColonnes2, PresetChrono, icon, mute, username);
+                f.setVisible(true);
+                dispose();
+            }
+        });
+
         setResizable(false);
     }
 
@@ -161,6 +178,8 @@ public class DebutPartieClone extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        NOM = new javax.swing.JLabel();
+        BACK = new javax.swing.JButton();
         PanneauGrille = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -179,9 +198,17 @@ public class DebutPartieClone extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         tips = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        PROFIL = new javax.swing.JMenu();
+
+        NOM.setFont(new java.awt.Font("Snap ITC", 0, 14)); // NOI18N
+        NOM.setText("Bienvenue :" + username);
+
+        BACK.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
+        BACK.setText("Déconnection");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(570, 610));
+        setPreferredSize(new java.awt.Dimension(570, 640));
 
         PanneauGrille.setBackground(new java.awt.Color(0, 0, 0));
         PanneauGrille.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createLineBorder(new java.awt.Color(173, 216, 230), 4)));
@@ -327,7 +354,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(top, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,6 +371,11 @@ public class DebutPartieClone extends javax.swing.JFrame {
                 .addGap(23, 23, 23))
         );
 
+        PROFIL.setText("Profil");
+        jMenuBar1.add(PROFIL);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -355,7 +387,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -401,7 +433,10 @@ public class DebutPartieClone extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BACK;
     private javax.swing.JButton LANCER;
+    private javax.swing.JLabel NOM;
+    private javax.swing.JMenu PROFIL;
     private javax.swing.JPanel PanneauGrille;
     private javax.swing.JButton Settings;
     private javax.swing.JLabel jLabel10;
@@ -412,6 +447,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

@@ -1,3 +1,4 @@
-denis azerty123
-joe public1
-noa azertyuiop
+default/default
+denis/azerty123
+marion/marmar
+arthur/azdur
