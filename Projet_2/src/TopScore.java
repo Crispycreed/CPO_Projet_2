@@ -1,6 +1,7 @@
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,12 +22,18 @@ public class TopScore {
      * @param score Le score à sauvegarder.
      */
     public static void sauvegarderScore(int score, String username) {
-        try ( BufferedWriter writer = new BufferedWriter(new FileWriter(username+".txt", true))) {
+        try ( BufferedWriter writer = new BufferedWriter(new FileWriter(username + ".txt", true))) {
             // Ajouter le score au fichier
             writer.write(String.valueOf(score));
             writer.newLine();  // passer à la ligne suivante pour le prochain score
         } catch (IOException e) {
-            e.printStackTrace();
+            // Si le fichier n'existe pas, créer le fichier et sauvegarder le score
+            if (e instanceof FileNotFoundException) {
+                create_topscore(username);
+                sauvegarderScore(score, username); // Appeler récursivement après la création
+            } else {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -34,7 +41,7 @@ public class TopScore {
      * Méthode pour afficher tous les scores sauvegardés.
      */
     public static void afficherScoresSauvegardes(String username) {
-        try ( BufferedReader reader = new BufferedReader(new FileReader(username+".txt"))) {
+        try ( BufferedReader reader = new BufferedReader(new FileReader(username + ".txt"))) {
             String line;
 
             while ((line = reader.readLine()) != null) {
@@ -51,7 +58,7 @@ public class TopScore {
      * Méthode pour supprimer le fichier topscores.txt.
      */
     public static void supprimerTopScores(String username) {
-        String cheminFichier = username+".txt";
+        String cheminFichier = username + ".txt";
 
         try {
             Path fichierPath = Paths.get(cheminFichier);
@@ -70,15 +77,38 @@ public class TopScore {
      * @param rang Le rang du score à récupérer.
      * @return Le score correspondant au rang.
      */
-    public static int recupererScore(int rang, String username) {
-        Set<Integer> scores = lireScores(username+".txt");
+public static int recupererScore(int rang, String username) {
+    Set<Integer> scores = lireScores(username);
 
-        if (rang <= 0 || rang > scores.size()) {
-            return -1; // Valeur par défaut ou code d'erreur selon le contexte
+    if (rang <= 0 || rang > scores.size()) {
+        return -1; // Valeur par défaut ou code d'erreur selon le contexte
+    }
+
+    List<Integer> sortedUniqueScores = scores.stream()
+            .distinct()
+            .sorted(Collections.reverseOrder())
+            .collect(Collectors.toList());
+
+    return sortedUniqueScores.get(rang - 1);
+}
+
+    /**
+     * Méthode pour créer un fichier topscore avec un score initial.
+     *
+     * @param username Le nom d'utilisateur pour lequel le fichier doit être
+     * créé.
+     */
+    public static void create_topscore(String username) {
+        try ( BufferedWriter writer = new BufferedWriter(new FileWriter(username + ".txt"))) {
+            // Ajouter un score initial au fichier
+            int scoreInitial = 0;
+            writer.write(String.valueOf(scoreInitial));
+            writer.newLine();  // passer à la ligne suivante pour le prochain score
+
+            System.out.println("Fichier topscore pour " + username + " créé avec succès.");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        List<Integer> sortedScores = scores.stream().sorted(Collections.reverseOrder()).collect(Collectors.toList());
-        return sortedScores.get(rang - 1);
     }
 
     /**
@@ -93,7 +123,7 @@ public class TopScore {
      */
     private static Set<Integer> lireScores(String username) {
         Set<Integer> scores = new HashSet<>();
-        try ( BufferedReader reader = new BufferedReader(new FileReader(username+".txt"))) {
+        try ( BufferedReader reader = new BufferedReader(new FileReader(username + ".txt"))) {
             reader.lines()
                     .map(Integer::parseInt)
                     .forEach(scores::add);

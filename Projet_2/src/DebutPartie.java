@@ -43,7 +43,8 @@ public class DebutPartie extends javax.swing.JFrame {
     private String PresetChrono = "Infinie";
     private ImageIcon icon;
     private int mute = 1;
-private String username;
+    private String username;
+
     /**
      * Constructeur de la classe DebutPartie.
      */
@@ -51,7 +52,7 @@ private String username;
         initComponents();
         LecteurWAV lecteur = new LecteurWAV();
         lecteur.arreterLecture();
-this.username = username;
+        this.username = username;
         // ---------------------------------------------------Panneau_Grille
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);

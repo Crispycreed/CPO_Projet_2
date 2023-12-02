@@ -1,10 +1,14 @@
 
+import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.Font;
 import java.awt.GridLayout;
 import static java.awt.SystemColor.desktop;
 import java.awt.Taskbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -15,13 +19,14 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author ordim
@@ -37,7 +42,10 @@ public class PartieLogin extends javax.swing.JFrame {
     private String PresetChrono = "Infinie";
     private ImageIcon icon;
     private int mute = 1;
-    private String username1 = "topscores";
+    private String username1 = "default";
+    private int idfind;
+    private String mdpfind;
+    private String password1 = "default";
 
     /**
      * Constructeur de la classe DebutPartie.
@@ -56,6 +64,10 @@ public class PartieLogin extends javax.swing.JFrame {
         grille.initialiserCellulesAleatoires();
         grille.initialiserCellulesAleatoires();
         grille.initialiserCellulesAleatoires();
+
+        MotDePasse MDP = new MotDePasse();
+        MDP.creerFichierSiAbsent();
+
         for (int i = 0; i < nbLignes; i++) {
             for (int j = 0; j < nbColonnes; j++) {
                 CelluleGraphique bouton_cellule = new CelluleGraphique(grille.matriceCellules[i][j], 36, 36);
@@ -98,14 +110,141 @@ public class PartieLogin extends javax.swing.JFrame {
 
         }
 
-        // --------------------------------------------------- Action du bouton "PLAY"
+        password.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                // À faire lorsque le champ de mot de passe obtient le focus
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                // À faire lorsque le champ de mot de passe perd le focus
+                password1 = password.getText();
+                System.out.println(password1);
+            }
+        });
+
+        username.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                // À faire lorsque le champ de texte obtient le focus
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                // À faire lorsque le champ de texte perd le focus
+                username1 = username.getText();
+                System.out.println(username1);
+            }
+        });
+
+        // --------------------------------------------------- Action du bouton "LOGIN" ET "REGISTER"
         LOGIN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                lecteur.lireFichierWAV("Slancer.wav");
-                DebutPartie f = new DebutPartie(username1);
-                f.setVisible(true);
-                dispose();
+
+                idfind = MDP.verificationIdentifiant(username1);
+
+                if (idfind == 1) {
+
+                    mdpfind = MDP.recupererMotDePasse(username1);
+
+                    if (mdpfind.equals(password1)) {
+                        lecteur.lireFichierWAV("Slancer.wav");
+                        DebutPartie f = new DebutPartie(username1);
+                        f.setVisible(true);
+                        dispose();
+                    } else {
+
+                        // Message principal avec une police différente pour chaque partie
+                        String messagePart1 = "Ce mot de passe est incorrect";
+                        String messagePart2 = "(Essayez en un autre)";
+
+                        Font largerFont = new Font(Font.DIALOG, Font.PLAIN, UIManager.getFont("Label.font").getSize());
+
+                        JLabel messageLabel = new JLabel("<html><div style='text-align: center;'>"
+                                + messagePart1 + "<br>"
+                                + "<font size=-2 color='gray'>" + messagePart2 + "</font></div></html>");
+                        messageLabel.setFont(largerFont);
+
+                        // Créer un bouton personnalisé avec le texte "Retour" en rouge
+                        JButton retourButton = new JButton("Retour");
+                        retourButton.setForeground(Color.BLUE);
+
+                        // Afficher une fenêtre de confirmation avec le texte et le bouton personnalisés
+                        int choix = JOptionPane.showOptionDialog(null, messageLabel, "Erreur",
+                                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Retour"},
+                                "Valider");
+
+                    }
+                } else {
+
+                    // Message principal avec une police différente pour chaque partie
+                    String messagePart1 = "Cet identifiant n'existe pas";
+                    String messagePart2 = "(Essayez plutot de vous REGISTER)";
+
+                    Font largerFont = new Font(Font.DIALOG, Font.PLAIN, UIManager.getFont("Label.font").getSize());
+
+                    JLabel messageLabel = new JLabel("<html><div style='text-align: center;'>"
+                            + messagePart1 + "<br>"
+                            + "<font size=-2 color='gray'>" + messagePart2 + "</font></div></html>");
+                    messageLabel.setFont(largerFont);
+
+                    // Créer un bouton personnalisé avec le texte "Retour" en rouge
+                    JButton retourButton = new JButton("Retour");
+                    retourButton.setForeground(Color.BLUE);
+
+                    // Afficher une fenêtre de confirmation avec le texte et le bouton personnalisés
+                    int choix = JOptionPane.showOptionDialog(null, messageLabel, "Erreur",
+                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Retour"},
+                            "Valider");
+
+                }
+
+            }
+        });
+
+        REGISTER.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                idfind = MDP.verificationIdentifiant(username1);
+
+                if (idfind == 0) {
+
+                    MDP.ajouterMotDePasse(username1, password1);
+
+                    String passeword2 = MDP.recupererMotDePasse(username1);
+
+                    lecteur.lireFichierWAV("Slancer.wav");
+                    DebutPartie f = new DebutPartie(username1);
+                    f.setVisible(true);
+                    dispose();
+
+                } else {
+
+                    // Message principal avec une police différente pour chaque partie
+                    String messagePart1 = "Cet identifiant existe déja";
+                    String messagePart2 = "(Essayez plutot de vous LOGIN)";
+
+                    Font largerFont = new Font(Font.DIALOG, Font.PLAIN, UIManager.getFont("Label.font").getSize());
+
+                    JLabel messageLabel = new JLabel("<html><div style='text-align: center;'>"
+                            + messagePart1 + "<br>"
+                            + "<font size=-2 color='gray'>" + messagePart2 + "</font></div></html>");
+                    messageLabel.setFont(largerFont);
+
+                    // Créer un bouton personnalisé avec le texte "Retour" en rouge
+                    JButton retourButton = new JButton("Retour");
+                    retourButton.setForeground(Color.BLUE);
+
+                    // Afficher une fenêtre de confirmation avec le texte et le bouton personnalisés
+                    int choix = JOptionPane.showOptionDialog(null, messageLabel, "Erreur",
+                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Retour"},
+                            "Valider");
+
+                }
+
             }
         });
 
@@ -136,6 +275,7 @@ public class PartieLogin extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        REGISTER = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -161,7 +301,7 @@ public class PartieLogin extends javax.swing.JFrame {
         jLabel4.setText("   THREES!!");
 
         LOGIN.setBackground(new java.awt.Color(237, 237, 237));
-        LOGIN.setFont(new java.awt.Font("Snap ITC", 0, 14)); // NOI18N
+        LOGIN.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
         LOGIN.setText("LOGIN");
         LOGIN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,47 +336,55 @@ public class PartieLogin extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
         jLabel10.setText("   Créé un nouveau compte");
 
+        REGISTER.setBackground(new java.awt.Color(237, 237, 237));
+        REGISTER.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
+        REGISTER.setText("REGIS");
+        REGISTER.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                REGISTERActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(LOGIN)
-                .addGap(66, 66, 66))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LOGIN)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(REGISTER)
+                        .addGap(12, 12, 12))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,7 +414,9 @@ public class PartieLogin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(LOGIN)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LOGIN)
+                    .addComponent(REGISTER))
                 .addGap(20, 20, 20))
         );
 
@@ -295,6 +445,10 @@ public class PartieLogin extends javax.swing.JFrame {
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordActionPerformed
+
+    private void REGISTERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REGISTERActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_REGISTERActionPerformed
 
     /**
      * @param args the command line arguments
@@ -335,6 +489,7 @@ public class PartieLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LOGIN;
     private javax.swing.JPanel PanneauGrille;
+    private javax.swing.JButton REGISTER;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
