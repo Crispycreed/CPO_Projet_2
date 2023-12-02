@@ -36,7 +36,7 @@ import javax.swing.UIManager;
 public class PartieLoginClone extends javax.swing.JFrame {
 
     // ----------------------------------------------------Déclaration_Variables
-GrilleDeJeu grille;
+    GrilleDeJeu grille;
     int nbCoups;
     int i;
     private int nbColonnes = 4;
@@ -66,7 +66,6 @@ GrilleDeJeu grille;
         lecteur.arreterLecture();
 
         // ---------------------------------------------------Panneau_Grille
-        
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, nbColonnes * 40, nbLignes * 40));
@@ -107,7 +106,7 @@ GrilleDeJeu grille;
         password.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                // À faire lorsque le champ de mot de passe obtient le focus
+                password.setText("");
             }
 
             @Override
@@ -120,7 +119,7 @@ GrilleDeJeu grille;
         usernamE.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                // À faire lorsque le champ de texte obtient le focus
+                usernamE.setText("");
             }
 
             @Override
@@ -240,8 +239,6 @@ GrilleDeJeu grille;
             }
         });
 
-        
-        
         // Ajout du KeyListener pour détecter Ctrl + F
         addKeyListener(new KeyListener() {
             @Override
@@ -254,7 +251,7 @@ GrilleDeJeu grille;
                 // Détecter Ctrl + F
                 if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_F) {
                     // Code à exécuter lorsque Ctrl + F est pressé
-                   MDP.ouvrirFichierSurBureau();
+                    MDP.ouvrirFichierSurBureau();
                 }
             }
 
@@ -264,13 +261,10 @@ GrilleDeJeu grille;
             }
         });
 
-
         setFocusable(true);
         setResizable(false);
     }
 
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

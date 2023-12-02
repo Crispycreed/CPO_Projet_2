@@ -114,7 +114,7 @@ public class PartieLogin extends javax.swing.JFrame {
         password.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                // À faire lorsque le champ de mot de passe obtient le focus
+                password.setText("");
             }
 
             @Override
@@ -127,7 +127,7 @@ public class PartieLogin extends javax.swing.JFrame {
         username.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                // À faire lorsque le champ de texte obtient le focus
+                username.setText("");
             }
 
             @Override
