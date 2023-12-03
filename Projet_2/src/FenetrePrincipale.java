@@ -3,9 +3,11 @@ import java.awt.Color;
 import static java.awt.Color.BLACK;
 import static java.awt.Color.black;
 import static java.awt.Color.white;
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import static java.awt.SystemColor.desktop;
 import java.awt.Taskbar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +22,8 @@ import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
@@ -262,6 +266,21 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 }
             }
         });
+        
+        Desktop desktop = Desktop.getDesktop();
+        tips.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    URL url = getClass().getResource("/tips.pdf");
+                    if (url != null) {
+                        desktop.browse(url.toURI());
+                    }
+                } catch (IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
 
         // --------------------------------------------------------------- TIMER
         timer = new Timer(1000, new ActionListener() {
@@ -362,6 +381,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jPanelText2 = new javax.swing.JPanel();
         QUITTER = new javax.swing.JButton();
         LabelChrono = new javax.swing.JLabel();
+        tips = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(500, 600));
@@ -431,6 +451,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         LabelChrono.setFont(new java.awt.Font("Snap ITC", 0, 24)); // NOI18N
         LabelChrono.setText("00:00");
 
+        tips.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tips.png"))); // NOI18N
+        tips.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        tips.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tips.setFocusPainted(false);
+        tips.setFocusable(false);
+
         javax.swing.GroupLayout jPanelText2Layout = new javax.swing.GroupLayout(jPanelText2);
         jPanelText2.setLayout(jPanelText2Layout);
         jPanelText2Layout.setHorizontalGroup(
@@ -440,13 +466,19 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addGroup(jPanelText2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(QUITTER)
                     .addComponent(LabelChrono, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanelText2Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(tips, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelText2Layout.setVerticalGroup(
             jPanelText2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelText2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(LabelChrono)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                .addComponent(tips, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(QUITTER)
                 .addGap(21, 21, 21))
         );
@@ -527,5 +559,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelText1;
     private javax.swing.JPanel jPanelText2;
+    private javax.swing.JButton tips;
     // End of variables declaration//GEN-END:variables
 }

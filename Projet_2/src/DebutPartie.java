@@ -300,6 +300,11 @@ public class DebutPartie extends javax.swing.JFrame {
         tips.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tips.setFocusPainted(false);
         tips.setFocusable(false);
+        tips.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -416,6 +421,10 @@ public class DebutPartie extends javax.swing.JFrame {
     private void LANCERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LANCERActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LANCERActionPerformed
+
+    private void tipsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipsActionPerformed
 
     /**
      * @param args the command line arguments
