@@ -154,6 +154,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
         NOM.setText("  Bienvenue  " + username + "  ");
         PROFIL.add(NOM);
         PROFIL.add(BACK);
+        jMenu1.setText(username);
 
         BACK.addActionListener(new ActionListener() {
             @Override
@@ -199,6 +200,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         jMenuBar1 = new javax.swing.JMenuBar();
         PROFIL = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
 
         NOM.setFont(new java.awt.Font("Snap ITC", 0, 14)); // NOI18N
         NOM.setText("Bienvenue :" + username);
@@ -370,8 +372,13 @@ public class DebutPartieClone extends javax.swing.JFrame {
                 .addGap(23, 23, 23))
         );
 
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 2), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
+
         PROFIL.setText("Profil");
         jMenuBar1.add(PROFIL);
+
+        jMenu1.setText(username);
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -446,6 +453,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;

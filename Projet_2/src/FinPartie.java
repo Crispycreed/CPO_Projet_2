@@ -30,6 +30,7 @@ public class FinPartie extends javax.swing.JFrame {
     private String temps;
     private ImageIcon icon;
     private int mute;
+    private String username;
 
     /**
      * Constructeur de la classe FinPartie. Initialise la fenêtre de fin de
@@ -49,6 +50,7 @@ public class FinPartie extends javax.swing.JFrame {
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         this.icon = icon;
         this.mute = mute;
+        this.username = username;
 
         LecteurWAV lecteur = new LecteurWAV();
         lecteur.arreterLecture();
@@ -103,6 +105,7 @@ public class FinPartie extends javax.swing.JFrame {
             }
 
         }
+        jMenu1.setText(username);
 
     }
 
@@ -126,6 +129,8 @@ public class FinPartie extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(500, 600));
@@ -144,7 +149,7 @@ public class FinPartie extends javax.swing.JFrame {
         );
         PanneauGrilleLayout.setVerticalGroup(
             PanneauGrilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 553, Short.MAX_VALUE)
+            .addGap(0, 530, Short.MAX_VALUE)
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -245,6 +250,11 @@ public class FinPartie extends javax.swing.JFrame {
                 .addGap(27, 27, 27))
         );
 
+        jMenu1.setText(username);
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -256,7 +266,7 @@ public class FinPartie extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -318,6 +328,8 @@ public class FinPartie extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelScore;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

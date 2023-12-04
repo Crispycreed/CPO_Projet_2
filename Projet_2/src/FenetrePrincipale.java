@@ -52,6 +52,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private String PresetChrono;
     private int mute;
     private int reset;
+    private String username;
 
     /**
      * Creates new form FenetrePrincipale
@@ -63,6 +64,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         this.nbLignes = nbLignes2;
         this.PresetChrono = PresetChrono;
         this.mute = mute;
+        this.username = username;
         initComponents();
 
         // ---------------------------------------------------Panels/Emplacement
@@ -184,7 +186,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 repaint();
                 requestFocusInWindow();
                 int cellulesVides = grille.nombreCellulesVides();
-                                int score = grille.getScore();
+                int score = grille.getScore();
                 jLabelScore.setText(String.valueOf(score));
                 if (cellulesVides == 0) {
                     int[][] sauvegarde = grille.sauvegarderGrille();
@@ -208,7 +210,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 repaint();
                 requestFocusInWindow();
                 int cellulesVides = grille.nombreCellulesVides();
-                                int score = grille.getScore();
+                int score = grille.getScore();
                 jLabelScore.setText(String.valueOf(score));
                 if (cellulesVides == 0) {
                     int[][] sauvegarde = grille.sauvegarderGrille();
@@ -227,8 +229,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource() == bouton_bas) {
                     grille.additionnerCellulesAdjacentesVersLeBas();
-                                    int score = grille.getScore();
-                jLabelScore.setText(String.valueOf(score));
+                    int score = grille.getScore();
+                    jLabelScore.setText(String.valueOf(score));
                 }
                 repaint();
                 requestFocusInWindow();
@@ -250,23 +252,23 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             public void keyPressed(KeyEvent e) {
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_LEFT:
-                                        int score = grille.getScore();
-                jLabelScore.setText(String.valueOf(score));
+                        int score = grille.getScore();
+                        jLabelScore.setText(String.valueOf(score));
                         grille.additionnerCellulesAdjacentesVersLaGauche();
                         break;
                     case KeyEvent.VK_RIGHT:
-                                        score = grille.getScore();
-                jLabelScore.setText(String.valueOf(score));
+                        score = grille.getScore();
+                        jLabelScore.setText(String.valueOf(score));
                         grille.additionnerCellulesAdjacentesVersLaDroite();
                         break;
                     case KeyEvent.VK_UP:
-                                        score = grille.getScore();
-                jLabelScore.setText(String.valueOf(score));
+                        score = grille.getScore();
+                        jLabelScore.setText(String.valueOf(score));
                         grille.additionnerCellulesAdjacentesVersLeHaut();
                         break;
                     case KeyEvent.VK_DOWN:
-                                        score = grille.getScore();
-                jLabelScore.setText(String.valueOf(score));
+                        score = grille.getScore();
+                        jLabelScore.setText(String.valueOf(score));
                         grille.additionnerCellulesAdjacentesVersLeBas();
                         break;
                 }
@@ -362,7 +364,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         // ---------------------------------------------------------Icon_Fenetre
         setIconImage(icon.getImage());
-
+        jMenu1.setText(username);
         if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 
             Taskbar taskbar = Taskbar.getTaskbar();
@@ -400,6 +402,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         LabelChrono = new javax.swing.JLabel();
         tips = new javax.swing.JButton();
         jLabelScore = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(500, 600));
@@ -485,11 +489,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jPanelText2.setLayout(jPanelText2Layout);
         jPanelText2Layout.setHorizontalGroup(
             jPanelText2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelText2Layout.createSequentialGroup()
-                .addGap(0, 25, Short.MAX_VALUE)
-                .addGroup(jPanelText2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(QUITTER)
-                    .addComponent(LabelChrono, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(jPanelText2Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(tips, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -498,6 +497,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabelScore, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelText2Layout.createSequentialGroup()
+                .addGap(0, 25, Short.MAX_VALUE)
+                .addGroup(jPanelText2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(QUITTER)
+                    .addComponent(LabelChrono, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanelText2Layout.setVerticalGroup(
             jPanelText2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -506,12 +510,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addComponent(LabelChrono)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelScore, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(tips, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(QUITTER)
                 .addGap(21, 21, 21))
         );
+
+        jMenu1.setText(username);
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -536,7 +545,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelText2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+            .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
         );
 
         pack();
@@ -588,6 +597,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JButton QUITTER;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelScore;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanelText1;
     private javax.swing.JPanel jPanelText2;
     private javax.swing.JButton tips;
