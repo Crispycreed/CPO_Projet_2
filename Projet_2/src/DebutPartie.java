@@ -40,7 +40,7 @@ public class DebutPartie extends javax.swing.JFrame {
     int i;
     private int nbColonnes = 4;
     private int nbLignes = 4;
-    private String PresetChrono = "Infinie";
+    private String PresetChrono = "Infini";
     private ImageIcon icon;
     private int mute = 1;
     private String username;

@@ -195,15 +195,15 @@ public class Settings extends javax.swing.JFrame {
                 LabelColonnes.setText(String.valueOf("Colonnes : " + nouvelleValeur2));
             }
         });
-        if (PresetChrono.equals("Infinie")) {
-            tp1 = "Infinie";
+        if (PresetChrono.equals("Infini")) {
+            tp1 = "Infini";
             tp2 = "30secs";
             tp3 = "1min";
             tp4 = "2mins";
             tp5 = "3mins";
         } else if (PresetChrono.equals("30secs")) {
             tp1 = "30secs";
-            tp5 = "Infinie";
+            tp5 = "Infini";
             tp2 = "1min";
             tp3 = "2mins";
             tp4 = "3mins";
@@ -212,16 +212,16 @@ public class Settings extends javax.swing.JFrame {
             tp2 = "30secs";
             tp3 = "2mins";
             tp4 = "3mins";
-            tp5 = "Infinie";
+            tp5 = "Infini";
         } else if (PresetChrono.equals("2mins")) {
             tp1 = "2mins";
             tp4 = "3mins";
-            tp5 = "Infinie";
+            tp5 = "Infini";
             tp2 = "30secs";
             tp3 = "1min";
         } else if (PresetChrono.equals("3mins")) {
             tp1 = "3mins";
-            tp5 = "Infinie";
+            tp5 = "Infini";
             tp2 = "30secs";
             tp3 = "1min";
             tp4 = "2mins";
