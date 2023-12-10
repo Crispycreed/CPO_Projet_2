@@ -34,6 +34,8 @@ import javax.swing.UIManager;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 /**
+ * La classe FenetrePrincipale représente la fenêtre principale du jeu. Elle
+ * affiche la grille de jeu, les contrôles et gère le déroulement de la partie.
  *
  * @author ordim
  */
@@ -42,7 +44,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     // ----------------------------------------------------Déclaration_Variables
     GrilleDeJeu grille;
     int nbCoups;
-    int i;
     int minutes = 0;
     int secondes = 0;
     private String temps;
@@ -55,7 +56,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private String username;
 
     /**
-     * Creates new form FenetrePrincipale
+     * Constructeur de la classe FenetrePrincipale.
+     *
+     * @param nbLignes2 Le nombre de lignes de la grille.
+     * @param nbColonnes2 Le nombre de colonnes de la grille.
+     * @param PresetChrono La configuration du chronomètre.
+     * @param icon L'icône de la fenêtre.
+     * @param mute Indique si le son est activé (1) ou désactivé (0).
+     * @param username Le nom d'utilisateur du joueur.
      */
     public FenetrePrincipale(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon, int mute, String username) {
 
@@ -357,14 +365,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         });
         timer.start();
 
-        // ------------------------------------------------------------- Fenetre
-        setFocusable(true);
-        setResizable(false);
-        setLocationRelativeTo(null);
-
-        // ---------------------------------------------------------Icon_Fenetre
-        setIconImage(icon.getImage());
-        jMenu1.setText(username);
+        // ---------------------------------------------------------Icon_Fenetre 
+        setIconImage(icon.getImage()); 
+        
         if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 
             Taskbar taskbar = Taskbar.getTaskbar();
@@ -378,9 +381,16 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         }
 
+        // ---------------------------------------------------------Musique
         if (mute == 1) {
             lecteur.lireFichierWAV("Scalme.wav");
         }
+
+        // ------------------------------------------------------------- Fenetre
+        setFocusable(true);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        jMenu1.setText(username);
 
     }
 
