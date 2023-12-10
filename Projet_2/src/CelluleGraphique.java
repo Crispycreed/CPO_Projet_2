@@ -17,10 +17,12 @@ import javax.swing.JButton;
  */
 public class CelluleGraphique extends JButton {
 
+    // ----------------------------------------------------Déclaration_Variables 
     int largeur; // largeur en pixel de la cellule
     int hauteur; // hauteur en pixel de la cellule
     Cellule celluleLumineuseAssociee;
 
+    // ----------------------------------------------------Methodes     
     /**
      * Constructeur de la classe CelluleGraphique.
      *

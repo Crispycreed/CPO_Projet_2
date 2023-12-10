@@ -23,6 +23,7 @@ import javax.swing.border.Border;
  */
 public class FinPartie extends javax.swing.JFrame {
 
+    // ----------------------------------------------------Déclaration_Variables
     GrilleDeJeu grille;
     int nbCoups;
     int i;
@@ -44,19 +45,21 @@ public class FinPartie extends javax.swing.JFrame {
     public FinPartie(int[][] sauvegarde, int nbColonnes, int nbLignes, String PresetChrono, String temps, ImageIcon icon, int mute, String username) {
 
         initComponents();
+        // ----------------------------------------------------Déclaration_Variables
         this.PresetChrono = PresetChrono;
         this.temps = temps;
-        PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         this.icon = icon;
         this.mute = mute;
         this.username = username;
 
+        // ---------------------------------------------------Initialisation musique
         LecteurWAV lecteur = new LecteurWAV();
         lecteur.arreterLecture();
         lecteur.lireFichierWAV("Sgameover.wav");
 
-        // Charger la grille à partir de la sauvegarde
+        // ---------------------------------------------------Panneau_Grille
+        PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         grille.chargerGrille(sauvegarde);
 
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, nbColonnes * 40, nbLignes * 40));
@@ -74,6 +77,7 @@ public class FinPartie extends javax.swing.JFrame {
         jLabelScore.setText(String.valueOf(score)); // Méthode 1
         TopScore.sauvegarderScore(score, username);
 
+        // --------------------------------------------------- Action des boutons
         RELANCER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -88,9 +92,7 @@ public class FinPartie extends javax.swing.JFrame {
 
         LabelChrono.setText(temps);
 
-        setLocationRelativeTo(null);
-        setResizable(false);
-
+        // --------------------------------------------------- changer logo
         setIconImage(icon.getImage());
 
         if (System.getProperty("os.name").toLowerCase().contains("mac")) {
@@ -106,6 +108,10 @@ public class FinPartie extends javax.swing.JFrame {
 
         }
         jMenu1.setText(username);
+
+        // --------------------------------------------------- Fenetre
+        setLocationRelativeTo(null);
+        setResizable(false);
 
     }
 

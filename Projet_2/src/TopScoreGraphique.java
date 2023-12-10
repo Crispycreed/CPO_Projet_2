@@ -23,7 +23,7 @@ import javax.swing.UIManager;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 /**
- *
+ * class qui va servir a l'affichage des topscores
  * @author ordim
  */
 public class TopScoreGraphique extends javax.swing.JFrame {
@@ -57,8 +57,12 @@ public class TopScoreGraphique extends javax.swing.JFrame {
         this.mute = mute;
 
         initComponents();
+        
+        // ---------------------------------------------------Initialisation musique
         LecteurWAV lecteur = new LecteurWAV();
         lecteur.arreterLecture();
+        
+        // ---------------------------------------------------Panneau_Grille
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, nbColonnes * 40, nbLignes * 40));
@@ -74,8 +78,9 @@ public class TopScoreGraphique extends javax.swing.JFrame {
             }
         }
         setLocationRelativeTo(null);
+        
+        // --------------------------------------------------- changer logo
         setIconImage(icon.getImage());
-
         if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 
             Taskbar taskbar = Taskbar.getTaskbar();
@@ -89,6 +94,7 @@ public class TopScoreGraphique extends javax.swing.JFrame {
 
         }
 
+        // --------------------------------------------------- Action des boutons
         RETOUR.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

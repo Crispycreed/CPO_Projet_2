@@ -50,9 +50,12 @@ public class DebutPartie extends javax.swing.JFrame {
      */
     public DebutPartie(String username) {
         initComponents();
+        this.username = username;
+
+        // ---------------------------------------------------Initialisation musique
         LecteurWAV lecteur = new LecteurWAV();
         lecteur.arreterLecture();
-        this.username = username;
+
         // ---------------------------------------------------Panneau_Grille
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
@@ -87,23 +90,7 @@ public class DebutPartie extends javax.swing.JFrame {
             setIconImage(icon.getImage());
         }
 
-        // --------------------------------------------------- changer logo mac
-        setLocationRelativeTo(null);
-
-        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-
-            Taskbar taskbar = Taskbar.getTaskbar();
-
-            // Vérifier si la barre des tâches prend en charge les icônes du Dock
-            if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE)) {
-
-                taskbar.setIconImage(icon.getImage());
-
-            }
-
-        }
-
-        // --------------------------------------------------- Action du bouton "PLAY"
+        // --------------------------------------------------- Action des boutons
         LANCER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -114,7 +101,6 @@ public class DebutPartie extends javax.swing.JFrame {
             }
         });
 
-        // --------------------------------------------------- Action du bouton "Settings"
         Settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -125,7 +111,6 @@ public class DebutPartie extends javax.swing.JFrame {
             }
         });
 
-        // --------------------------------------------------- Action du bouton "Rules" / "tips" 
         Desktop desktop = Desktop.getDesktop();
         livre.addActionListener(new ActionListener() {
             @Override
@@ -157,7 +142,6 @@ public class DebutPartie extends javax.swing.JFrame {
             }
         });
 
-        // --------------------------------------------------- Action du bouton "Top"
         top.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -168,11 +152,6 @@ public class DebutPartie extends javax.swing.JFrame {
             }
         });
 
-        NOM.setText("  Bienvenue  " + username + "  ");
-        PROFIL.add(NOM);
-        PROFIL.add(BACK);
-        jMenu1.setText(username);
-        
         BACK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -182,8 +161,16 @@ public class DebutPartie extends javax.swing.JFrame {
                 dispose();
             }
         });
-        
+
+        // --------------------------------------------------- Personalisation barre
+        NOM.setText("  Bienvenue  " + username + "  ");
+        PROFIL.add(NOM);
+        PROFIL.add(BACK);
+        jMenu1.setText(username);
+
+        // --------------------------------------------------- Fenetre
         setResizable(false);
+
     }
 
     /**

@@ -23,7 +23,7 @@ import javax.swing.event.ChangeListener;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 /**
- *
+ * class qui gere la page des settings
  * @author ordim
  */
 public class Settings extends javax.swing.JFrame {
@@ -50,14 +50,18 @@ public class Settings extends javax.swing.JFrame {
      */
     public Settings(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon, int mute, String username) {
         initComponents();
-        LecteurWAV lecteur = new LecteurWAV();
-        lecteur.arreterLecture();
+
         this.nbColonnes2 = nbColonnes2;
         this.nbLignes2 = nbLignes2;
         this.PresetChrono = PresetChrono;
         mute2 = mute;
         icon2 = icon;
 
+        // ---------------------------------------------------Initialisation musique
+        LecteurWAV lecteur = new LecteurWAV();
+        lecteur.arreterLecture();
+
+        // ---------------------------------------------------Panneau_Grille
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, nbColonnes * 40, nbLignes * 40));
@@ -73,6 +77,7 @@ public class Settings extends javax.swing.JFrame {
             }
         }
 
+        // --------------------------------------------------- Action des boutons
         VALIDER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -131,6 +136,7 @@ public class Settings extends javax.swing.JFrame {
 
         });
 
+        // --------------------------------------------------- initialisation des slider
         SliderLignes.setMinimum(2); // Valeur minimale
         SliderLignes.setMaximum(8); // Valeur maximale
         SliderLignes.setValue(nbLignes2);
@@ -234,11 +240,8 @@ public class Settings extends javax.swing.JFrame {
         ComboBox_tps.addItem(tp4);
         ComboBox_tps.addItem(tp5);
 
-        setLocationRelativeTo(null);
+        // --------------------------------------------------- changer logo
         setIconImage(icon.getImage());
-
-        setResizable(false);
-
         if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 
             Taskbar taskbar = Taskbar.getTaskbar();
@@ -321,7 +324,9 @@ public class Settings extends javax.swing.JFrame {
                 }
             }
         });
-        
+
+        setLocationRelativeTo(null);
+        setResizable(false);
 
     }
 

@@ -1,3 +1,4 @@
+
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -7,6 +8,9 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 
+/**
+ * La classe MotDePasse gère un fichier de mots de passe et d'identifiants.
+ */
 public class MotDePasse {
 
     private static final String FICHIER_MDP = "MDP.txt";
@@ -29,7 +33,7 @@ public class MotDePasse {
      * Ajoute un mot de passe et son identifiant dans le fichier txt.
      *
      * @param identifiant L'identifiant à ajouter.
-     * @param motDePasse  Le mot de passe à ajouter.
+     * @param motDePasse Le mot de passe à ajouter.
      */
     void ajouterMotDePasse(String identifiant, String motDePasse) {
         String ligne = identifiant + SEPARATEUR + motDePasse;
@@ -64,7 +68,7 @@ public class MotDePasse {
         try {
             if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.OPEN)) {
                 Desktop.getDesktop().open(fichierMdp);
-            } 
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -75,7 +79,7 @@ public class MotDePasse {
      *
      * @param identifiant L'identifiant dont on veut récupérer le mot de passe.
      * @return Le mot de passe associé à l'identifiant, ou null s'il n'est pas
-     *         trouvé.
+     * trouvé.
      */
     String recupererMotDePasse(String identifiant) {
         try {

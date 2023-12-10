@@ -7,9 +7,12 @@
  */
 public class Cellule {
 
+    // ----------------------------------------------------Déclaration_Variables    
     private int valeur; // La valeur de la cellule (0 si vide)
     private boolean vide; // Indique si la cellule est vide
 
+    
+    // ----------------------------------------------------Methodes  
     /**
      * Constructeur pour une cellule vide. Initialise une cellule avec une
      * valeur de 0, indiquant qu'elle est vide.
@@ -24,8 +27,6 @@ public class Cellule {
      * être un chiffre positif différent de 0.
      *
      * @param nouvelleValeur La nouvelle valeur à assigner à la cellule.
-     * @throws IllegalArgumentException Si la nouvelle valeur n'est pas un
-     * chiffre positif différent de 0.
      */
     public void modifierValeur(int nouvelleValeur) {
         if (nouvelleValeur < 0) {

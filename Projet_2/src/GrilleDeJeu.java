@@ -155,151 +155,149 @@ class GrilleDeJeu {
         return count;
     }
 
-/**
- * Ajoute aléatoirement une cellule à gauche de la grille.
- */
-public void ajouterAleatoirementAGauche() {
-    Random random = new Random();
-    int stop = 2;
+    /**
+     * Ajoute aléatoirement une cellule à gauche de la grille.
+     */
+    public void ajouterAleatoirementAGauche() {
+        Random random = new Random();
+        int stop = 2;
 
-    while (stop == 2) {
-        // Choisir aléatoirement une valeur parmi 1, 2 ou 3
-        int[] valeursPossibles = {1, 2, 3, 6};
-        int valeur = valeursPossibles[random.nextInt(valeursPossibles.length)];
-        int randomLigne = random.nextInt(nbLignes);
-        int valeurExistante = matriceCellules[randomLigne][0].getValeur();
-        int cellulesVides = nombreCellulesVides();
+        while (stop == 2) {
+            // Choisir aléatoirement une valeur parmi 1, 2 ou 3
+            int[] valeursPossibles = {1, 2, 3, 6};
+            int valeur = valeursPossibles[random.nextInt(valeursPossibles.length)];
+            int randomLigne = random.nextInt(nbLignes);
+            int valeurExistante = matriceCellules[randomLigne][0].getValeur();
+            int cellulesVides = nombreCellulesVides();
 
-        // Nouvelle condition pour vérifier la valeur adjacente à gauche
-        if (valeurExistante == 0) {
-            // Vérifier la valeur adjacente à gauche
-            if (randomLigne > 0) {
-                int valeurAdjacenteGauche = matriceCellules[randomLigne - 1][0].getValeur();
-                // Ajuster la valeur selon les règles spécifiées
-                if (valeurAdjacenteGauche == 1) {
-                    valeur = 2;
-                } else if (valeurAdjacenteGauche == 2) {
-                    valeur = 1;
+            // Nouvelle condition pour vérifier la valeur adjacente à gauche
+            if (valeurExistante == 0) {
+                // Vérifier la valeur adjacente à gauche
+                if (randomLigne > 0) {
+                    int valeurAdjacenteGauche = matriceCellules[randomLigne - 1][0].getValeur();
+                    // Ajuster la valeur selon les règles spécifiées
+                    if (valeurAdjacenteGauche == 1) {
+                        valeur = 2;
+                    } else if (valeurAdjacenteGauche == 2) {
+                        valeur = 1;
+                    }
                 }
+
+                matriceCellules[randomLigne][0].modifierValeur(valeur);
+                stop = 1;
+            } else if (cellulesVides == 0) {
+                stop = 1;
             }
-            
-            matriceCellules[randomLigne][0].modifierValeur(valeur);
-            stop = 1;
-        } else if (cellulesVides == 0) {
-            stop = 1;
         }
     }
-}
 
+    /**
+     * Ajoute aléatoirement une cellule à droite de la grille.
+     */
+    public void ajouterAleatoirementADroite() {
+        Random random = new Random();
+        int stop = 2;
 
-   /**
- * Ajoute aléatoirement une cellule à droite de la grille.
- */
-public void ajouterAleatoirementADroite() {
-    Random random = new Random();
-    int stop = 2;
+        while (stop == 2) {
+            // Choisir aléatoirement une valeur parmi 1, 2 ou 3
+            int[] valeursPossibles = {1, 2, 3, 6};
+            int valeur = valeursPossibles[random.nextInt(valeursPossibles.length)];
+            int randomLigne = random.nextInt(nbLignes);
+            int valeurExistante = matriceCellules[randomLigne][nbColonnes - 1].getValeur();
+            int cellulesVides = nombreCellulesVides();
 
-    while (stop == 2) {
-        // Choisir aléatoirement une valeur parmi 1, 2 ou 3
-        int[] valeursPossibles = {1, 2, 3, 6};
-        int valeur = valeursPossibles[random.nextInt(valeursPossibles.length)];
-        int randomLigne = random.nextInt(nbLignes);
-        int valeurExistante = matriceCellules[randomLigne][nbColonnes - 1].getValeur();
-        int cellulesVides = nombreCellulesVides();
-
-        // Nouvelle condition pour vérifier la valeur adjacente à droite
-        if (valeurExistante == 0) {
-            // Vérifier la valeur adjacente à droite
-            if (randomLigne > 0) {
-                int valeurAdjacenteDroite = matriceCellules[randomLigne - 1][nbColonnes - 1].getValeur();
-                // Ajuster la valeur selon les règles spécifiées
-                if (valeurAdjacenteDroite == 1) {
-                    valeur = 2;
-                } else if (valeurAdjacenteDroite == 2) {
-                    valeur = 1;
+            // Nouvelle condition pour vérifier la valeur adjacente à droite
+            if (valeurExistante == 0) {
+                // Vérifier la valeur adjacente à droite
+                if (randomLigne > 0) {
+                    int valeurAdjacenteDroite = matriceCellules[randomLigne - 1][nbColonnes - 1].getValeur();
+                    // Ajuster la valeur selon les règles spécifiées
+                    if (valeurAdjacenteDroite == 1) {
+                        valeur = 2;
+                    } else if (valeurAdjacenteDroite == 2) {
+                        valeur = 1;
+                    }
                 }
+
+                matriceCellules[randomLigne][nbColonnes - 1].modifierValeur(valeur);
+                stop = 1;
+            } else if (cellulesVides == 0) {
+                stop = 1;
             }
-            
-            matriceCellules[randomLigne][nbColonnes - 1].modifierValeur(valeur);
-            stop = 1;
-        } else if (cellulesVides == 0) {
-            stop = 1;
         }
     }
-}
 
-/**
- * Ajoute aléatoirement une cellule en haut de la grille.
- */
-public void ajouterAleatoirementEnHaut() {
-    Random random = new Random();
-    int stop = 2;
+    /**
+     * Ajoute aléatoirement une cellule en haut de la grille.
+     */
+    public void ajouterAleatoirementEnHaut() {
+        Random random = new Random();
+        int stop = 2;
 
-    while (stop == 2) {
-        // Choisir aléatoirement une valeur parmi 1, 2 ou 3
-        int randomColonne = random.nextInt(nbColonnes);
-        int[] valeursPossibles = {1, 2, 3, 6};
-        int valeur = valeursPossibles[random.nextInt(valeursPossibles.length)];
-        int valeurExistante = matriceCellules[0][randomColonne].getValeur();
-        int cellulesVides = nombreCellulesVides();
+        while (stop == 2) {
+            // Choisir aléatoirement une valeur parmi 1, 2 ou 3
+            int randomColonne = random.nextInt(nbColonnes);
+            int[] valeursPossibles = {1, 2, 3, 6};
+            int valeur = valeursPossibles[random.nextInt(valeursPossibles.length)];
+            int valeurExistante = matriceCellules[0][randomColonne].getValeur();
+            int cellulesVides = nombreCellulesVides();
 
-        // Nouvelle condition pour vérifier la valeur adjacente en haut
-        if (valeurExistante == 0) {
-            // Vérifier la valeur adjacente en haut
-            if (randomColonne > 0) {
-                int valeurAdjacenteHaut = matriceCellules[0][randomColonne - 1].getValeur();
-                // Ajuster la valeur selon les règles spécifiées
-                if (valeurAdjacenteHaut == 1) {
-                    valeur = 2;
-                } else if (valeurAdjacenteHaut == 2) {
-                    valeur = 1;
+            // Nouvelle condition pour vérifier la valeur adjacente en haut
+            if (valeurExistante == 0) {
+                // Vérifier la valeur adjacente en haut
+                if (randomColonne > 0) {
+                    int valeurAdjacenteHaut = matriceCellules[0][randomColonne - 1].getValeur();
+                    // Ajuster la valeur selon les règles spécifiées
+                    if (valeurAdjacenteHaut == 1) {
+                        valeur = 2;
+                    } else if (valeurAdjacenteHaut == 2) {
+                        valeur = 1;
+                    }
                 }
+
+                matriceCellules[0][randomColonne].modifierValeur(valeur);
+                stop = 1;
+            } else if (cellulesVides == 0) {
+                stop = 1;
             }
-            
-            matriceCellules[0][randomColonne].modifierValeur(valeur);
-            stop = 1;
-        } else if (cellulesVides == 0) {
-            stop = 1;
         }
     }
-}
 
-/**
- * Ajoute aléatoirement une cellule en bas de la grille.
- */
-public void ajouterAleatoirementEnBas() {
-    Random random = new Random();
-    int stop = 2;
+    /**
+     * Ajoute aléatoirement une cellule en bas de la grille.
+     */
+    public void ajouterAleatoirementEnBas() {
+        Random random = new Random();
+        int stop = 2;
 
-    while (stop == 2) {
-        // Choisir aléatoirement une valeur parmi 1, 2 ou 3
-        int[] valeursPossibles = {1, 2, 3, 6};
-        int valeur = valeursPossibles[random.nextInt(valeursPossibles.length)];
-        int randomColonne = random.nextInt(nbColonnes);
-        int valeurExistante = matriceCellules[nbLignes - 1][randomColonne].getValeur();
-        int cellulesVides = nombreCellulesVides();
+        while (stop == 2) {
+            // Choisir aléatoirement une valeur parmi 1, 2 ou 3
+            int[] valeursPossibles = {1, 2, 3, 6};
+            int valeur = valeursPossibles[random.nextInt(valeursPossibles.length)];
+            int randomColonne = random.nextInt(nbColonnes);
+            int valeurExistante = matriceCellules[nbLignes - 1][randomColonne].getValeur();
+            int cellulesVides = nombreCellulesVides();
 
-        // Nouvelle condition pour vérifier la valeur adjacente en bas
-        if (valeurExistante == 0) {
-            // Vérifier la valeur adjacente en bas
-            if (randomColonne > 0) {
-                int valeurAdjacenteBas = matriceCellules[nbLignes - 1][randomColonne - 1].getValeur();
-                // Ajuster la valeur selon les règles spécifiées
-                if (valeurAdjacenteBas == 1) {
-                    valeur = 2;
-                } else if (valeurAdjacenteBas == 2) {
-                    valeur = 1;
+            // Nouvelle condition pour vérifier la valeur adjacente en bas
+            if (valeurExistante == 0) {
+                // Vérifier la valeur adjacente en bas
+                if (randomColonne > 0) {
+                    int valeurAdjacenteBas = matriceCellules[nbLignes - 1][randomColonne - 1].getValeur();
+                    // Ajuster la valeur selon les règles spécifiées
+                    if (valeurAdjacenteBas == 1) {
+                        valeur = 2;
+                    } else if (valeurAdjacenteBas == 2) {
+                        valeur = 1;
+                    }
                 }
+
+                matriceCellules[nbLignes - 1][randomColonne].modifierValeur(valeur);
+                stop = 1;
+            } else if (cellulesVides == 0) {
+                stop = 1;
             }
-            
-            matriceCellules[nbLignes - 1][randomColonne].modifierValeur(valeur);
-            stop = 1;
-        } else if (cellulesVides == 0) {
-            stop = 1;
         }
     }
-}
-
 
     /**
      * Additionne les cellules adjacentes vers la droite.

@@ -30,7 +30,7 @@ import javax.swing.UIManager;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 /**
- *
+ * page qui gere l identification des joueurs
  * @author ordim
  */
 public class PartieLogin extends javax.swing.JFrame {
@@ -54,6 +54,8 @@ public class PartieLogin extends javax.swing.JFrame {
      */
     public PartieLogin() {
         initComponents();
+
+        // ---------------------------------------------------Initialisation musique
         LecteurWAV lecteur = new LecteurWAV();
         lecteur.arreterLecture();
 
@@ -95,22 +97,7 @@ public class PartieLogin extends javax.swing.JFrame {
             setIconImage(icon.getImage());
         }
 
-        // --------------------------------------------------- changer logo mac
-        setLocationRelativeTo(null);
-
-        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-
-            Taskbar taskbar = Taskbar.getTaskbar();
-
-            // Vérifier si la barre des tâches prend en charge les icônes du Dock
-            if (taskbar.isSupported(Taskbar.Feature.ICON_IMAGE)) {
-
-                taskbar.setIconImage(icon.getImage());
-
-            }
-
-        }
-
+        // --------------------------------------------------- Action des boutons
         password.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -137,7 +124,6 @@ public class PartieLogin extends javax.swing.JFrame {
             }
         });
 
-        // --------------------------------------------------- Action du bouton "LOGIN" ET "REGISTER"
         LOGIN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -150,7 +136,6 @@ public class PartieLogin extends javax.swing.JFrame {
 
                     if (mdpfind.equals(password1)) {
                         lecteur.lireFichierWAV("Sclic.wav");
-
 
                         DebutPartie f = new DebutPartie(username1);
                         f.setVisible(true);
@@ -271,6 +256,7 @@ public class PartieLogin extends javax.swing.JFrame {
             }
         });
 
+        //--------------------------------------------------- Fenetre
         setFocusable(true);
         setResizable(false);
     }

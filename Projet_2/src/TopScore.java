@@ -14,12 +14,17 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * La classe TopScore gère la sauvegarde, l'affichage et la manipulation des
+ * scores.
+ */
 public class TopScore {
 
     /**
      * Méthode pour sauvegarder le score dans un fichier texte.
      *
      * @param score Le score à sauvegarder.
+     * @param username Le nom d'utilisateur associé au score.
      */
     public static void sauvegarderScore(int score, String username) {
         try ( BufferedWriter writer = new BufferedWriter(new FileWriter(username + ".txt", true))) {
@@ -39,6 +44,9 @@ public class TopScore {
 
     /**
      * Méthode pour afficher tous les scores sauvegardés.
+     *
+     * @param username Le nom d'utilisateur dont les scores doivent être
+     * affichés.
      */
     public static void afficherScoresSauvegardes(String username) {
         try ( BufferedReader reader = new BufferedReader(new FileReader(username + ".txt"))) {
@@ -55,7 +63,10 @@ public class TopScore {
     }
 
     /**
-     * Méthode pour supprimer le fichier topscores.txt.
+     * Méthode pour supprimer le fichier de scores associé à un utilisateur.
+     *
+     * @param username Le nom d'utilisateur dont le fichier de scores doit être
+     * supprimé.
      */
     public static void supprimerTopScores(String username) {
         String cheminFichier = username + ".txt";
@@ -75,25 +86,26 @@ public class TopScore {
      * Méthode pour récupérer le score correspondant au rang spécifié.
      *
      * @param rang Le rang du score à récupérer.
+     * @param username Le nom d'utilisateur associé aux scores.
      * @return Le score correspondant au rang.
      */
-public static int recupererScore(int rang, String username) {
-    Set<Integer> scores = lireScores(username);
+    public static int recupererScore(int rang, String username) {
+        Set<Integer> scores = lireScores(username);
 
-    if (rang <= 0 || rang > scores.size()) {
-        return -1; // Valeur par défaut ou code d'erreur selon le contexte
+        if (rang <= 0 || rang > scores.size()) {
+            return -1; // Valeur par défaut ou code d'erreur selon le contexte
+        }
+
+        List<Integer> sortedUniqueScores = scores.stream()
+                .distinct()
+                .sorted(Collections.reverseOrder())
+                .collect(Collectors.toList());
+
+        return sortedUniqueScores.get(rang - 1);
     }
 
-    List<Integer> sortedUniqueScores = scores.stream()
-            .distinct()
-            .sorted(Collections.reverseOrder())
-            .collect(Collectors.toList());
-
-    return sortedUniqueScores.get(rang - 1);
-}
-
     /**
-     * Méthode pour créer un fichier topscore avec un score initial.
+     * Méthode pour créer un fichier de scores avec un score initial.
      *
      * @param username Le nom d'utilisateur pour lequel le fichier doit être
      * créé.
@@ -105,19 +117,20 @@ public static int recupererScore(int rang, String username) {
             writer.write(String.valueOf(scoreInitial));
             writer.newLine();  // passer à la ligne suivante pour le prochain score
 
-            System.out.println("Fichier topscore pour " + username + " créé avec succès.");
+            System.out.println("Fichier de scores pour " + username + " créé avec succès.");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * Cette méthode lit les scores à partir du fichier "topscores.txt". Chaque
-     * ligne du fichier est interprétée comme un score entier, qui est ensuite
-     * ajouté à un ensemble. En cas d'erreur d'entrée/sortie, une trace de la
-     * pile est affichée, mais l'exécution de la méthode se poursuit avec un
-     * ensemble vide.
+     * Cette méthode lit les scores à partir du fichier de scores associé à un
+     * utilisateur. Chaque ligne du fichier est interprétée comme un score
+     * entier, qui est ensuite ajouté à un ensemble. En cas d'erreur
+     * d'entrée/sortie, une trace de la pile est affichée, mais l'exécution de
+     * la méthode se poursuit avec un ensemble vide.
      *
+     * @param username Le nom d'utilisateur associé aux scores.
      * @return Un ensemble d'entiers représentant les scores lus à partir du
      * fichier.
      */
@@ -132,5 +145,4 @@ public static int recupererScore(int rang, String username) {
         }
         return scores;
     }
-
 }

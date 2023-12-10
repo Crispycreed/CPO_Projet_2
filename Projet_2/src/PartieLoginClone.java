@@ -30,7 +30,7 @@ import javax.swing.UIManager;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 /**
- *
+ * classe qui gère l identification des joueurs graphiquement
  * @author ordim
  */
 public class PartieLoginClone extends javax.swing.JFrame {
@@ -62,6 +62,8 @@ public class PartieLoginClone extends javax.swing.JFrame {
         this.icon = icon;
         this.mute = mute;
         this.username1 = username;
+
+        // ---------------------------------------------------Initialisation musique
         LecteurWAV lecteur = new LecteurWAV();
         lecteur.arreterLecture();
 
@@ -103,6 +105,7 @@ public class PartieLoginClone extends javax.swing.JFrame {
 
         }
 
+        // --------------------------------------------------- Action des boutons
         password.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -129,7 +132,6 @@ public class PartieLoginClone extends javax.swing.JFrame {
             }
         });
 
-        // --------------------------------------------------- Action du bouton "LOGIN" ET "REGISTER"
         LOGIN.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -261,6 +263,7 @@ public class PartieLoginClone extends javax.swing.JFrame {
             }
         });
 
+        //--------------------------------------------------- Fenetre
         setFocusable(true);
         setResizable(false);
     }

@@ -21,6 +21,7 @@ import javax.swing.ImageIcon;
  */
 public class DebutPartieClone extends javax.swing.JFrame {
 
+    // ----------------------------------------------------Déclaration_Variables
     GrilleDeJeu grille;
     int nbCoups;
     int i;
@@ -43,6 +44,8 @@ public class DebutPartieClone extends javax.swing.JFrame {
      * @param nbLignes Le nombre de lignes de la grille.
      */
     public DebutPartieClone(int nbLignes2, int nbColonnes2, String PresetChrono, ImageIcon icon, int mute, String username) {
+
+// ----------------------------------------------------Déclaration_Variables
         this.nbColonnes2 = nbColonnes2;
         this.nbLignes2 = nbLignes2;
         this.PresetChrono = PresetChrono;
@@ -50,9 +53,12 @@ public class DebutPartieClone extends javax.swing.JFrame {
         this.mute = mute;
         this.username = username;
         initComponents();
+
+        // ---------------------------------------------------Initialisation musique
         LecteurWAV lecteur = new LecteurWAV();
         lecteur.arreterLecture();
 
+        // ---------------------------------------------------Panneau_Grille
         PanneauGrille.setLayout(new GridLayout(nbLignes, nbColonnes));
         this.grille = new GrilleDeJeu(nbLignes, nbColonnes);
         getContentPane().add(PanneauGrille, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, nbColonnes * 40, nbLignes * 40));
@@ -69,6 +75,8 @@ public class DebutPartieClone extends javax.swing.JFrame {
             }
         }
         setLocationRelativeTo(null);
+
+        // --------------------------------------------------- changer logo
         setIconImage(icon.getImage());
 
         if (System.getProperty("os.name").toLowerCase().contains("mac")) {
@@ -84,6 +92,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
 
         }
 
+        // --------------------------------------------------- Action des boutons
         LANCER.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -109,7 +118,6 @@ public class DebutPartieClone extends javax.swing.JFrame {
             }
         });
 
-        // --------------------------------------------------- Action du bouton "Rules" / "tips" 
         Desktop desktop = Desktop.getDesktop();
         livre.addActionListener(new ActionListener() {
             @Override
@@ -166,6 +174,7 @@ public class DebutPartieClone extends javax.swing.JFrame {
             }
         });
 
+        // --------------------------------------------------- Fenetre
         setResizable(false);
     }
 

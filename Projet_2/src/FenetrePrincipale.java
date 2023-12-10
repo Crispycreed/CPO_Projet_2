@@ -40,7 +40,7 @@ import javax.swing.UIManager;
  * @author ordim
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
-    
+
     // ----------------------------------------------------Déclaration_Variables
     GrilleDeJeu grille;
     int nbCoups;
@@ -366,8 +366,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         timer.start();
 
         // ---------------------------------------------------------Icon_Fenetre 
-        setIconImage(icon.getImage()); 
-        
+        setIconImage(icon.getImage());
+
         if (System.getProperty("os.name").toLowerCase().contains("mac")) {
 
             Taskbar taskbar = Taskbar.getTaskbar();
