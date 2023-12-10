@@ -40,7 +40,6 @@ import javax.swing.UIManager;
  * @author ordim
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
-
     // ----------------------------------------------------Déclaration_Variables
     GrilleDeJeu grille;
     int nbCoups;
