@@ -48,6 +48,7 @@ public class MotDePasse {
      * Affiche tous les identifiants avec leurs mots de passe.
      */
     void afficherTousLesIdentifiants() {
+        
         try {
             List<String> lignes = Files.readAllLines(Paths.get(FICHIER_MDP));
             for (String ligne : lignes) {
